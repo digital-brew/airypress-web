@@ -1,10 +1,9 @@
-import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-const config: PlaywrightTestConfig = {
+const config = {
   testDir: './tests/e2e',
   timeout: 30 * 1000,
   forbidOnly: !!process.env.CI,

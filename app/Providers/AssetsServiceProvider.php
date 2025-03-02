@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
-use function Roots\bundle;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Vite;
 
 class AssetsServiceProvider extends ServiceProvider
 {
@@ -21,54 +21,87 @@ class AssetsServiceProvider extends ServiceProvider
          * @return void
          */
         add_action('wp_enqueue_scripts', function (): void {
-            bundle('app')->enqueue();
-
             remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
         }, 100);
 
         /**
-         * Register the theme assets with the block editor.
+         * Inject styles into the block editor.
+         *
+         * @return array
+         */
+        add_filter('block_editor_settings_all', function ($settings) {
+            $style = Vite::asset('resources/css/editor.css');
+
+            $settings['styles'][] = [
+                'css' => Vite::isRunningHot()
+                    ? "@import url('{$style}')"
+                    : Vite::content('resources/css/editor.css'),
+            ];
+
+            return $settings;
+        });
+
+        /**
+         * Inject scripts into the block editor.
          *
          * @return void
          */
-        add_action('enqueue_block_editor_assets', function (): void {
-            bundle('editor')->enqueue();
-        }, 100);
-
-        /**
-         * Add the type="module" attribute to script tags that have the .mjs extension.
-         *
-         * @param  string $tag
-         * @return string
-         */
-        add_filter('script_loader_tag', function (string $tag): string {
-            $hasModuleExtension = str_contains($tag, '.mjs"');
-
-            $hasModuleAttribute = ! empty(array_filter(
-                ['type="module"', 'type=module', "type='module'"],
-                fn ($value) => str_contains($tag, $value)
-            ));
-
-            if (! $hasModuleExtension || $hasModuleAttribute) {
-                return $tag;
+        add_filter('admin_head', function () {
+            if (! get_current_screen()?->is_block_editor()) {
+                return;
             }
 
-            return str_replace(' src=', ' type=module src=', $tag);
-        }, 10, 2);
+            $dependencies = json_decode(Vite::content('editor.deps.json'));
 
-        /**
-         * Use theme.json from the build directory
-         *
-         * @param  string $path
-         * @param  string $file
-         * @return string
-         */
-        add_filter('theme_file_path', function (string $path, string $file): string {
-            if ($file === 'theme.json') {
-                return public_path() . '/dist/theme.json';
+            foreach ($dependencies as $dependency) {
+                if (! wp_script_is($dependency)) {
+                    wp_enqueue_script($dependency);
+                }
             }
 
-            return $path;
+            echo Vite::withEntryPoints([
+                'resources/js/editor.js',
+            ])->toHtml();
+        });
+
+        /**
+         * Add Vite's HMR client to the block editor.
+         *
+         * @return void
+         */
+        add_action('enqueue_block_assets', function () {
+            if (! is_admin() || ! get_current_screen()?->is_block_editor()) {
+                return;
+            }
+
+            if (! Vite::isRunningHot()) {
+                return;
+            }
+
+            $script = sprintf(
+                <<<'JS'
+                window.__vite_client_url = '%s';
+
+                window.self !== window.top && document.head.appendChild(
+                    Object.assign(document.createElement('script'), { type: 'module', src: '%s' })
+                );
+                JS,
+                untrailingslashit(Vite::asset('')),
+                Vite::asset('@vite/client')
+            );
+
+            wp_add_inline_script('wp-blocks', $script);
+        });
+
+        /**
+         * Use the generated theme.json file.
+         *
+         * @return string
+         */
+        add_filter('theme_file_path', function ($path, $file) {
+            return $file === 'theme.json'
+                ? public_path('build/assets/theme.json')
+                : $path;
         }, 10, 2);
 
         /**
@@ -78,7 +111,7 @@ class AssetsServiceProvider extends ServiceProvider
          * @return void
          */
         add_filter('wp_theme_json_data_default', function (\WP_Theme_JSON_Data $themeJson): \WP_Theme_JSON_Data {
-            $themeJsonFile = public_path('/dist/theme.json');
+            $themeJsonFile = public_path('/build/theme.json');
             if (!file_exists($themeJsonFile)) {
                 return $themeJson;
             }

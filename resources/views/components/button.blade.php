@@ -4,7 +4,7 @@ if ($element === 'a' && !$attributes->has('href')) {
     $element = 'button';
 }
 
-$defaultClasses = 'inline-flex border border-black active:bg-black active:text-white ';
+$defaultClasses = 'inline-flex border border-black active:bg-black active:text-white !no-underline ';
 
 $variants = [
     'primary' => 'text-white bg-black hover:bg-white hover:text-black',

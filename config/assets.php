@@ -32,10 +32,10 @@ return [
 
     'manifests' => [
         'app' => [
-            'path' => public_path('/dist'),
-            'url' => WP_HOME . '/dist',
-            'assets' => public_path('dist/manifest.json'),
-            'bundles' => public_path('dist/entrypoints.json'),
+            'path' => public_path('/build'),
+            'url' => WP_HOME . '/build',
+            'assets' => public_path('build/manifest.json'),
+            'bundles' => public_path('build/manifest.json'),
         ],
     ],
 ];

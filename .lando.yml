@@ -29,8 +29,8 @@ services:
     type: node:18
     ssl: true
     build:
-      - yarn install --immutable
-      - yarn build
+      - npm install --immutable
+      - npm run build
     scanner: false
     overrides:
       # See: https://github.com/lando/node/issues/66
@@ -49,7 +49,7 @@ services:
 tooling:
   redis-cli:
     service: cache
-  yarn:
+  node:
     service: build
   ansible:
     service: trellis
@@ -72,7 +72,7 @@ tooling:
       - rm -rf /app/public/wp /app/vendor
       - rm -rf /app/node_modules /app/public/dist/*
       - appserver: composer install --working-dir=/app --no-progress --no-interaction --no-progress
-      - build: cd /app && yarn install --immutable && yarn build
+      - build: cd /app && npm install && npm run build
   login:
     service: appserver
     description: Generate administrator login URL

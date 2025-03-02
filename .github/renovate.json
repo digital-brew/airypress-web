@@ -8,11 +8,6 @@
       "matchUpdateTypes": ["minor", "patch", "pin"]
     },
     {
-      "groupName": "Bud",
-      "matchPackagePrefixes": ["@roots/"],
-      "schedule": ["at any time"]
-    },
-    {
       "groupName": "Alpine.js",
       "matchPackagePrefixes": ["alpinejs", "@alpinejs/", "@types/alpinejs"]
     }

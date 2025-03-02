@@ -7,7 +7,7 @@ public/content/upgrade
 public/content/uploads/*
 !public/content/uploads/.gitkeep
 public/content/cache/*
-public/dist/*
+public/build/*
 
 # WordPress
 public/wp
@@ -34,6 +34,3 @@ yarn-error.log
 
 # VS Code
 .vscode/settings.json
-
-# Bud
-storage/bud/*

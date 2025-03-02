@@ -31,7 +31,7 @@ If you are using a managed WordPress host, make sure that they meet these requir
   <summary>📦 Trellis</summary>
   <br>
 
-  Run `yarn && yarn build`
+  Run `npm install && npm run build`
 
   Run `php .radicle-setup/trellis.php` to grab the latest version of Trellis and apply the necessary modifications for Radicle. After you've ran this script,
   navigate to the Trellis directory to init and start your project:
@@ -51,8 +51,7 @@ If you are using a managed WordPress host, make sure that they meet these requir
   <summary>🐳 Lando</summary>
   <br>
 
-  1. In `bud.config.js`: Replace `http://radicle.test` with `https://radicle.lndo.site`
-  1. Run `yarn && yarn build`
+  1. Run `npm install && npm run build`
   1. Run `lando start`
   1. Visit `https://radicle.lndo.site/`
 
@@ -64,8 +63,7 @@ If you are using a managed WordPress host, make sure that they meet these requir
   <summary>⚙️ Other</summary>
   <br>
 
-  1. In `bud.config.js`: Replace `http://radicle.test` with your local dev server URL
-  1. Run `yarn && yarn build`
+  1. Run `npm install && npm run build`
   1. Run `composer install`
   1. Configure your local development setup to set the `public/` directory as the webroot.
   1. Copy `.env.example` to `.env` and update the [environment variables](https://roots.io/bedrock/docs/installation/#getting-started)
@@ -90,8 +88,8 @@ If you are using a managed WordPress host, make sure that they meet these requir
 
   You will need to make sure that your deployment process handles the following:
 
-  1. Run `yarn && yarn build` from the project root
-  1. Copy contents of `public/dist/` folder to server (produced from `yarn build`)
+  1. Run `npm install && npm run build`
+  1. Copy contents of `public/build/` folder to server (produced from `npm run build`)
   1. Run `composer install`
   1. Run `wp acorn optimize`
   1. Run `wp acorn icons:cache` (if using Blade Icons)
