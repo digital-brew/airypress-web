@@ -33,15 +33,15 @@
     },
     "require": {
         "php": ">=8.2",
-        "blade-ui-kit/blade-heroicons": "^2.2",
-        "blade-ui-kit/blade-icons": "^1.5",
+        "blade-ui-kit/blade-heroicons": "^2.6",
+        "blade-ui-kit/blade-icons": "^1.8",
         "composer/installers": "^2.2",
         "guzzlehttp/guzzle": "^7.5",
         "johnbillion/extended-cpts": "^5.0",
         "log1x/acorn-disable-media-pages": "^1.0",
         "masterminds/html5": "^2.8",
         "oscarotero/env": "^2.1",
-        "roots/acorn": "^4.0",
+        "roots/acorn": "dev-main",
         "roots/acorn-prettify": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
@@ -54,11 +54,11 @@
     },
     "require-dev": {
         "johnbillion/query-monitor": "^3.12",
-        "laravel/pint": "^1.4",
-        "pestphp/pest": "^2.0",
+        "laravel/pint": "^1.21",
+        "pestphp/pest": "^3.7",
         "phpcompatibility/php-compatibility": "^9.3",
         "roave/security-advisories": "dev-latest",
-        "spatie/laravel-ignition": "^2.4"
+        "spatie/laravel-ignition": "^2.9"
     },
     "config": {
         "optimize-autoloader": true,
