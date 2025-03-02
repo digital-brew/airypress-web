@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7b62566396521f451050fc517807378",
+    "content-hash": "20f4e4e410b7ab6887bf1be780c453e8",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -2861,20 +2861,20 @@
         },
         {
             "name": "johnbillion/extended-cpts",
-            "version": "5.0.8",
+            "version": "5.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/extended-cpts.git",
-                "reference": "904daa7095e72bcecd52b019123c78dece959205"
+                "reference": "57f2e74155a12e7a37d07250e6739dbab5a732b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/extended-cpts/zipball/904daa7095e72bcecd52b019123c78dece959205",
-                "reference": "904daa7095e72bcecd52b019123c78dece959205",
+                "url": "https://api.github.com/repos/johnbillion/extended-cpts/zipball/57f2e74155a12e7a37d07250e6739dbab5a732b3",
+                "reference": "57f2e74155a12e7a37d07250e6739dbab5a732b3",
                 "shasum": ""
             },
             "require": {
-                "johnbillion/args": "^1.4.1",
+                "johnbillion/args": "^1.4.1 || ^2.0",
                 "php": ">= 7.4.0"
             },
             "require-dev": {
@@ -2882,13 +2882,14 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
                 "johnbillion/falsey-assertequals-detector": "*",
                 "johnbillion/plugin-infrastructure": "dev-trunk",
-                "lucatume/wp-browser": ">=3.0.21 <3.5",
-                "phpcompatibility/phpcompatibility-wp": "^2",
-                "phpstan/phpstan": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "roots/wordpress-core-installer": "^1.0.0",
+                "johnbillion/wp-compat": "0.3.1",
+                "lucatume/wp-browser": "3.2.3",
+                "phpcompatibility/phpcompatibility-wp": "2.1.5",
+                "phpstan/phpstan": "1.12.12",
+                "phpstan/phpstan-phpunit": "1.4.1",
+                "roots/wordpress-core-installer": "1.100.0",
                 "roots/wordpress-full": "*",
-                "szepeviktor/phpstan-wordpress": "1.1.6",
+                "szepeviktor/phpstan-wordpress": "1.3.5",
                 "wp-coding-standards/wpcs": "2.3.0"
             },
             "type": "library",
@@ -2918,15 +2919,9 @@
             "homepage": "https://github.com/johnbillion/extended-cpts/",
             "support": {
                 "issues": "https://github.com/johnbillion/extended-cpts/issues",
-                "source": "https://github.com/johnbillion/extended-cpts/tree/5.0.8"
+                "source": "https://github.com/johnbillion/extended-cpts/tree/5.0.11"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/johnbillion",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-07-08T13:16:43+00:00"
+            "time": "2024-11-30T23:16:17+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -4767,16 +4762,16 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "6.6.1",
+            "version": "6.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress.git",
-                "reference": "1bdabdb9171ac5323edbf4792ce353d475467d27"
+                "reference": "c53e4173d239dcaf8889f9f84c0b827a0cf643e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress/zipball/1bdabdb9171ac5323edbf4792ce353d475467d27",
-                "reference": "1bdabdb9171ac5323edbf4792ce353d475467d27",
+                "url": "https://api.github.com/repos/roots/wordpress/zipball/c53e4173d239dcaf8889f9f84c0b827a0cf643e9",
+                "reference": "c53e4173d239dcaf8889f9f84c0b827a0cf643e9",
                 "shasum": ""
             },
             "require": {
@@ -4798,7 +4793,7 @@
             ],
             "support": {
                 "issues": "https://github.com/roots/wordpress/issues",
-                "source": "https://github.com/roots/wordpress/tree/6.6.1"
+                "source": "https://github.com/roots/wordpress/tree/6.7.2"
             },
             "funding": [
                 {
@@ -4806,7 +4801,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-16T12:03:00+00:00"
+            "time": "2024-12-15T16:32:37+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -4881,22 +4876,22 @@
         },
         {
             "name": "roots/wordpress-no-content",
-            "version": "6.6.1",
+            "version": "6.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "6.6.1"
+                "reference": "6.7.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/release/wordpress-6.6.1-no-content.zip",
-                "shasum": "954aa560a66112cd999aa9d9519da5f964e6692a"
+                "url": "https://downloads.wordpress.org/release/wordpress-6.7.2-no-content.zip",
+                "shasum": "c33ca276601dee0ddf1e80d3e66403929a696e63"
             },
             "require": {
-                "php": ">= 7.0.0"
+                "php": ">= 7.2.24"
             },
             "provide": {
-                "wordpress/core-implementation": "6.6.1"
+                "wordpress/core-implementation": "6.7.2"
             },
             "suggest": {
                 "ext-curl": "Performs remote request operations.",
@@ -4947,7 +4942,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2024-07-23T15:25:13+00:00"
+            "time": "2025-02-11T16:29:31+00:00"
         },
         {
             "name": "roots/wp-config",
@@ -4993,16 +4988,16 @@
         },
         {
             "name": "roots/wp-password-bcrypt",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wp-password-bcrypt.git",
-                "reference": "15f0d8919fb3731f79a0cf2fb47e1baecb86cb26"
+                "reference": "bd26ab98aa646d88ce98c76e365d16259c5227a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wp-password-bcrypt/zipball/15f0d8919fb3731f79a0cf2fb47e1baecb86cb26",
-                "reference": "15f0d8919fb3731f79a0cf2fb47e1baecb86cb26",
+                "url": "https://api.github.com/repos/roots/wp-password-bcrypt/zipball/bd26ab98aa646d88ce98c76e365d16259c5227a2",
+                "reference": "bd26ab98aa646d88ce98c76e365d16259c5227a2",
                 "shasum": ""
             },
             "require": {
@@ -5053,17 +5048,18 @@
                 "passwords",
                 "wordpress"
             ],
+            "support": {
+                "forum": "https://discourse.roots.io/",
+                "issues": "https://github.com/roots/wp-password-bcrypt/issues",
+                "source": "https://github.com/roots/wp-password-bcrypt/tree/1.2.0"
+            },
             "funding": [
                 {
                     "url": "https://github.com/roots",
                     "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/rootsdev",
-                    "type": "patreon"
                 }
             ],
-            "time": "2021-10-31T01:18:58+00:00"
+            "time": "2024-09-10T23:11:22+00:00"
         },
         {
             "name": "roots/wp-stage-switcher",
@@ -7270,15 +7266,15 @@
         },
         {
             "name": "wpackagist-plugin/safe-svg",
-            "version": "2.2.5",
+            "version": "2.3.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/safe-svg/",
-                "reference": "tags/2.2.5"
+                "reference": "tags/2.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/safe-svg.2.2.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/safe-svg.2.3.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -7619,16 +7615,16 @@
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.16.4",
+            "version": "3.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "a876a2f32236123b09b71fe2d79ba2a5a67b0147"
+                "reference": "e35dbc8ac937178d214c04552a0a802dacf6c79b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/a876a2f32236123b09b71fe2d79ba2a5a67b0147",
-                "reference": "a876a2f32236123b09b71fe2d79ba2a5a67b0147",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/e35dbc8ac937178d214c04552a0a802dacf6c79b",
+                "reference": "e35dbc8ac937178d214c04552a0a802dacf6c79b",
                 "shasum": ""
             },
             "require": {
@@ -7642,13 +7638,15 @@
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
                 "johnbillion/plugin-infrastructure": "dev-trunk",
-                "lucatume/wp-browser": "3.2.1",
-                "phpcompatibility/phpcompatibility-wp": "2.1.4",
-                "phpstan/phpstan": "1.10.39",
-                "phpstan/phpstan-phpunit": "1.3.15",
+                "johnbillion/wp-compat": "0.3.1",
+                "lucatume/wp-browser": "3.2.3",
+                "phpcompatibility/phpcompatibility-wp": "2.1.5",
+                "phpstan/phpstan": "1.12.11",
+                "phpstan/phpstan-deprecation-rules": "1.2.1",
+                "phpstan/phpstan-phpunit": "1.4.1",
                 "roots/wordpress-core-installer": "1.100.0",
                 "roots/wordpress-full": "*",
-                "squizlabs/php_codesniffer": "3.7.1",
+                "squizlabs/php_codesniffer": "3.11.1",
                 "szepeviktor/phpstan-wordpress": "1.3.5",
                 "wp-coding-standards/wpcs": "2.3.0"
             },
@@ -7674,10 +7672,11 @@
                 }
             ],
             "description": "The Developer Tools panel for WordPress.",
-            "homepage": "https://github.com/johnbillion/query-monitor/",
+            "homepage": "https://querymonitor.com/",
             "support": {
                 "forum": "https://wordpress.org/support/plugin/query-monitor",
                 "issues": "https://github.com/johnbillion/query-monitor/issues",
+                "security": "https://patchstack.com/database/vdp/query-monitor",
                 "source": "https://github.com/johnbillion/query-monitor"
             },
             "funding": [
@@ -7686,7 +7685,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-25T10:21:05+00:00"
+            "time": "2025-02-04T22:13:08+00:00"
         },
         {
             "name": "laravel/pint",

@@ -45,15 +45,15 @@
         "roots/acorn-prettify": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "6.6.1",
+        "roots/wordpress": "6.7.2",
         "roots/wp-config": "1.0.0",
-        "roots/wp-password-bcrypt": "1.1.0",
+        "roots/wp-password-bcrypt": "^1.2",
         "roots/wp-stage-switcher": "^2.2",
         "vlucas/phpdotenv": "^5.5",
-        "wpackagist-plugin/safe-svg": "^2.1"
+        "wpackagist-plugin/safe-svg": "^2.3"
     },
     "require-dev": {
-        "johnbillion/query-monitor": "^3.12",
+        "johnbillion/query-monitor": "^3.17",
         "laravel/pint": "^1.21",
         "pestphp/pest": "^3.7",
         "phpcompatibility/php-compatibility": "^9.3",
