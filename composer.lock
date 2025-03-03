@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20f4e4e410b7ab6887bf1be780c453e8",
+    "content-hash": "e404b7984e0281f6af1079b7f7cdcbc8",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -4405,16 +4405,16 @@
         },
         {
             "name": "roots/acorn",
-            "version": "dev-main",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/acorn.git",
-                "reference": "14f56f1dcabdbc92941843cbd96d09f9f03fbaf7"
+                "reference": "b1e5a0def66f6a74d05cd3a476f44a8ab835a1a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/acorn/zipball/14f56f1dcabdbc92941843cbd96d09f9f03fbaf7",
-                "reference": "14f56f1dcabdbc92941843cbd96d09f9f03fbaf7",
+                "url": "https://api.github.com/repos/roots/acorn/zipball/b1e5a0def66f6a74d05cd3a476f44a8ab835a1a7",
+                "reference": "b1e5a0def66f6a74d05cd3a476f44a8ab835a1a7",
                 "shasum": ""
             },
             "require": {
@@ -4467,7 +4467,6 @@
                 "roots/acorn-prettify": "A collection of modules to apply theme-agnostic front-end modifications (^1.0).",
                 "spatie/laravel-ignition": "A beautiful error page for development (^2.0)."
             },
-            "default-branch": true,
             "bin": [
                 "bin/acorn"
             ],
@@ -4507,7 +4506,7 @@
             "support": {
                 "forum": "https://discourse.roots.io/",
                 "issues": "https://github.com/roots/acorn/issues",
-                "source": "https://github.com/roots/acorn/tree/main"
+                "source": "https://github.com/roots/acorn/tree/v5.0.0"
             },
             "funding": [
                 {
@@ -4515,7 +4514,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-02T15:53:43+00:00"
+            "time": "2025-03-03T13:44:02+00:00"
         },
         {
             "name": "roots/acorn-prettify",
@@ -11085,8 +11084,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "roave/security-advisories": 20,
-        "roots/acorn": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

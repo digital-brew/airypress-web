@@ -105,7 +105,6 @@ If you are using a managed WordPress host, make sure that they meet these requir
 | `config/theme.php`              | Theme setup configuration     |
 | `public/content/`               | `wp-content` directory        |
 | `storage/logs/application.log`  | App log                       |
-| `resources/scripts/editor/`     | Block editor related scripts  |
 | `resources/views/`              | Theme templates               |
 
 ## Support
