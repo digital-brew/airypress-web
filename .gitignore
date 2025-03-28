@@ -7,7 +7,10 @@ public/content/upgrade
 public/content/uploads/*
 !public/content/uploads/.gitkeep
 public/content/cache/*
+
+# Asset build
 public/build/*
+public/hot
 
 # WordPress
 public/wp
