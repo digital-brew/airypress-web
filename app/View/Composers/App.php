@@ -30,11 +30,9 @@ class App extends Composer
     }
 
     /**
-     * Returns the site name.
-     *
-     * @return string
+     * Retrieve the site name.
      */
-    public function siteName()
+    public function siteName(): string
     {
         return get_bloginfo('name', 'display');
     }
