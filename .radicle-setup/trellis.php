@@ -55,16 +55,6 @@ $vagrantfile = str_replace(
 );
 file_put_contents('trellis/Vagrantfile', $vagrantfile);
 
-// group_vars/all/helpers.yml
-// Add `acorn_enable_expirimental_router: true` to the `wordpress_env_defaults` array
-$groupVarsAllHelpers = file_get_contents('trellis/group_vars/all/helpers.yml');
-$groupVarsAllHelpers = str_replace(
-    "wordpress_env_defaults:",
-    "wordpress_env_defaults:\n  acorn_enable_expirimental_router: true",
-    $groupVarsAllHelpers
-);
-file_put_contents('trellis/group_vars/all/helpers.yml', $groupVarsAllHelpers);
-
 // Overwrite `trellis/deploy-hooks/build-after.yml` with `.radicle-setup/trellis/build-after.yml`
 // Overwrite `trellis/deploy-hooks/build-before.yml` with `.radicle-setup/trellis/build-before.yml`
 copy('.radicle-setup/trellis/build-after.yml', 'trellis/deploy-hooks/build-after.yml');
