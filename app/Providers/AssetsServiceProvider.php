@@ -111,7 +111,7 @@ class AssetsServiceProvider extends ServiceProvider
          * @return void
          */
         add_filter('wp_theme_json_data_default', function (\WP_Theme_JSON_Data $themeJson): \WP_Theme_JSON_Data {
-            $themeJsonFile = public_path('/build/theme.json');
+            $themeJsonFile = public_path('/build/assets/theme.json');
             if (!file_exists($themeJsonFile)) {
                 return $themeJson;
             }
