@@ -35,6 +35,8 @@ services:
     overrides:
       # See: https://github.com/lando/node/issues/66
       image: node:20
+      ports:
+        - 5173:5173
   sendmailhog:
     type: mailhog
     portforward: true
@@ -51,6 +53,12 @@ tooling:
     service: cache
   node:
     service: build
+  npm:
+    service: build
+  dev:
+    service: build
+    description: Run the development server
+    cmd: npm run dev
   ansible:
     service: trellis
     dir: /app/trellis

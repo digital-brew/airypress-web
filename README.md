@@ -51,9 +51,27 @@ If you are using a managed WordPress host, make sure that they meet these requir
   <summary>🐳 Lando</summary>
   <br>
 
-  1. Run `npm install && npm run build`
+  Open `vite.config.js` and add the following to the top of `defineConfig`:
+
+  ```javascript
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+    strictPort: true,
+    cors: {
+      origin: "https://radicle.lndo.site",
+      credentials: true,
+    },
+    hmr: {
+      host: "localhost",
+      protocol: "ws",
+    },
+  },
+  ```
+
   1. Run `lando start`
   1. Visit `https://radicle.lndo.site/`
+  1. Run `lando dev` to start the Vite dev server
 
   You can run `lando login` to generate a passwordless wp-admin login URL (WordPress must first be installed)
 
