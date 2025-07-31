@@ -43,13 +43,13 @@
         "roots/acorn": "^5.0",
         "roots/acorn-post-types": "^1.0",
         "roots/acorn-prettify": "^1.0",
+        "roots/allow-svg": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
         "roots/wordpress": "6.8.1",
         "roots/wp-config": "1.0.0",
         "roots/wp-stage-switcher": "^2.2",
-        "vlucas/phpdotenv": "^5.5",
-        "wpackagist-plugin/safe-svg": "^2.3"
+        "vlucas/phpdotenv": "^5.5"
     },
     "require-dev": {
         "johnbillion/query-monitor": "^3.17",
