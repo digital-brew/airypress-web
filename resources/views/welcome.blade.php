@@ -22,7 +22,7 @@
         <b>Welcome to Radicle</b>
     </h1>
 
-    <p class="my-6"><x-button href="https://roots.io/radicle/docs/installation/">Radicle Docs</x-button></p>
+    <p class="my-6"><x-button href="https://github.com/roots/radicle/tree/main/docs">Radicle Docs</x-button></p>
     <p class="my-6">This route is used for demonstration purposes. It is registered from <code>routes/web.php</code> and the template is located at <code>resources/views/welcome.blade.php</code>.</p>
 
     <h2 class="text-2xl font-bold my-6">Components</h2>
