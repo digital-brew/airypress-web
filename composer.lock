@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f545ab823c74cfa8619e5691060e802a",
+    "content-hash": "fdf6b18406f6783d2e39517c41c0c5e3",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -1274,6 +1274,64 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "illuminate/auth",
+            "version": "v12.30.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/auth.git",
+                "reference": "76df4f0abd3fd8e726a4c87571cda2193a43cae1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/auth/zipball/76df4f0abd3fd8e726a4c87571cda2193a43cae1",
+                "reference": "76df4f0abd3fd8e726a4c87571cda2193a43cae1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-hash": "*",
+                "illuminate/collections": "^12.0",
+                "illuminate/contracts": "^12.0",
+                "illuminate/http": "^12.0",
+                "illuminate/macroable": "^12.0",
+                "illuminate/queue": "^12.0",
+                "illuminate/support": "^12.0",
+                "php": "^8.2"
+            },
+            "suggest": {
+                "illuminate/console": "Required to use the auth:clear-resets command (^12.0).",
+                "illuminate/queue": "Required to fire login / logout events (^12.0).",
+                "illuminate/session": "Required to use the session based guard (^12.0)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "12.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Auth\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Auth package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2025-09-10T12:06:07+00:00"
         },
         {
             "name": "illuminate/bus",
@@ -3490,16 +3548,16 @@
         },
         {
             "name": "masterminds/html5",
-            "version": "2.9.0",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "f5ac2c0b0a2eefca70b2ce32a5809992227e75a6"
+                "reference": "fcf91eb64359852f00d921887b219479b4f21251"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
-                "reference": "f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/fcf91eb64359852f00d921887b219479b4f21251",
+                "reference": "fcf91eb64359852f00d921887b219479b4f21251",
                 "shasum": ""
             },
             "require": {
@@ -3551,9 +3609,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Masterminds/html5-php/issues",
-                "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
+                "source": "https://github.com/Masterminds/html5-php/tree/2.10.0"
             },
-            "time": "2024-03-31T07:05:07+00:00"
+            "time": "2025-07-25T09:04:22+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4607,16 +4665,16 @@
         },
         {
             "name": "roots/acorn",
-            "version": "v5.0.2",
+            "version": "v5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/acorn.git",
-                "reference": "e2a20295478915822702877a2b3118db4be2d471"
+                "reference": "bc51c932b87fc35dd1c8dd6bacb3c31469fe5029"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/acorn/zipball/e2a20295478915822702877a2b3118db4be2d471",
-                "reference": "e2a20295478915822702877a2b3118db4be2d471",
+                "url": "https://api.github.com/repos/roots/acorn/zipball/bc51c932b87fc35dd1c8dd6bacb3c31469fe5029",
+                "reference": "bc51c932b87fc35dd1c8dd6bacb3c31469fe5029",
                 "shasum": ""
             },
             "require": {
@@ -4624,6 +4682,7 @@
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "guzzlehttp/guzzle": "^7.8",
+                "illuminate/auth": "^12.0",
                 "illuminate/cache": "^12.0",
                 "illuminate/config": "^12.0",
                 "illuminate/console": "^12.0",
@@ -4708,7 +4767,7 @@
             "support": {
                 "forum": "https://discourse.roots.io/",
                 "issues": "https://github.com/roots/acorn/issues",
-                "source": "https://github.com/roots/acorn/tree/v5.0.2"
+                "source": "https://github.com/roots/acorn/tree/v5.0.5"
             },
             "funding": [
                 {
@@ -4716,7 +4775,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-27T00:24:56+00:00"
+            "time": "2025-08-05T18:57:59+00:00"
         },
         {
             "name": "roots/acorn-post-types",
@@ -4846,16 +4905,16 @@
         },
         {
             "name": "roots/allow-svg",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/allow-svg.git",
-                "reference": "dd95ad9a1336b0f9b92de40339de2ad127cce9ce"
+                "reference": "036f724c7dd5493f9a63a71d87d90757b5cbb55b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/allow-svg/zipball/dd95ad9a1336b0f9b92de40339de2ad127cce9ce",
-                "reference": "dd95ad9a1336b0f9b92de40339de2ad127cce9ce",
+                "url": "https://api.github.com/repos/roots/allow-svg/zipball/036f724c7dd5493f9a63a71d87d90757b5cbb55b",
+                "reference": "036f724c7dd5493f9a63a71d87d90757b5cbb55b",
                 "shasum": ""
             },
             "require": {
@@ -4874,7 +4933,7 @@
             "description": "WordPress plugin to enable SVG uploads",
             "support": {
                 "issues": "https://github.com/roots/allow-svg/issues",
-                "source": "https://github.com/roots/allow-svg/tree/v1.0.0"
+                "source": "https://github.com/roots/allow-svg/tree/v1.0.1"
             },
             "funding": [
                 {
@@ -4882,7 +4941,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-27T16:10:50+00:00"
+            "time": "2025-08-12T23:22:00+00:00"
         },
         {
             "name": "roots/bedrock-autoloader",
@@ -5061,20 +5120,20 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "6.8.1",
+            "version": "6.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress.git",
-                "reference": "c53e4173d239dcaf8889f9f84c0b827a0cf643e9"
+                "reference": "29e4eb49b2f4c591e39d4eb6705a27cf1ea40e45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress/zipball/c53e4173d239dcaf8889f9f84c0b827a0cf643e9",
-                "reference": "c53e4173d239dcaf8889f9f84c0b827a0cf643e9",
+                "url": "https://api.github.com/repos/roots/wordpress/zipball/29e4eb49b2f4c591e39d4eb6705a27cf1ea40e45",
+                "reference": "29e4eb49b2f4c591e39d4eb6705a27cf1ea40e45",
                 "shasum": ""
             },
             "require": {
-                "roots/wordpress-core-installer": "^1.0.0",
+                "roots/wordpress-core-installer": "^3.0",
                 "roots/wordpress-no-content": "self.version"
             },
             "type": "metapackage",
@@ -5092,7 +5151,7 @@
             ],
             "support": {
                 "issues": "https://github.com/roots/wordpress/issues",
-                "source": "https://github.com/roots/wordpress/tree/6.8.1"
+                "source": "https://github.com/roots/wordpress/tree/6.8.2"
             },
             "funding": [
                 {
@@ -5100,25 +5159,25 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-15T16:32:37+00:00"
+            "time": "2025-05-23T18:54:22+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
-            "version": "1.100.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress-core-installer.git",
-                "reference": "73f8488e5178c5d54234b919f823a9095e2b1847"
+                "reference": "714d2e2a9e523f6e7bde4810d5a04aedf0ec217f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress-core-installer/zipball/73f8488e5178c5d54234b919f823a9095e2b1847",
-                "reference": "73f8488e5178c5d54234b919f823a9095e2b1847",
+                "url": "https://api.github.com/repos/roots/wordpress-core-installer/zipball/714d2e2a9e523f6e7bde4810d5a04aedf0ec217f",
+                "reference": "714d2e2a9e523f6e7bde4810d5a04aedf0ec217f",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0 || ^2.0",
-                "php": ">=5.6.0"
+                "php": ">=7.2.24"
             },
             "conflict": {
                 "composer/installers": "<1.0.6"
@@ -5128,7 +5187,7 @@
             },
             "require-dev": {
                 "composer/composer": "^1.0 || ^2.0",
-                "phpunit/phpunit": ">=5.7.27"
+                "phpunit/phpunit": "^8.5"
             },
             "type": "composer-plugin",
             "extra": {
@@ -5153,45 +5212,41 @@
                     "email": "team@roots.io"
                 }
             ],
-            "description": "A custom installer to handle deploying WordPress with composer",
+            "description": "A Composer custom installer to handle installing WordPress as a dependency",
             "keywords": [
                 "wordpress"
             ],
             "support": {
                 "issues": "https://github.com/roots/wordpress-core-installer/issues",
-                "source": "https://github.com/roots/wordpress-core-installer/tree/master"
+                "source": "https://github.com/roots/wordpress-core-installer/tree/3.0.0"
             },
             "funding": [
                 {
                     "url": "https://github.com/roots",
                     "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/rootsdev",
-                    "type": "patreon"
                 }
             ],
-            "time": "2020-08-20T00:27:30+00:00"
+            "time": "2025-05-23T18:47:25+00:00"
         },
         {
             "name": "roots/wordpress-no-content",
-            "version": "6.8.1",
+            "version": "6.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "6.8.1"
+                "reference": "6.8.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/release/wordpress-6.8.1-no-content.zip",
-                "reference": "6.8.1",
-                "shasum": "33a47970c8e42d9d8719cfae34e02a7a75920959"
+                "url": "https://downloads.wordpress.org/release/wordpress-6.8.2-no-content.zip",
+                "reference": "6.8.2",
+                "shasum": "7d8dcb839f4754e331d93b86f9adc8c171d81e97"
             },
             "require": {
                 "php": ">= 7.2.24"
             },
             "provide": {
-                "wordpress/core-implementation": "6.8.1"
+                "wordpress/core-implementation": "6.8.2"
             },
             "suggest": {
                 "ext-curl": "Performs remote request operations.",
@@ -5242,7 +5297,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2025-04-30T16:53:41+00:00"
+            "time": "2025-07-15T15:29:08+00:00"
         },
         {
             "name": "roots/wp-config",
@@ -7275,16 +7330,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v5.6.1",
+            "version": "v5.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "a59a13791077fe3d44f90e7133eb68e7d22eaff2"
+                "reference": "24ac4c74f91ee2c193fa1aaa5c249cb0822809af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/a59a13791077fe3d44f90e7133eb68e7d22eaff2",
-                "reference": "a59a13791077fe3d44f90e7133eb68e7d22eaff2",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/24ac4c74f91ee2c193fa1aaa5c249cb0822809af",
+                "reference": "24ac4c74f91ee2c193fa1aaa5c249cb0822809af",
                 "shasum": ""
             },
             "require": {
@@ -7343,7 +7398,7 @@
             ],
             "support": {
                 "issues": "https://github.com/vlucas/phpdotenv/issues",
-                "source": "https://github.com/vlucas/phpdotenv/tree/v5.6.1"
+                "source": "https://github.com/vlucas/phpdotenv/tree/v5.6.2"
             },
             "funding": [
                 {
@@ -7355,7 +7410,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-20T21:52:34+00:00"
+            "time": "2025-04-30T23:37:27+00:00"
         },
         {
             "name": "voku/portable-ascii",
@@ -7822,16 +7877,16 @@
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.17.2",
+            "version": "3.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "e35dbc8ac937178d214c04552a0a802dacf6c79b"
+                "reference": "ec24102fa79ca7f02b3e5d2643284c5a71588c62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/e35dbc8ac937178d214c04552a0a802dacf6c79b",
-                "reference": "e35dbc8ac937178d214c04552a0a802dacf6c79b",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/ec24102fa79ca7f02b3e5d2643284c5a71588c62",
+                "reference": "ec24102fa79ca7f02b3e5d2643284c5a71588c62",
                 "shasum": ""
             },
             "require": {
@@ -7839,12 +7894,14 @@
                 "php": ">=7.4.0"
             },
             "require-dev": {
+                "behat/gherkin": "< 4.13.0",
                 "codeception/module-asserts": "^1.0",
                 "codeception/module-db": "^1.0",
                 "codeception/module-webdriver": "^1.0",
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
-                "johnbillion/plugin-infrastructure": "dev-trunk",
+                "guzzlehttp/guzzle": "^7.0",
+                "johnbillion/plugin-infrastructure": "1.2.1",
                 "johnbillion/wp-compat": "0.3.1",
                 "lucatume/wp-browser": "3.2.3",
                 "phpcompatibility/phpcompatibility-wp": "2.1.5",
@@ -7892,20 +7949,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-04T22:13:08+00:00"
+            "time": "2025-09-07T22:02:10+00:00"
         },
         {
             "name": "laravel/pint",
-            "version": "v1.21.2",
+            "version": "v1.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "370772e7d9e9da087678a0edf2b11b6960e40558"
+                "reference": "5016e263f95d97670d71b9a987bd8996ade6d8d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/370772e7d9e9da087678a0edf2b11b6960e40558",
-                "reference": "370772e7d9e9da087678a0edf2b11b6960e40558",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/5016e263f95d97670d71b9a987bd8996ade6d8d9",
+                "reference": "5016e263f95d97670d71b9a987bd8996ade6d8d9",
                 "shasum": ""
             },
             "require": {
@@ -7916,12 +7973,12 @@
                 "php": "^8.2.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.72.0",
-                "illuminate/view": "^11.44.2",
-                "larastan/larastan": "^3.2.0",
-                "laravel-zero/framework": "^11.36.1",
+                "friendsofphp/php-cs-fixer": "^3.87.2",
+                "illuminate/view": "^11.46.0",
+                "larastan/larastan": "^3.7.1",
+                "laravel-zero/framework": "^11.45.0",
                 "mockery/mockery": "^1.6.12",
-                "nunomaduro/termwind": "^2.3",
+                "nunomaduro/termwind": "^2.3.1",
                 "pestphp/pest": "^2.36.0"
             },
             "bin": [
@@ -7958,7 +8015,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2025-03-14T22:31:42+00:00"
+            "time": "2025-09-19T02:57:12+00:00"
         },
         {
             "name": "myclabs/deep-copy",

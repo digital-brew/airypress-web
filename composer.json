@@ -38,7 +38,7 @@
         "composer/installers": "^2.2",
         "guzzlehttp/guzzle": "^7.9",
         "log1x/acorn-disable-media-pages": "^1.0",
-        "masterminds/html5": "^2.8",
+        "masterminds/html5": "^2.10",
         "oscarotero/env": "^2.1",
         "roots/acorn": "^5.0",
         "roots/acorn-post-types": "^1.0",
@@ -46,14 +46,14 @@
         "roots/allow-svg": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "6.8.1",
+        "roots/wordpress": "6.8.2",
         "roots/wp-config": "1.0.0",
         "roots/wp-stage-switcher": "^2.2",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
-        "johnbillion/query-monitor": "^3.17",
-        "laravel/pint": "^1.21",
+        "johnbillion/query-monitor": "^3.20",
+        "laravel/pint": "^1.25",
         "pestphp/pest": "^3.7",
         "phpcompatibility/php-compatibility": "^9.3",
         "roave/security-advisories": "dev-latest",
