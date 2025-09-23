@@ -22,7 +22,17 @@ class BlocksServiceProvider extends ServiceProvider
                 $html5 = new HTML5();
                 $dom = $html5->loadHTML($block_content);
                 $classes = $dom->getElementsByTagName('a')->item(0)->getAttribute('class');
+                $classes .= ' ' . ($block['attrs']['className'] ?? '');
+
                 $href = $dom->getElementsByTagName('a')->item(0)->getAttribute('href');
+
+                $div = $dom->getElementsByTagName('div')->item(0);
+                $id = null;
+                if ($div) {
+                    $id = $div->getAttribute('id');
+                }
+
+                $rel = $dom->getElementsByTagName('a')->item(0)->getAttribute('rel');
                 $text = $dom->getElementsByTagName('a')->item(0)->textContent;
                 $variant = 'primary';
 
@@ -37,6 +47,8 @@ class BlocksServiceProvider extends ServiceProvider
                     'variant' => $variant,
                     'classes' => $classes,
                     'href' => $href ?? null,
+                    'id' => $id ?? null,
+                    'rel' => $rel ?? null,
                     'text' => $text ?? null,
                 ]);
             }
