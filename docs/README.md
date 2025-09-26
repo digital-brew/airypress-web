@@ -32,6 +32,8 @@ Conventions and patterns for writing consistent, maintainable code.
 
 ```
 ├── app/                 # Application code
+│   ├── Blocks/          # Block rendering logic
+│   │   └── Core/        # WordPress core block customizations
 │   ├── Providers/       # Service providers
 │   ├── View/            # View composers and components
 │   └── helpers.php      # Global helper functions
