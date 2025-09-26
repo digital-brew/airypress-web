@@ -17,6 +17,7 @@ Learn how to work with Radicle's features and functionality.
 - [Service Providers](guides/service-providers.md) - Configure and create service providers
 - [Theme Configuration](guides/theme-configuration.md) - Set up theme supports, menus, and sidebars
 - [Post Types & Taxonomies](guides/post-types.md) - Create custom post types and taxonomies
+- [Models](guides/models.md) - Working with Eloquent models for WordPress data
 - [Block Development](guides/blocks.md) - Create and customize Gutenberg blocks
 - [Testing Guide](guides/testing.md) - How to run and work with tests
 
@@ -34,6 +35,7 @@ Conventions and patterns for writing consistent, maintainable code.
 ├── app/                 # Application code
 │   ├── Blocks/          # Block rendering logic
 │   │   └── Core/        # WordPress core block customizations
+│   ├── Models/          # Eloquent models for WordPress data
 │   ├── Providers/       # Service providers
 │   ├── View/            # View composers and components
 │   └── helpers.php      # Global helper functions
@@ -69,4 +71,4 @@ Conventions and patterns for writing consistent, maintainable code.
 4. **Building custom blocks?** See [Block Development](guides/blocks.md)
 5. **Need help?** See support section in main README
 
-**💡 Component Demos**: Visit the `/welcome/` route in your local development environment to see interactive examples of Radicle's built-in components.
+**💡 Demo Pages**: Visit the `/welcome/` route to see interactive examples of Radicle's built-in components, or check out the front page template that demonstrates Eloquent models and view composers in action.

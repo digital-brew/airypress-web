@@ -16,14 +16,16 @@
 
 ## Quick start
 
-1. [Install Radicle](docs/setup/installation.md)  
+1. [Install Radicle](docs/setup/installation.md)
 2. [Set up local development](docs/setup/local-development.md)
-3. Visit `/welcome/` for component demos
+3. Visit `/welcome/` for component demos or check out the front page for model examples
 
 ## Places to be
 
 | Path                            | Description                   |
 |---------------------------------|-------------------------------|
+| `app/Models/`                   | Eloquent models for WordPress |
+| `app/View/Composers/`           | View composers                |
 | `config/post-types.php`         | Post types configuration      |
 | `config/theme.php`              | Theme setup configuration     |
 | `public/content/`               | `wp-content` directory        |
