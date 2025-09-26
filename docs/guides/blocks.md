@@ -2,13 +2,38 @@
 
 This guide covers developing custom blocks and working with the WordPress Block Editor in Radicle projects.
 
-## Block Development Overview
-
 Radicle uses server-side rendering for blocks with Blade templates. See `app/Providers/BlocksServiceProvider.php` for registration patterns.
 
-## Creating a Simple Block
+## Creating blocks
 
-### 1. JavaScript Block Definition
+### Using the `make:block` command
+
+Radicle includes an Acorn command to scaffold new blocks automatically:
+
+```bash
+# Interactive mode - prompts for block name
+wp acorn make:block
+
+# Or specify the name directly
+wp acorn make:block my-custom-block
+```
+
+This command creates all necessary files:
+- **PHP Block Class**: `app/Blocks/MyCustomBlock.php` - Server-side rendering logic
+- **JavaScript Block**: `resources/js/editor/my-custom-block.block.jsx` - Editor component
+- **Blade Template**: `resources/views/blocks/my-custom-block.blade.php` - Frontend template
+- **Auto-registration**: Updates `BlocksServiceProvider.php` and `editor.js`
+
+The command handles name formatting automatically:
+- Converts input to StudlyCase for class names
+- Creates kebab-case for file names and block identifiers
+- Registers the block in both PHP and JavaScript
+
+### Manual block creation
+
+For more control over the block structure, you can create blocks manually:
+
+### 1. JavaScript block definition
 
 Create in `resources/js/editor/my-block.block.jsx`:
 
