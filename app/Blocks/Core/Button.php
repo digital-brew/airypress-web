@@ -6,6 +6,28 @@ use Masterminds\HTML5;
 
 class Button
 {
+    public function __construct()
+    {
+        add_action('init', [$this, 'modifyButtonBlock'], 20);
+    }
+
+    public function modifyButtonBlock()
+    {
+        $registry = \WP_Block_Type_Registry::get_instance();
+        $buttonBlock = $registry->get_registered('core/button');
+
+        if ($buttonBlock) {
+            $buttonBlock->attributes['backgroundColor'] = array_merge(
+                $buttonBlock->attributes['backgroundColor'] ?? [],
+                ['default' => 'black']
+            );
+            $buttonBlock->attributes['textColor'] = array_merge(
+                $buttonBlock->attributes['textColor'] ?? [],
+                ['default' => 'white']
+            );
+        }
+    }
+
     public function render(string $blockContent, array $block): string
     {
         if ($block['blockName'] !== 'core/button') {
@@ -14,21 +36,23 @@ class Button
 
         $html5 = new HTML5();
         $dom = $html5->loadHTML($blockContent);
-        $classes = $dom->getElementsByTagName('a')->item(0)->getAttribute('class');
-        $classes .= ' ' . ($block['attrs']['className'] ?? '');
+        $anchor = $dom->getElementsByTagName('a')->item(0);
 
-        $href = $dom->getElementsByTagName('a')->item(0)->getAttribute('href');
-
-        $div = $dom->getElementsByTagName('div')->item(0);
-        $id = null;
-        if ($div) {
-            $id = $div->getAttribute('id');
+        if (!$anchor) {
+            return $blockContent;
         }
 
-        $rel = $dom->getElementsByTagName('a')->item(0)->getAttribute('rel');
-        $text = $dom->getElementsByTagName('a')->item(0)->textContent;
-        $variant = 'primary';
+        $classes = $anchor->getAttribute('class') ?? '';
+        $classes .= ' ' . ($block['attrs']['className'] ?? '');
 
+        $href = $anchor->getAttribute('href') ?? null;
+        $rel = $anchor->getAttribute('rel') ?? null;
+        $text = $anchor->textContent ?? null;
+
+        $div = $dom->getElementsByTagName('div')->item(0);
+        $id = $div ? $div->getAttribute('id') : null;
+
+        $variant = 'primary';
         if (
             isset($block['attrs']['className']) &&
             strpos($block['attrs']['className'], 'is-style-outline') !== false
@@ -39,10 +63,10 @@ class Button
         return view('blocks.button', [
             'variant' => $variant,
             'classes' => $classes,
-            'href' => $href ?? null,
-            'id' => $id ?? null,
-            'rel' => $rel ?? null,
-            'text' => $text ?? null,
+            'href' => $href,
+            'id' => $id,
+            'rel' => $rel,
+            'text' => $text,
         ]);
     }
 }
