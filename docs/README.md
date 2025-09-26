@@ -18,6 +18,7 @@ Learn how to work with Radicle's features and functionality.
 - [Theme Configuration](guides/theme-configuration.md) - Set up theme supports, menus, and sidebars
 - [Post Types & Taxonomies](guides/post-types.md) - Create custom post types and taxonomies
 - [Models](guides/models.md) - Working with Eloquent models for WordPress data
+- [REST API Development](guides/api.md) - Building REST API endpoints with controllers
 - [Block Development](guides/blocks.md) - Create and customize Gutenberg blocks
 - [Mail Configuration](guides/mail.md) - Set up email sending with Laravel mail features
 - [Testing Guide](guides/testing.md) - Creating and running Pest and Playwright tests
@@ -36,6 +37,8 @@ Conventions and patterns for writing consistent, maintainable code.
 ├── app/                 # Application code
 │   ├── Blocks/          # Block rendering logic
 │   │   └── Core/        # WordPress core block customizations
+│   ├── Http/            # HTTP layer (controllers, middleware)
+│   │   └── Controllers/ # API and web controllers
 │   ├── Models/          # Eloquent models for WordPress data
 │   ├── Providers/       # Service providers
 │   ├── View/            # View composers and components

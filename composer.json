@@ -78,6 +78,7 @@
     "extra": {
         "acorn": {
             "providers": [
+                "App\\Providers\\ApiServiceProvider",
                 "App\\Providers\\AssetsServiceProvider",
                 "App\\Providers\\BlocksServiceProvider",
                 "App\\Providers\\ThemeServiceProvider"
