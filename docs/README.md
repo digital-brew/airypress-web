@@ -19,7 +19,7 @@ Learn how to work with Radicle's features and functionality.
 - [Post Types & Taxonomies](guides/post-types.md) - Create custom post types and taxonomies
 - [Models](guides/models.md) - Working with Eloquent models for WordPress data
 - [Block Development](guides/blocks.md) - Create and customize Gutenberg blocks
-- [Testing Guide](guides/testing.md) - How to run and work with tests
+- [Testing Guide](guides/testing.md) - Creating and running Pest and Playwright tests
 
 
 ### ✨ Code Style & Development
