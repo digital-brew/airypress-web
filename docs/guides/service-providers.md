@@ -9,7 +9,6 @@ Radicle comes with the following service providers out of the box:
 
 * `AssetsServiceProvider` — Used for WordPress assets (CSS and JS) registration 
 * `BlockServiceProvider` — Used for block related filters
-* `PostTypesServiceProvider` — Used for post type and taxonomy registration from a config
 * `ThemeServiceProvider` — Used for registering [theme supports](https://developer.wordpress.org/reference/functions/add_theme_support/) and sidebars from a config
 
 These service providers are loaded from the `composer.json` file:
@@ -21,8 +20,7 @@ These service providers are loaded from the `composer.json` file:
             "providers": [
                 "App\\Providers\\AssetsServiceProvider",
                 "App\\Providers\\BlocksServiceProvider",
-                "App\\Providers\\ThemeServiceProvider",
-                "App\\Providers\\PostTypesServiceProvider"
+                "App\\Providers\\ThemeServiceProvider"
             ]
         },
 ...
