@@ -125,9 +125,9 @@ Config::define('WP_DEFAULT_THEME', 'radicle');
 
 // Configure stage switcher
 Config::define('ENVIRONMENTS', [
-    'development' => 'http://example.dev',
-    'staging'     => 'http://staging.example.com',
-    'production'  => 'http://example.com'
+    'development' => env('ENV_URL_DEVELOPMENT') ?? env('WP_HOME'),
+    'staging'     => env('ENV_URL_STAGING') ?? env('WP_HOME'),
+    'production'  => env('ENV_URL_PRODUCTION') ?? env('WP_HOME')
 ]);
 
 /**
