@@ -102,6 +102,136 @@ Create `resources/views/blocks/my-block.blade.php`:
 </div>
 ```
 
+## Dynamic blocks
+
+Dynamic blocks render content that changes based on database queries or user settings. The Latest Seeds block demonstrates this pattern:
+
+### JavaScript definition with controls
+
+Dynamic blocks use Inspector Controls for user configuration:
+
+```javascript
+import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
+import { RangeControl, ToggleControl, RadioControl } from "@wordpress/components";
+import { useSelect } from "@wordpress/data";
+import { store as coreStore } from "@wordpress/core-data";
+
+export const attributes = {
+  posts: { type: 'number', default: 5 },
+  displayFeaturedImage: { type: 'boolean', default: false },
+  postLayout: { type: 'string', default: 'list' },
+  displayPostContent: { type: 'string', default: 'none' },
+};
+
+export const edit = ({ attributes, setAttributes }) => {
+  const { posts, displayFeaturedImage, postLayout, displayPostContent } = attributes;
+
+  // Fetch data dynamically
+  const { latestSeeds } = useSelect((select) => {
+    const { getEntityRecords } = select(coreStore);
+    return {
+      latestSeeds: getEntityRecords('postType', 'seed', {
+        per_page: posts,
+        _embed: 'wp:featuredmedia',
+        order: 'desc',
+        orderby: 'date',
+      }),
+    };
+  }, [posts]);
+
+  return (
+    <>
+      <InspectorControls>
+        <RangeControl
+          label="Number of seeds"
+          value={posts}
+          onChange={(value) => setAttributes({ posts: value })}
+          min={1}
+          max={10}
+        />
+        <ToggleControl
+          label="Display featured image"
+          checked={displayFeaturedImage}
+          onChange={(value) => setAttributes({ displayFeaturedImage: value })}
+        />
+        <RadioControl
+          label="Layout"
+          selected={postLayout}
+          options={[
+            { label: 'List', value: 'list' },
+            { label: 'Grid', value: 'grid' },
+          ]}
+          onChange={(value) => setAttributes({ postLayout: value })}
+        />
+      </InspectorControls>
+
+      <div {...useBlockProps()}>
+        {/* Render preview with fetched data */}
+      </div>
+    </>
+  );
+};
+```
+
+### Server-side rendering with dynamic data
+
+In `BlocksServiceProvider`, query data and pass to Blade template:
+
+```php
+add_filter('render_block', function ($block_content, $block) {
+    if ($block['blockName'] === 'radicle/latest-seeds') {
+        $attributes = $block['attrs'] ?? [];
+        $posts = $attributes['posts'] ?? 5;
+        $displayFeaturedImage = $attributes['displayFeaturedImage'] ?? false;
+
+        $query_args = [
+            'post_type' => 'seed',
+            'numberposts' => $posts,
+            'post_status' => 'publish',
+            'order' => 'DESC',
+            'orderby' => 'date',
+        ];
+
+        $seeds = get_posts($query_args);
+
+        return view('blocks.latest-seeds', [
+            'seeds' => $seeds,
+            'displayFeaturedImage' => $displayFeaturedImage,
+            // ... other attributes
+        ]);
+    }
+    return $block_content;
+}, 10, 2);
+```
+
+### Conditional layouts in Blade
+
+Use PHP arrays to manage different layout configurations:
+
+```php
+@php
+$layoutConfig = [
+    'grid' => [
+        'container' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6',
+        'item' => 'bg-white border border-gray-200 overflow-hidden',
+        'element' => 'div',
+    ],
+    'list' => [
+        'container' => 'list-none p-0 m-0 space-y-6',
+        'item' => 'pb-6 border-b border-gray-200 flex gap-4',
+        'element' => 'ul',
+    ]
+];
+$config = $layoutConfig[$postLayout];
+@endphp
+
+<{{ $config['element'] }} class="{{ $config['container'] }}">
+    @foreach ($seeds as $seed)
+        <!-- Render each item -->
+    @endforeach
+</{{ $config['element'] }}>
+```
+
 ## Block patterns
 
 Register reusable patterns in `BlocksServiceProvider`:
