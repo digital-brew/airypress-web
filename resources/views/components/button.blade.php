@@ -4,11 +4,12 @@ if ($element === 'a' && !$attributes->has('href')) {
     $element = 'button';
 }
 
-$defaultClasses = 'inline-flex border border-black active:bg-black active:text-white !no-underline ';
+$defaultClasses = 'inline-flex border active:bg-black active:text-white !no-underline ';
 
 $variants = [
-    'primary' => 'text-white bg-black hover:bg-white hover:text-black',
-    'outline' => 'text-black bg-transparent hover:bg-black hover:text-white',
+    'primary' => 'text-white bg-black hover:bg-white hover:text-black border-black',
+    'outline' => 'text-black bg-transparent hover:bg-black hover:text-white border-black',
+    'inverse' => 'text-black bg-white hover:bg-black hover:text-white border-white',
 ];
 
 $sizes = [

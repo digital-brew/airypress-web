@@ -3,10 +3,10 @@
         @php(dynamic_sidebar('sidebar-footer'))
 
         <p class="my-6">
-            <a href="https://roots.io/radicle/" class="flex items-center gap-2 font-bold hover:text-underline">
+            <x-link href="https://roots.io/radicle/" weight="bold" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
                 <x-icon-radicle class="w-4 h-4" />
                 Built with Radicle
-            </a>
+            </x-link>
         </p>
     </div>
 </footer>

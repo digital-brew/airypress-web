@@ -11,6 +11,12 @@ Get Radicle up and running in your environment.
 - [Local Development](setup/local-development.md) - Set up your local development environment  
 - [Deployment](setup/deployment.md) - Deploy to staging and production
 
+### 🎨 Components
+Reusable Blade components for consistent UI patterns.
+
+- [Typography Components](guides/typography.md) - Headings, links, and lists for consistent text styling
+- [UI Components](guides/ui-components.md) - Buttons, modals, alerts, and tables
+
 ### 📖 How-To Guides
 Learn how to work with Radicle's features and functionality.
 

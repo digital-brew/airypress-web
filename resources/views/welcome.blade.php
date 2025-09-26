@@ -17,18 +17,81 @@
         </style>
     @endpush
 
-    <h1 class="text-4xl font-bold mb-6 flex gap-6 items-center">
+    <x-heading level="h1" size="3xl" class="mb-6 flex gap-6 items-center">
         <x-icon-radicle class="w-24 h-24" />
         <b>Welcome to Radicle</b>
-    </h1>
+    </x-heading>
 
     <p class="my-6"><x-button href="https://github.com/roots/radicle/tree/main/docs">Radicle Docs</x-button></p>
     <p class="my-6">This route is used for demonstration purposes. It is registered from <code>routes/web.php</code> and the template is located at <code>resources/views/welcome.blade.php</code>.</p>
 
-    <h2 class="text-2xl font-bold my-6">Components</h2>
+    <x-heading level="h2" size="2xl" class="my-6">Components</x-heading>
     <p class="my-6">Components live in the <code>resources/views/components</code> directory.</p>
 
-    <h3 class="text-xl font-bold my-4" id="buttons">Buttons</h3>
+    <x-heading level="h3" size="xl" class="my-4" id="typography">Typography</x-heading>
+    <p class="my-4">Typography components for consistent text styling across the site.</p>
+
+    <div class="my-6 bg-gray-100 p-6">
+        <x-heading level="h4" size="lg" class="mb-4">Headings</x-heading>
+
+        <pre class="mb-6"><code class="language-blade">&lt;x-heading level="h1"&gt;Page Title&lt;/x-heading&gt;
+&lt;x-heading level="h2"&gt;Section Title&lt;/x-heading&gt;
+&lt;x-heading level="h3"&gt;Subsection&lt;/x-heading&gt;</code></pre>
+
+        <div class="space-y-2">
+            <x-heading level="h1">Heading 1 (4xl)</x-heading>
+            <x-heading level="h2">Heading 2 (3xl)</x-heading>
+            <x-heading level="h3">Heading 3 (2xl)</x-heading>
+            <x-heading level="h4">Heading 4 (xl)</x-heading>
+            <x-heading level="h5">Heading 5 (lg)</x-heading>
+            <x-heading level="h6">Heading 6 (base)</x-heading>
+        </div>
+
+        <x-heading level="h4" size="lg" class="mb-4 mt-8">Links</x-heading>
+
+        <pre class="mb-6"><code class="language-blade">&lt;x-link href="/page"&gt;Default link&lt;/x-link&gt;
+&lt;x-link href="/page" variant="unstyled"&gt;Unstyled link&lt;/x-link&gt;
+&lt;x-link href="https://example.com" external&gt;External link&lt;/x-link&gt;</code></pre>
+
+        <div class="space-y-2">
+            <p><x-link href="#" variant="default">Default link</x-link></p>
+            <p><x-link href="#" variant="unstyled">Unstyled link</x-link></p>
+            <p><x-link href="#" external>External link</x-link></p>
+        </div>
+
+        <x-heading level="h4" size="lg" class="mb-4 mt-8">Lists</x-heading>
+
+        <pre class="mb-6"><code class="language-blade">&lt;x-list type="ul" spacing="normal"&gt;
+    &lt;x-list-item&gt;First item&lt;/x-list-item&gt;
+    &lt;x-list-item&gt;Second item&lt;/x-list-item&gt;
+&lt;/x-list&gt;
+
+&lt;x-list type="ol" spacing="tight"&gt;
+    &lt;x-list-item&gt;Step one&lt;/x-list-item&gt;
+    &lt;x-list-item&gt;Step two&lt;/x-list-item&gt;
+&lt;/x-list&gt;</code></pre>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <p class="font-medium mb-2">Unordered List:</p>
+                <x-list type="ul" spacing="normal">
+                    <x-list-item>First item</x-list-item>
+                    <x-list-item>Second item</x-list-item>
+                    <x-list-item>Third item</x-list-item>
+                </x-list>
+            </div>
+            <div>
+                <p class="font-medium mb-2">Ordered List:</p>
+                <x-list type="ol" spacing="normal">
+                    <x-list-item>First item</x-list-item>
+                    <x-list-item>Second item</x-list-item>
+                    <x-list-item>Third item</x-list-item>
+                </x-list>
+            </div>
+        </div>
+    </div>
+
+    <x-heading level="h3" size="xl" class="my-4" id="buttons">Buttons</x-heading>
     <p class="my-4">The <code>core/button</code> block is rendered with the <code>x-button</code> Blade component.</p>
 
     <x-table
@@ -44,11 +107,16 @@
         <pre class="mb-6"><code class="language-blade">&lt;x-button href="#"&gt;Button&lt;/x-button&gt;</code></pre>
         <x-button href="#">Button</x-button>
 
-        <pre class="my-6"><code class="language-blade">&lt;x-button variant="outline" href="#"&gt;Button&lt;/x-button&gt;</code></pre>
-        <x-button variant="outline" href="#">Button</x-button>
+        <pre class="my-6"><code class="language-blade">&lt;x-button variant="outline" href="#"&gt;Outline Button&lt;/x-button&gt;</code></pre>
+        <x-button variant="outline" href="#">Outline Button</x-button>
+
+        <pre class="my-6"><code class="language-blade">&lt;x-button variant="inverse" href="#"&gt;Inverse Button&lt;/x-button&gt;</code></pre>
+        <div class="bg-black p-4 inline-block">
+            <x-button variant="inverse" href="#">Inverse Button</x-button>
+        </div>
     </div>
 
-    <h3 class="text-xl font-bold my-6" id="modals">Modals</h3>
+    <x-heading level="h3" size="xl" class="my-6" id="modals">Modals</x-heading>
     <p class="my-4">The <code>radicle/modal</code> block is rendered with the <code>x-modal</code> Blade component.</p>
 
     <div class="my-6 bg-gray-100 p-6 relative">

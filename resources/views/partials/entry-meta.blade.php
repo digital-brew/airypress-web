@@ -4,7 +4,7 @@
 
 <p class="mb-3">
     <span>{{ __('By', 'radicle') }}</span>
-    <a href="{{ get_author_posts_url(get_the_author_meta('ID')) }}" class="p-author h-card">
+    <x-link href="{{ get_author_posts_url(get_the_author_meta('ID')) }}" class="p-author h-card">
         {{ get_the_author() }}
-    </a>
+    </x-link>
 </p>

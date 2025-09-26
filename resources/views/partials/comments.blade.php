@@ -1,9 +1,9 @@
 @if (! post_password_required())
     <section id="comments" class="comments">
         @if ($responses())
-            <h2>
+            <x-heading level="h2" size="xl">
                 {!! $title !!}
-            </h2>
+            </x-heading>
 
             <ol class="comment-list">
                 {!! $responses !!}

@@ -1,10 +1,10 @@
 <article @php(post_class())>
     <header>
-        <h2 class="entry-title font-bold text-3xl mb-3">
-            <a href="{{ get_permalink() }}">
+        <x-heading level="h2" size="2xl" class="entry-title mb-3">
+            <x-link href="{{ get_permalink() }}" variant="unstyled">
                 {!! $title !!}
-            </a>
-        </h2>
+            </x-link>
+        </x-heading>
 
         @include('partials.entry-meta')
     </header>
