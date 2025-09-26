@@ -41,6 +41,7 @@
         "masterminds/html5": "^2.10",
         "oscarotero/env": "^2.1",
         "roots/acorn": "^5.0",
+        "roots/acorn-mail": "^1.0",
         "roots/acorn-post-types": "^1.0",
         "roots/acorn-prettify": "^1.0",
         "roots/allow-svg": "^1.0",
