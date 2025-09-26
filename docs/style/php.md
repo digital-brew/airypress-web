@@ -2,7 +2,7 @@
 
 This guide outlines PHP coding conventions for WordPress development using Acorn (Laravel-powered WordPress). It emphasizes modern PHP practices while maintaining WordPress compatibility.
 
-## Core Principles
+## Core principles
 
 - **Modern PHP First**: Use PHP 8.2+ features (constructor property promotion, enums, etc.)
 - **PSR-12/PER-CS Compliant**: Follow modern PHP standards, not traditional WordPress Coding Standards
@@ -20,9 +20,9 @@ This guide outlines PHP coding conventions for WordPress development using Acorn
 - **Early Returns**: Use guard clauses and early returns to avoid nested conditionals
 - **Meaningful Names**: Use descriptive variable and function names
 
-## PHP Syntax
+## PHP syntax
 
-### Variables and Properties
+### Variables and properties
 
 ```php
 // ✅ Good - camelCase for variables
@@ -65,7 +65,7 @@ $config = array(
 );
 ```
 
-### Functions and Methods
+### Functions and methods
 
 ```php
 // ✅ Good - camelCase methods, type declarations, return types
@@ -89,9 +89,9 @@ public function __construct(
 $titles = $posts->map(fn ($post) => $post->post_title);
 ```
 
-### Conditionals and Control Flow
+### Conditionals and control flow
 
-#### Early Returns (Guard Clauses)
+#### Early returns (guard clauses)
 
 ```php
 // ✅ Good - Early returns eliminate else
@@ -143,7 +143,7 @@ public function getTitle($post): string
 }
 ```
 
-#### Other Conditional Patterns
+#### Other conditional patterns
 
 ```php
 // ✅ Good - Null coalescing
@@ -177,9 +177,9 @@ if ($condition) {
 return $condition;
 ```
 
-## WordPress Integration
+## WordPress integration
 
-### Hook Registration
+### Hook registration
 
 ```php
 // ✅ Good - Anonymous functions for simple hooks
@@ -215,7 +215,7 @@ add_action('init', function () use ($prefix) {
 });
 ```
 
-### Working with Posts
+### Working with posts
 
 ```php
 // ✅ Good - Modern approach with type safety
@@ -240,7 +240,7 @@ public function getFeaturedPosts(int $count = 5): Collection
 }
 ```
 
-### Filters and Actions
+### Filters and actions
 
 ```php
 // ✅ Good - Namespace your hooks
@@ -257,11 +257,11 @@ do_action('app/cache/cleared', $cacheKey);
 $data = apply_filters('app/post/before_save', $data, $postId);
 ```
 
-## Laravel/Acorn Features
+## Laravel/Acorn features
 
 For detailed Acorn usage, refer to the [Acorn Documentation](https://roots.io/acorn/docs/).
 
-### Service Providers
+### Service providers
 
 Create service providers when you need to:
 - Register services in the container (repositories, APIs, external services)
@@ -347,7 +347,7 @@ $stats = collect($users)
 
 For detailed package development patterns, see the [Acorn Package Development Documentation](https://roots.io/acorn/docs/).
 
-### Composer Setup for Local Packages
+### Composer setup for local packages
 
 The key to loading your custom packages correctly is proper composer configuration:
 
@@ -396,9 +396,9 @@ composer install app/your-package
 wp acorn package:discover
 ```
 
-## Asset Management
+## Asset management
 
-### Enqueueing Scripts and Styles
+### Enqueueing scripts and styles
 
 ```php
 // ✅ Good - Modern asset management
@@ -456,9 +456,9 @@ Why wp_localize_script() is outdated:
 */
 ```
 
-## REST API Development
+## REST API development
 
-### Modern vs Legacy Approaches
+### Modern vs legacy approaches
 
 ```php
 // ❌ Bad - Never use admin-ajax.php (legacy approach)
@@ -507,7 +507,7 @@ fetch('/wp-json/app/v1/posts', {
 });
 ```
 
-### Registering Endpoints
+### Registering endpoints
 
 ```php
 // ✅ Good - Modern REST API usage
@@ -562,7 +562,7 @@ register_rest_route('app/v1', '/user/profile', [
 ]);
 ```
 
-## Database & Migrations
+## Database & migrations
 
 See [Acorn Database Documentation](https://roots.io/acorn/docs/database/) for detailed information.
 
@@ -592,9 +592,9 @@ wp acorn migrate:fresh
 
 For detailed migration syntax and Laravel database features, see the [Acorn Database Documentation](https://roots.io/acorn/docs/database/).
 
-## Security Patterns
+## Security patterns
 
-### Nonce Verification
+### Nonce verification
 
 ```php
 // ✅ Good - Always verify nonces for form submissions
@@ -615,7 +615,7 @@ add_action('rest_api_init', function () {
 });
 ```
 
-### Capability Checks
+### Capability checks
 
 ```php
 // ✅ Good - Check user capabilities
@@ -634,7 +634,7 @@ if (current_user_can('manage_options') || current_user_can('edit_others_posts'))
 }
 ```
 
-### Data Sanitization
+### Data sanitization
 
 ```php
 // ✅ Good - Sanitize input data
@@ -658,7 +658,7 @@ $allowedStatuses = ['draft', 'published', 'archived'];
 $status = in_array($input['status'], $allowedStatuses) ? $input['status'] : 'draft';
 ```
 
-### Output Escaping
+### Output escaping
 
 ```php
 // ✅ Good - Escape output based on context
@@ -674,9 +674,9 @@ wp_send_json_success([
 ]);
 ```
 
-## Error Handling & Debugging
+## Error handling & debugging
 
-### Development Debugging
+### Development debugging
 
 ```php
 // ✅ Good - Use Laravel's debug helpers
@@ -703,7 +703,7 @@ try {
 }
 ```
 
-### Exception Handling
+### Exception handling
 
 ```php
 // ✅ Good - Custom exceptions
@@ -723,9 +723,9 @@ if (! $post = get_post($postId)) {
 }
 ```
 
-## Code Quality
+## Code quality
 
-### Type Declarations
+### Type declarations
 
 ```php
 // ✅ Good - Strict types and return type declarations
@@ -752,7 +752,7 @@ class PostService
 }
 ```
 
-### Method Organization
+### Method organization
 
 ```php
 class ExampleClass

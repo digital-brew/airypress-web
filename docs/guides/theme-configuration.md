@@ -1,4 +1,4 @@
-# Theme Configuration Basics
+# Theme configuration basics
 
 The `config/theme.php` file should be used to configure:
 

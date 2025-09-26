@@ -102,7 +102,7 @@ Create `resources/views/blocks/my-block.blade.php`:
 </div>
 ```
 
-## Block Patterns
+## Block patterns
 
 Register reusable patterns in `BlocksServiceProvider`:
 
@@ -116,7 +116,7 @@ add_action('init', function () {
 });
 ```
 
-## Block Style Variations
+## Block style variations
 
 Add custom styles for existing blocks:
 
@@ -129,7 +129,7 @@ add_action('init', function () {
 });
 ```
 
-## Overriding Core Blocks
+## Overriding core blocks
 
 Override core blocks with Blade components (see existing modal block in codebase):
 
@@ -142,7 +142,7 @@ add_filter('render_block', function ($blockContent, $block) {
 }, 10, 2);
 ```
 
-## Best Practices
+## Best practices
 
 - **Security**: Always sanitize block attributes
 - **Performance**: Load block assets conditionally with `has_block()`

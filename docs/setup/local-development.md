@@ -1,4 +1,4 @@
-# Local Development
+# Local development
 
 Radicle comes with configuration for two local development setups out of the box:
 
@@ -24,7 +24,7 @@ To use Lando with Radicle:
 
 You can run `lando login` to generate a passwordless wp-admin login URL (WordPress must first be installed).
 
-### Vite Configuration for Lando
+### Vite configuration for Lando
 
 If you need to configure Vite for Lando development, open `vite.config.js` and add the following to the top of `defineConfig`:
 

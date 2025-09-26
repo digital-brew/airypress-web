@@ -2,7 +2,7 @@
 
 This guide covers HTML, CSS, and JavaScript conventions for Radicle projects using Blade templates, Tailwind CSS, Alpine.js, and Vite.
 
-## Tech Stack Overview
+## Tech stack overview
 
 - **Blade Templates** - Laravel templating for HTML
 - **Tailwind CSS** - Utility-first CSS framework
@@ -10,7 +10,7 @@ This guide covers HTML, CSS, and JavaScript conventions for Radicle projects usi
 - **Vite** - Build tool with Hot Module Replacement
 - **Heroicons** - SVG icons via Blade UI Kit
 
-## HTML / Blade Templates
+## HTML / Blade templates
 
 See existing components in `resources/views/components/` and templates in `resources/views/`.
 
@@ -18,7 +18,7 @@ See existing components in `resources/views/components/` and templates in `resou
 
 See `resources/css/app.css` for Tailwind configuration.
 
-### Avoid `@apply` (Usually)
+### Avoid `@apply` (usually)
 
 Prefer utilities directly in templates over `@apply`:
 
@@ -56,7 +56,7 @@ Basic Alpine patterns:
 
 See existing components in `resources/js/` and Alpine usage in `resources/views/components/`.
 
-## Build System
+## Build system
 
 See `vite.config.js` for configuration. Development commands:
 
@@ -69,11 +69,11 @@ npm run build  # Production build
 
 Use Heroicons: `<x-heroicon-o-x-mark class="w-5 h-5" />`
 
-## Code Formatting
+## Code formatting
 
 The project uses EditorConfig (see [`.editorconfig`](../../.editorconfig)) for consistent formatting.
 
-## Best Practices
+## Best practices
 
 - Use `x-cloak` to prevent layout shift
 - Escape output with `{{ }}` vs `{!! !!}`

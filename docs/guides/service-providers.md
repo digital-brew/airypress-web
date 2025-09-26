@@ -1,4 +1,4 @@
-# Service Provider Configuration
+# Service provider configuration
 
 Radicle uses service providers for configuring and bootstraping various services.
 

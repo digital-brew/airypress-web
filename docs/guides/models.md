@@ -1,4 +1,4 @@
-# Working With Models
+# Working with models
 
 Radicle includes Eloquent models for working with WordPress data in a Laravel-style way. These models provide a clean, object-oriented interface to WordPress posts, custom post types, and meta data.
 

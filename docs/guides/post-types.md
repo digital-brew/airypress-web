@@ -1,4 +1,4 @@
-# Registering Post Types and Taxonomies
+# Registering post types and taxonomies
 
 The `config/post-types.php` file is used to register custom post types and taxonomies.
 
@@ -36,6 +36,6 @@ return [
 ];
 ```
 
-## Registering Taxonomies
+## Registering taxonomies
 
 Similar to post types, taxonomies are configured in the same `config/post-types.php` file using the `taxonomies` array. The `seed_category` taxonomy is registered by default and associated with the `seed` post type.
