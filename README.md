@@ -24,13 +24,17 @@
 
 | Path                            | Description                   |
 |---------------------------------|-------------------------------|
+| `app/Blocks/`                   | Block rendering logic         |
+| `app/Http/Controllers/Api/`     | REST API controllers          |
 | `app/Models/`                   | Eloquent models for WordPress |
+| `app/Providers/`                | Service providers             |
 | `app/View/Composers/`           | View composers                |
 | `config/post-types.php`         | Post types configuration      |
 | `config/theme.php`              | Theme setup configuration     |
 | `public/content/`               | `wp-content` directory        |
-| `storage/logs/laravel.log`      | App log                       |
 | `resources/views/`              | Theme templates               |
+| `storage/logs/laravel.log`      | App log                       |
+| `theme.json`                    | WordPress theme configuration |
 
 ## Support
 
