@@ -46,14 +46,11 @@ server: {
 
 ## Trellis
 
-Run `php .radicle-setup/trellis.php` to grab the latest version of Trellis and apply the necessary modifications for Radicle. After you've ran this script,
-navigate to the Trellis directory to init and start your project:
+Run `php .radicle-setup/trellis.php` to setup Trellis and apply the necessary modifications for Radicle. After Trellis has been setup you can start the VM:
 
 ```shell
-$ php .radicle-setup/trellis.php
 $ cd trellis/
-$ trellis init
-$ trellis up
+$ trellis vm start
 ```
 
 Run `npm install && npm run build` before visiting your site at `http://example.test/`.

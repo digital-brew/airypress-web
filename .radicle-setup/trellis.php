@@ -1,39 +1,14 @@
 <?php
 
-// Find out the latest Trellis release
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/roots/trellis/releases');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_USERAGENT, 'Radicle');
-$releases = json_decode(curl_exec($ch), true);
-curl_close($ch);
+echo 'What domain name should Trellis be configured for? (e.g. example.com): ';
+$domain = trim(fgets(STDIN));
 
-// Download $releases[0]['zipball_url'] with curl and save it to .radicle-setup/trellis.zip
-curl_setopt($ch, CURLOPT_URL, $releases[0]['zipball_url']);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_USERAGENT, 'Radicle');
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-$zip = curl_exec($ch);
-curl_close($ch);
-file_put_contents('.radicle-setup/trellis.zip', $zip);
-if (curl_error($ch)) {
-    echo curl_error($ch);
-}
-
-// Unzip .radicle-setup/trellis.zip to trellis/
-$zip = new ZipArchive();
-if ($zip->open('.radicle-setup/trellis.zip') === true) {
-    $name = $zip->getNameIndex(0);
-    $zip->extractTo('.');
-    rename($name, 'trellis');
-    $zip->close();
-} else {
-    echo 'Unable to extract the latest Trellis release to the trellis/ directory.';
-    exit(1);
-}
-
-// Delete .radicle-setup/trellis.zip
-unlink('.radicle-setup/trellis.zip');
+// Create a new Trellis project using the CLI
+// The "." specifies the current directory.
+// The "--force" flag is used because the directory is not empty.
+// The "--name" flag sets the domain, bypassing the interactive prompt from the CLI.
+// The "--skip-bedrock" flag is used because we already have a Bedrock setup.
+passthru('trellis new --force --skip-bedrock --name ' . escapeshellarg($domain) . ' .');
 
 // In trellis/group_vars/all/main.yml, add the following after `max_journal_size: 512M`:
 // wp_cli_packages:
@@ -77,19 +52,29 @@ $wordpressSites = [
     'group_vars/production/wordpress_sites.yml',
 ];
 foreach ($wordpressSites as $file) {
-    $content = file_get_contents('trellis/' . $file);
-    $content = str_replace(
-        "local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)",
-        "local_path: ..\n    public_path: public\n    upload_path: content/uploads",
-        $content
-    );
-    $content = preg_replace(
-        "/\s+repo_subtree_path: site # relative path to your Bedrock\/WP directory in your repo/",
-        '',
-        $content
-    );
+    if (file_exists('trellis/' . $file)) {
+        $content = file_get_contents('trellis/' . $file);
+        // Replace the local_path line with the new structure
+        $content = preg_replace(
+            "/^(\s*)local_path: .*$/m",
+            "$1local_path: ..\n$1public_path: public\n$1upload_path: content/uploads",
+            $content
+        );
+        // Remove the repo_subtree_path line if it exists
+        $content = preg_replace(
+            "/^\s*repo_subtree_path: .*$/m",
+            '',
+            $content
+        );
+        // Remove empty lines that might be left after removing repo_subtree_path
+        $content = preg_replace(
+            "/^\s*\n/m",
+            '',
+            $content
+        );
 
-    file_put_contents('trellis/' . $file, $content);
+        file_put_contents('trellis/' . $file, $content);
+    }
 }
 
 // Replace `192.168.56.5` with `192.168.56.8` in:
@@ -102,43 +87,5 @@ $localIps = [
 foreach ($localIps as $file) {
     $content = file_get_contents('trellis/' . $file);
     $content = str_replace('192.168.56.5', '192.168.56.8', $content);
-    file_put_contents('trellis/' . $file, $content);
-}
-
-// Prompt the user and ask if they would like to replace `example.com` with their domain name
-echo 'What domain name should Trellis be configured for? (e.g. example.com): ';
-$domain = trim(fgets(STDIN));
-
-// In the following files:
-// - group_vars/development/wordpress_sites.yml
-// - group_vars/development/vault.yml
-// - group_vars/staging/wordpress_sites.yml
-// - group_vars/staging/vault.yml
-// - group_vars/production/wordpress_sites.yml
-// - group_vars/production/vault.yml
-//
-// Replace: `example.com` with `$domain`
-//
-// In group_vars/development/wordpress_sites.yml`
-// Replace: `example.test` with `$domain.test`, but first strip the extension from `$domain`
-$wordpressSitesAndVaults = [
-    'group_vars/development/wordpress_sites.yml',
-    'group_vars/development/vault.yml',
-    'group_vars/staging/wordpress_sites.yml',
-    'group_vars/staging/vault.yml',
-    'group_vars/production/wordpress_sites.yml',
-    'group_vars/production/vault.yml',
-];
-foreach ($wordpressSitesAndVaults as $file) {
-    $content = file_get_contents('trellis/' . $file);
-    $content = str_replace('example.com', $domain, $content);
-    if ($file === 'group_vars/development/wordpress_sites.yml') {
-        $content = str_replace(
-            'example.test',
-            str_replace('.' . pathinfo($domain, PATHINFO_EXTENSION), '', $domain) . '.test',
-            $content
-        );
-    }
-
     file_put_contents('trellis/' . $file, $content);
 }
