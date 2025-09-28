@@ -16,8 +16,11 @@ test('editor color red-500 exists', async ({ page }) => {
     .locator(".editor-styles-wrapper p, p.wp-block-paragraph")
     .fill("Example text");
 
+  // Click the color dropdown button that contains "Text" to open the color dialog
   await page.click(
-    'button.block-editor-panel-color-gradient-settings__dropdown div[title="Text"]'
+    'button.components-button.block-editor-panel-color-gradient-settings__dropdown:has(div:text("Text"))'
   );
-  await page.click('[aria-label="Color: Red (500)"]');
+
+  // Wait for the dropdown to be open and click the Red (500) color button
+  await page.click('button[aria-label="Red (500)"]');
 });
