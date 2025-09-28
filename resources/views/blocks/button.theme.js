@@ -1,8 +1,11 @@
 // theme.json styles for the core/button block
 export default {
-  blocks: {
-    core: {
-      button: {
+  styles: {
+    blocks: {
+      "core/button": {
+        border: {
+          radius: "0"
+        },
         variations: {
           outline: {
             border: {
@@ -11,12 +14,12 @@ export default {
           }
         }
       }
-    }
-  },
-  elements: {
-    button: {
-      border: {
-        radius: "0"
+    },
+    elements: {
+      button: {
+        border: {
+          radius: "0"
+        }
       }
     }
   }

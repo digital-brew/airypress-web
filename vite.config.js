@@ -34,9 +34,42 @@ export default defineConfig({
         if (!fs.existsSync(out)) return;
         const theme = JSON.parse(fs.readFileSync(out, "utf8"));
         theme.styles ??= {};
+
+        // Deep merge function
+        function deepMerge(target, source) {
+          for (const key in source) {
+            if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+              if (!target[key] || typeof target[key] !== 'object') {
+                target[key] = {};
+              }
+
+              deepMerge(target[key], source[key]);
+              continue;
+            }
+            target[key] = source[key];
+          }
+          return target;
+        }
+
         for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.theme.js'))) {
           try {
-            Object.assign(theme.styles, (await import(path.join(dir, f))).default);
+            const blockTheme = (await import(path.join(dir, f))).default;
+
+            // If the theme has a 'styles' property, merge it as-is
+            if (blockTheme.styles) {
+              deepMerge(theme, blockTheme);
+            }
+
+            // Merge blocks and elements into theme.styles
+            if (blockTheme.blocks) {
+              theme.styles.blocks = theme.styles.blocks || {};
+              deepMerge(theme.styles.blocks, blockTheme.blocks);
+            }
+
+            if (blockTheme.elements) {
+              theme.styles.elements = theme.styles.elements || {};
+              deepMerge(theme.styles.elements, blockTheme.elements);
+            }
           } catch {}
         }
         fs.writeFileSync(out, JSON.stringify(theme, null, 2));
