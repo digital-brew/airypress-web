@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { login } from './helpers/loginHelper.js';
+import { login, dismissWelcomeModal } from './helpers/loginHelper.js';
 
 test('editor color red-500 exists', async ({ page }) => {
   await login(page);
   await page.goto("/wp/wp-admin/post-new.php");
+  await dismissWelcomeModal(page);
 
   const editorFrame = page.frameLocator('iframe[name="editor-canvas"]');
 

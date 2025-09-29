@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login } from './helpers/loginHelper.js';
+import { login, dismissWelcomeModal } from './helpers/loginHelper.js';
 
 test.describe('theme.json styles', () => {
   test('should apply correct styles to editor blocks', async ({ page }) => {
@@ -7,6 +7,7 @@ test.describe('theme.json styles', () => {
 
     // Navigate to create new post
     await page.goto('/wp/wp-admin/post-new.php');
+    await dismissWelcomeModal(page);
 
     // Get the editor iframe
     const editorFrame = page.frameLocator('iframe[name="editor-canvas"]');

@@ -12,7 +12,7 @@ const config = {
   reporter: 'list',
   use: {
     actionTimeout: 0,
-    baseURL: 'http://radicle.test',
+    baseURL: process.env.WP_HOME || 'http://radicle.test',
     trace: 'on-first-retry',
   },
   projects: [
