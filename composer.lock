@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bee44340269fa8737e3cbabb704ffb8",
+    "content-hash": "aa8881e93c81b0856c527b45eddbce73",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -4895,16 +4895,16 @@
         },
         {
             "name": "roots/acorn-prettify",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/acorn-prettify.git",
-                "reference": "1d417f8b4dfbf93e82148d7e9a35e5b3cde5cf53"
+                "reference": "708b68902fa52c1c005506dcff2f160502b6ae3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/acorn-prettify/zipball/1d417f8b4dfbf93e82148d7e9a35e5b3cde5cf53",
-                "reference": "1d417f8b4dfbf93e82148d7e9a35e5b3cde5cf53",
+                "url": "https://api.github.com/repos/roots/acorn-prettify/zipball/708b68902fa52c1c005506dcff2f160502b6ae3d",
+                "reference": "708b68902fa52c1c005506dcff2f160502b6ae3d",
                 "shasum": ""
             },
             "require": {
@@ -4951,7 +4951,7 @@
             "description": "Theme-agnostic front-end modifications for WordPress",
             "support": {
                 "issues": "https://github.com/roots/acorn-prettify/issues",
-                "source": "https://github.com/roots/acorn-prettify/tree/v1.0.2"
+                "source": "https://github.com/roots/acorn-prettify/tree/v1.0.3"
             },
             "funding": [
                 {
@@ -4959,7 +4959,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-18T17:56:03+00:00"
+            "time": "2025-09-26T10:38:22+00:00"
         },
         {
             "name": "roots/allow-svg",
