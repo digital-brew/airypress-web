@@ -36,7 +36,7 @@
         "blade-ui-kit/blade-heroicons": "^2.6",
         "blade-ui-kit/blade-icons": "^1.8",
         "composer/installers": "^2.2",
-        "guzzlehttp/guzzle": "^7.9",
+        "guzzlehttp/guzzle": "^7.10",
         "log1x/acorn-disable-media-pages": "^1.0",
         "masterminds/html5": "^2.10",
         "oscarotero/env": "^2.1",
@@ -55,7 +55,7 @@
     "require-dev": {
         "johnbillion/query-monitor": "^3.20",
         "laravel/pint": "^1.25",
-        "pestphp/pest": "^3.7",
+        "pestphp/pest": "^3.8",
         "phpcompatibility/php-compatibility": "^9.3",
         "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^2.9"
