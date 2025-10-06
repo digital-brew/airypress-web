@@ -1,30 +1,26 @@
 import domReady from '@wordpress/dom-ready';
 import { registerBlockType } from "@wordpress/blocks";
-import { postList, customPostType } from '@wordpress/icons';
 import * as modalBlock from "./editor/modal.block";
 import * as latestSeedsBlock from "./editor/latest-seeds.block";
 
 domReady(() => {
   /**
-   * Register blocks
+   * Register blocks with their configurations
    */
-  registerBlockType(modalBlock.name, {
-    apiVersion: 3,
-    title: modalBlock.title,
-    category: modalBlock.category,
-    icon: customPostType,
-    attributes: modalBlock.attributes,
-    edit: modalBlock.edit,
-    save: modalBlock.save,
-  });
+  const blocks = [
+    modalBlock,
+    latestSeedsBlock,
+  ];
 
-  registerBlockType(latestSeedsBlock.name, {
-    apiVersion: 3,
-    title: latestSeedsBlock.title,
-    category: latestSeedsBlock.category,
-    icon: postList,
-    attributes: latestSeedsBlock.attributes,
-    edit: latestSeedsBlock.edit,
-    save: latestSeedsBlock.save,
+  blocks.forEach(block => {
+    registerBlockType(block.name, {
+      apiVersion: 3,
+      title: block.title,
+      category: block.category,
+      icon: block.icon,
+      attributes: block.attributes,
+      edit: block.edit,
+      save: block.save,
+    });
   });
 });

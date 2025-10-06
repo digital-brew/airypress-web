@@ -16,6 +16,7 @@ import {
 import { __, _x } from "@wordpress/i18n";
 import { useSelect } from "@wordpress/data";
 import { store as coreStore } from "@wordpress/core-data";
+import { postList } from "@wordpress/icons";
 
 /* Block name */
 export const name = `radicle/latest-seeds`;
@@ -25,6 +26,9 @@ export const title = __(`Latest Seeds`, `radicle`);
 
 /* Block category */
 export const category = `widgets`;
+
+/* Block icon */
+export const icon = postList;
 
 /* Block attributes */
 export const attributes = {

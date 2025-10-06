@@ -5,6 +5,7 @@ import {
 } from "@wordpress/block-editor";
 import { BaseControl, PanelBody, TextControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
+import { customPostType } from "@wordpress/icons";
 
 /* Block name */
 export const name = `radicle/modal`;
@@ -14,6 +15,9 @@ export const title = __(`Modal`, `radicle`);
 
 /* Block category */
 export const category = `design`;
+
+/* Block icon */
+export const icon = customPostType;
 
 /* Block attributes */
 export const attributes = {
@@ -32,7 +36,7 @@ export const edit = ({ attributes, setAttributes }) => {
   const props = useBlockProps({
     className: `border rounded-md p-3`,
   });
-  
+
   const { buttonText, heading } = attributes;
 
   return (
