@@ -32,7 +32,7 @@
         ]
     },
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "blade-ui-kit/blade-heroicons": "^2.6",
         "blade-ui-kit/blade-icons": "^1.8",
         "composer/installers": "^2.2",
@@ -70,7 +70,7 @@
         },
         "sort-packages": true,
         "platform": {
-            "php": "8.2.18"
+            "php": "8.3.25"
         }
     },
     "minimum-stability": "dev",

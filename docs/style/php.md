@@ -4,7 +4,7 @@ This guide outlines PHP coding conventions for WordPress development using Acorn
 
 ## Core principles
 
-- **Modern PHP First**: Use PHP 8.2+ features (constructor property promotion, enums, etc.)
+- **Modern PHP First**: Use PHP 8.3+ features (constructor property promotion, enums, etc.)
 - **PSR-12/PER-CS Compliant**: Follow modern PHP standards, not traditional WordPress Coding Standards
 - **Laravel Conventions**: Leverage Laravel features for elegant solutions
 - **Prefer Laravel Helpers**: Use `collect()`, `Str::` helpers, and other Laravel utilities over native PHP equivalents

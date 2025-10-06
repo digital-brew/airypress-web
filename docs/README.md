@@ -68,7 +68,7 @@ Conventions and patterns for writing consistent, maintainable code.
 
 ## ⚙️ Environment Requirements
 
-- PHP >= 8.2 with extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, Tokenizer, XML
+- PHP >= 8.3 with extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, Tokenizer, XML
 - Composer
 - WP-CLI  
 - Node.js >= 20 for asset compilation and E2E testing
