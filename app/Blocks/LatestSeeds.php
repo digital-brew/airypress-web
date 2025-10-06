@@ -4,13 +4,11 @@ namespace App\Blocks;
 
 class LatestSeeds
 {
-    public function render(string $blockContent, array $block): string
+    /**
+     * Render callback for register_block_type
+     */
+    public function render(array $attributes, string $content): string
     {
-        if ($block['blockName'] !== 'radicle/latest-seeds') {
-            return $blockContent;
-        }
-
-        $attributes = $block['attrs'] ?? [];
         $posts = $attributes['posts'] ?? 5;
         $displayPostContent = $attributes['displayPostContent'] ?? 'none';
         $postLayout = $attributes['postLayout'] ?? 'list';

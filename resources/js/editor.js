@@ -1,5 +1,6 @@
 import domReady from '@wordpress/dom-ready';
 import { registerBlockType } from "@wordpress/blocks";
+import { postList, customPostType } from '@wordpress/icons';
 import * as modalBlock from "./editor/modal.block";
 import * as latestSeedsBlock from "./editor/latest-seeds.block";
 
@@ -11,6 +12,7 @@ domReady(() => {
     apiVersion: 3,
     title: modalBlock.title,
     category: modalBlock.category,
+    icon: customPostType,
     attributes: modalBlock.attributes,
     edit: modalBlock.edit,
     save: modalBlock.save,
@@ -20,6 +22,7 @@ domReady(() => {
     apiVersion: 3,
     title: latestSeedsBlock.title,
     category: latestSeedsBlock.category,
+    icon: postList,
     attributes: latestSeedsBlock.attributes,
     edit: latestSeedsBlock.edit,
     save: latestSeedsBlock.save,

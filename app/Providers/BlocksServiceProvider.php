@@ -27,8 +27,31 @@ class BlocksServiceProvider extends ServiceProvider
         add_filter('render_block', [new Modal(), 'render'], 10, 2);
 
         /**
-         * Render `radicle/latest-seeds` block with Blade template
+         * Register and render `radicle/latest-seeds` block
          */
-        add_filter('render_block', [new LatestSeeds(), 'render'], 10, 2);
+        add_action('init', function () {
+            register_block_type('radicle/latest-seeds', [
+                'api_version' => 3,
+                'attributes' => [
+                    'posts' => [
+                        'type' => 'number',
+                        'default' => 5,
+                    ],
+                    'displayPostContent' => [
+                        'type' => 'string',
+                        'default' => 'none',
+                    ],
+                    'postLayout' => [
+                        'type' => 'string',
+                        'default' => 'list',
+                    ],
+                    'displayFeaturedImage' => [
+                        'type' => 'boolean',
+                        'default' => false,
+                    ],
+                ],
+                'render_callback' => [new LatestSeeds(), 'render'],
+            ]);
+        });
     }
 }
