@@ -8,7 +8,8 @@ Welcome to the Radicle project documentation. This guide covers everything from 
 Get Radicle up and running in your environment.
 
 - [Installation Guide](setup/installation.md) - Install Radicle and dependencies
-- [Local Development](setup/local-development.md) - Set up your local development environment  
+- [Local Development](setup/local-development.md) - Set up your local development environment
+- [Server Configuration](setup/server-configuration.md) - Configure web servers for Radicle
 - [Deployment](setup/deployment.md) - Deploy to staging and production
 
 ### 🎨 Components
