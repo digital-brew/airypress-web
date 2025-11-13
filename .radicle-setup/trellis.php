@@ -21,15 +21,6 @@ $groupVarsAllMain = str_replace(
 );
 file_put_contents('trellis/group_vars/all/main.yml', $groupVarsAllMain);
 
-// Vagrantfile: Set `/ansible-nfs` to `rsync` instead of `nfs`
-$vagrantfile = file_get_contents('trellis/Vagrantfile');
-$vagrantfile = str_replace(
-    "config.vm.synced_folder ANSIBLE_PATH, '/ansible-nfs', type: 'nfs'",
-    "config.vm.synced_folder ANSIBLE_PATH, '/ansible-nfs', type: 'rsync'",
-    $vagrantfile
-);
-file_put_contents('trellis/Vagrantfile', $vagrantfile);
-
 // Overwrite `trellis/deploy-hooks/build-after.yml` with `.radicle-setup/trellis/build-after.yml`
 // Overwrite `trellis/deploy-hooks/build-before.yml` with `.radicle-setup/trellis/build-before.yml`
 copy('.radicle-setup/trellis/build-after.yml', 'trellis/deploy-hooks/build-after.yml');
@@ -77,15 +68,5 @@ foreach ($wordpressSites as $file) {
     }
 }
 
-// Replace `192.168.56.5` with `192.168.56.8` in:
-// - trellis/hosts/development
-// - trellis/vagrant.default.yml
-$localIps = [
-    'hosts/development',
-    'vagrant.default.yml',
-];
-foreach ($localIps as $file) {
-    $content = file_get_contents('trellis/' . $file);
-    $content = str_replace('192.168.56.5', '192.168.56.8', $content);
-    file_put_contents('trellis/' . $file, $content);
-}
+// Replace `192.168.56.5` with `192.168.56.8` in trellis/hosts/development
+file_put_contents('trellis/hosts/development', str_replace('192.168.56.5', '192.168.56.8', file_get_contents('trellis/hosts/development')));
