@@ -58,7 +58,6 @@
         "laravel/pint": "^1.25",
         "pestphp/pest": "^4.1",
         "phpcompatibility/php-compatibility": "^9.3",
-        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^2.9"
     },
     "config": {
