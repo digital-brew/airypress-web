@@ -6,10 +6,19 @@ export default {
         border: {
           radius: "0"
         },
+        color: {
+          background: "var(--wp--preset--color--black)",
+          text: "var(--wp--preset--color--white)"
+        },
         variations: {
           outline: {
             border: {
-              width: "1px"
+              width: "1px",
+              color: "var(--wp--preset--color--black)"
+            },
+            color: {
+              background: "transparent",
+              text: "var(--wp--preset--color--black)"
             }
           }
         }

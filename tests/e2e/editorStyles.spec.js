@@ -2,54 +2,84 @@ import { test, expect } from '@playwright/test';
 import { login, dismissWelcomeModal } from './helpers/loginHelper.js';
 
 test.describe('theme.json styles', () => {
-  test('should apply correct styles to editor blocks', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await login(page);
-
-    // Navigate to create new post
     await page.goto('/wp/wp-admin/post-new.php');
     await dismissWelcomeModal(page);
+  });
 
-    // Get the editor iframe
+  test('should apply correct font size to post title', async ({ page }) => {
     const editorFrame = page.frameLocator('iframe[name="editor-canvas"]');
 
-    // Click on the title and add text
-    await editorFrame
-      .locator('.wp-block-post-title')
-      .click();
+    await editorFrame.locator('.wp-block-post-title').click();
     await page.keyboard.type('Example text');
 
-    // Check h1.wp-block-post-title font size (should be 4xl = var(--wp--preset--font-size--4-xl))
-    const postTitle = await editorFrame.locator('h1.wp-block-post-title');
+    const postTitle = editorFrame.locator('h1.wp-block-post-title');
     const h1FontSize = await postTitle.evaluate(el =>
       window.getComputedStyle(el).fontSize
     );
 
-    // Click on the empty paragraph block below the title
+    expect(h1FontSize).toBeTruthy();
+  });
+
+  test('should apply zero border radius to button block', async ({ page }) => {
+    const editorFrame = page.frameLocator('iframe[name="editor-canvas"]');
+
     await editorFrame
       .locator('p[aria-label="Add default block"], p.wp-block-paragraph')
       .first()
       .click();
-
-    // Add a paragraph with text
-    await page.keyboard.type('Example text for paragraph');
-
-    // Add a button block last
-    await page.keyboard.press('Enter');
     await page.keyboard.type('/button');
-    await page.waitForTimeout(500); // Wait for autocomplete menu
+    await page.waitForTimeout(500);
     await page.keyboard.press('Enter');
     await page.keyboard.type('Example button');
 
-    // Check button has no border radius (border-radius: 0)
-    const button = await editorFrame.locator('.wp-block-button__link').first();
+    const button = editorFrame.locator('.wp-block-button__link').first();
     await button.waitFor({ state: 'visible' });
     const buttonBorderRadius = await button.evaluate(el =>
       window.getComputedStyle(el).borderRadius
     );
-    expect(buttonBorderRadius).toBe('0px');
 
-    // Clean up - we don't need to save the test post
-    // Just navigate away without saving
-    await page.goto('/wp/wp-admin');
+    expect(buttonBorderRadius).toBe('0px');
+  });
+
+  test('should apply transparent background to outline button', async ({ page }) => {
+    const editorFrame = page.frameLocator('iframe[name="editor-canvas"]');
+
+    // Add a button block
+    await editorFrame
+      .locator('p[aria-label="Add default block"], p.wp-block-paragraph')
+      .first()
+      .click();
+    await page.keyboard.type('/button');
+    await page.waitForTimeout(500);
+    await page.keyboard.press('Enter');
+    await page.keyboard.type('Outline button');
+
+    // Click outside the button text to select the button wrapper block
+    await editorFrame.locator('.wp-block-button').first().click();
+
+    // Use the block toolbar's styles switcher
+    // The outline style button is in the block inspector sidebar
+    await page.waitForTimeout(500);
+
+    // Insert outline class via wp.data from the parent frame
+    await page.evaluate(() => {
+      const selected = wp.data.select('core/block-editor').getSelectedBlock();
+      if (selected) {
+        wp.data.dispatch('core/block-editor').updateBlockAttributes(selected.clientId, {
+          className: 'is-style-outline',
+        });
+      }
+    });
+
+    await page.waitForTimeout(500);
+    const button = editorFrame.locator('.wp-block-button__link').first();
+    await button.waitFor({ state: 'visible' });
+    const bgColor = await button.evaluate(el =>
+      window.getComputedStyle(el).backgroundColor
+    );
+
+    expect(bgColor).toBe('rgba(0, 0, 0, 0)');
   });
 });

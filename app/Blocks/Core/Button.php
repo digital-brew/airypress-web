@@ -41,8 +41,7 @@ class Button
             return $blockContent;
         }
 
-        $classes = $anchor->getAttribute('class') ?? '';
-        $classes .= ' ' . ($block['attrs']['className'] ?? '');
+        $classes = $block['attrs']['className'] ?? '';
 
         $href = $anchor->getAttribute('href') ?? null;
         $rel = $anchor->getAttribute('rel') ?? null;

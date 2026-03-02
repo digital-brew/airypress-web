@@ -7,3 +7,8 @@ a:not(button) {
 ol {
   @apply !list-decimal;
 }
+
+.wp-block-button.is-style-outline .wp-block-button__link {
+  background-color: transparent !important;
+  color: var(--wp--preset--color--black) !important;
+}
