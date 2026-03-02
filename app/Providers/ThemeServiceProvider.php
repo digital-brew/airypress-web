@@ -47,6 +47,13 @@ class ThemeServiceProvider extends SageServiceProvider
         }, 20);
 
         /**
+         * Disable on-demand block asset loading.
+         *
+         * @link https://core.trac.wordpress.org/ticket/61965
+         */
+        add_filter('should_load_separate_core_block_assets', '__return_false');
+
+        /**
          * Register sidebars from the theme config.
          *
          * @return void
