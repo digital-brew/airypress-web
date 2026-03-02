@@ -10,10 +10,11 @@ $domain = trim(fgets(STDIN));
 // The "--skip-bedrock" flag is used because we already have a Bedrock setup.
 passthru('trellis new --force --skip-bedrock --name ' . escapeshellarg($domain) . ' .');
 
-// In trellis/group_vars/all/main.yml, add the following after `max_journal_size: 512M`:
-// wp_cli_packages:
-// - aaemnnosttv/wp-cli-login-command
+// In trellis/group_vars/all/main.yml:
+// - Update php_version from default 8.3 to 8.4
+// - Add wp_cli_packages after `max_journal_size: 512M`
 $groupVarsAllMain = file_get_contents('trellis/group_vars/all/main.yml');
+$groupVarsAllMain = str_replace('php_version: "8.3"', 'php_version: "8.4"', $groupVarsAllMain);
 $groupVarsAllMain = str_replace(
     "max_journal_size: 512M",
     "max_journal_size: 512M \n\nwp_cli_packages:\n  - aaemnnosttv/wp-cli-login-command",

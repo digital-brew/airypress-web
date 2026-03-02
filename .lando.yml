@@ -7,7 +7,7 @@ excludes:
   - vendor
   - node_modules
 config:
-  php: "8.3"
+  php: "8.4"
   via: nginx
   database: mariadb
   cache: redis
