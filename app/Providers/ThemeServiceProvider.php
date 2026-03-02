@@ -15,6 +15,16 @@ class ThemeServiceProvider extends SageServiceProvider
     public function register()
     {
         parent::register();
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        parent::boot();
 
         /**
          * Register theme support and navigation menus from the theme config.
@@ -47,15 +57,5 @@ class ThemeServiceProvider extends SageServiceProvider
                     array_merge(config('theme.sidebar.config'), $instance)
                 ));
         });
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        parent::boot();
     }
 }

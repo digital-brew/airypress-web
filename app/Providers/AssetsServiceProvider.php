@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Vite;
 class AssetsServiceProvider extends ServiceProvider
 {
     /**
-     * Register assets services.
+     * Bootstrap any application services.
      *
      * @return void
      */
-    public function register()
+    public function boot()
     {
         /**
          * Register the theme assets.

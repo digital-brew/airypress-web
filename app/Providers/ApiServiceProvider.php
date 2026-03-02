@@ -7,7 +7,12 @@ use Illuminate\Support\ServiceProvider;
 
 class ApiServiceProvider extends ServiceProvider
 {
-    public function register()
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
     {
         add_action('rest_api_init', [$this, 'registerRoutes']);
     }
