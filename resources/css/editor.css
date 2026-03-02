@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss" theme(static);
+@import "./common/theme.css";
 
 a:not(button) {
   @apply text-blue-600 hover:underline;

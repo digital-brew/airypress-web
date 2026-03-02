@@ -1,6 +1,7 @@
 @import "tailwindcss" theme(static);
 @source "../views/";
 @source "../../app/";
+@import "./common/theme.css";
 
 @layer base {
   .e-content a {
