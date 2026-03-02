@@ -2,7 +2,7 @@
 
 namespace App\Blocks\Core;
 
-use Masterminds\HTML5;
+use Dom\HTMLDocument;
 
 class Button
 {
@@ -34,8 +34,7 @@ class Button
             return $blockContent;
         }
 
-        $html5 = new HTML5();
-        $dom = $html5->loadHTML($blockContent);
+        $dom = HTMLDocument::createFromString($blockContent, LIBXML_HTML_NOIMPLIED | LIBXML_NOERROR);
         $anchor = $dom->getElementsByTagName('a')->item(0);
 
         if (!$anchor) {
