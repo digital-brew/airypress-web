@@ -4,17 +4,12 @@ namespace App\Blocks;
 
 class Modal
 {
-    public function render(string $blockContent, array $block): string
+    public function render(array $attributes, string $content): string
     {
-        if ($block['blockName'] !== 'radicle/modal') {
-            return $blockContent;
-        }
-
         return view('blocks.modal', [
-            'block' => $block,
-            'blockContent' => $blockContent,
-            'buttonText' => $block['attrs']['buttonText'] ?? null,
-            'heading' => $block['attrs']['heading'] ?? null,
+            'blockContent' => $content,
+            'buttonText' => $attributes['buttonText'] ?? null,
+            'heading' => $attributes['heading'] ?? null,
         ]);
     }
 }
