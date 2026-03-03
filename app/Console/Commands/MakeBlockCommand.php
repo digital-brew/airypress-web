@@ -214,9 +214,9 @@ EOT;
 
         // Skip if it's already present
         if (strpos($content, $filterCall) === false) {
-            // Insert inside register() just before its closing brace
-            // - Match the register() method body lazily, then insert before the final }
-            $pattern = '/(public\s+function\s+register\s*\(\s*\)\s*\{\s*)(.*?)(\R\s*\})/s';
+            // Insert inside boot() just before its closing brace
+            // - Match the boot() method body lazily, then insert before the final }
+            $pattern = '/(public\s+function\s+boot\s*\(\s*\)\s*\{\s*)(.*?)(\R\s*\})/s';
             if (preg_match($pattern, $content)) {
                 $content = preg_replace(
                     $pattern,
@@ -225,7 +225,7 @@ EOT;
                     1
                 );
             } else {
-                $this->error("Could not find register() method in BlocksServiceProvider.php");
+                $this->error("Could not find boot() method in BlocksServiceProvider.php");
                 return;
             }
         }

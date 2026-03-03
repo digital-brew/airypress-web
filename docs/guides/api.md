@@ -75,7 +75,7 @@ use Illuminate\Support\ServiceProvider;
 
 class ApiServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function boot()
     {
         add_action('rest_api_init', [$this, 'registerRoutes']);
     }

@@ -9,7 +9,7 @@ beforeEach(function () {
 
     // Manually register our API routes for testing
     $apiProvider = new \App\Providers\ApiServiceProvider(app());
-    $apiProvider->register();
+    $apiProvider->boot();
 
     do_action('rest_api_init', $this->server);
 });
