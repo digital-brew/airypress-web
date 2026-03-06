@@ -81,13 +81,10 @@ export const save = () => null; // Server-side rendering
 Add to `BlocksServiceProvider`:
 
 ```php
-add_filter('render_block', function ($blockContent, $block) {
-    if ($block['blockName'] === 'radicle/my-block') {
-        return view('blocks.my-block', [
-            'title' => sanitize_text_field($block['attrs']['title'] ?? 'Block Title'),
-        ]);
-    }
-    return $blockContent;
+add_filter('render_block_radicle/my-block', function ($blockContent, $block) {
+    return view('blocks.my-block', [
+        'title' => sanitize_text_field($block['attrs']['title'] ?? 'Block Title'),
+    ]);
 }, 10, 2);
 ```
 
@@ -178,29 +175,26 @@ export const edit = ({ attributes, setAttributes }) => {
 In `BlocksServiceProvider`, query data and pass to Blade template:
 
 ```php
-add_filter('render_block', function ($block_content, $block) {
-    if ($block['blockName'] === 'radicle/latest-seeds') {
-        $attributes = $block['attrs'] ?? [];
-        $posts = $attributes['posts'] ?? 5;
-        $displayFeaturedImage = $attributes['displayFeaturedImage'] ?? false;
+add_filter('render_block_radicle/latest-seeds', function ($block_content, $block) {
+    $attributes = $block['attrs'] ?? [];
+    $posts = $attributes['posts'] ?? 5;
+    $displayFeaturedImage = $attributes['displayFeaturedImage'] ?? false;
 
-        $query_args = [
-            'post_type' => 'seed',
-            'numberposts' => $posts,
-            'post_status' => 'publish',
-            'order' => 'DESC',
-            'orderby' => 'date',
-        ];
+    $query_args = [
+        'post_type' => 'seed',
+        'numberposts' => $posts,
+        'post_status' => 'publish',
+        'order' => 'DESC',
+        'orderby' => 'date',
+    ];
 
-        $seeds = get_posts($query_args);
+    $seeds = get_posts($query_args);
 
-        return view('blocks.latest-seeds', [
-            'seeds' => $seeds,
-            'displayFeaturedImage' => $displayFeaturedImage,
-            // ... other attributes
-        ]);
-    }
-    return $block_content;
+    return view('blocks.latest-seeds', [
+        'seeds' => $seeds,
+        'displayFeaturedImage' => $displayFeaturedImage,
+        // ... other attributes
+    ]);
 }, 10, 2);
 ```
 
@@ -264,11 +258,8 @@ add_action('init', function () {
 Override core blocks with Blade components (see existing modal block in codebase):
 
 ```php
-add_filter('render_block', function ($blockContent, $block) {
-    if ($block['blockName'] === 'core/button') {
-        return view('blocks.button', ['text' => 'Button Text']);
-    }
-    return $blockContent;
+add_filter('render_block_core/button', function ($blockContent, $block) {
+    return view('blocks.button', ['text' => 'Button Text']);
 }, 10, 2);
 ```
 

@@ -19,7 +19,7 @@ class BlocksServiceProvider extends ServiceProvider
         /**
          * Render `core/button` block with Blade template
          */
-        add_filter('render_block', [new Button(), 'render'], 10, 2);
+        add_filter('render_block_core/button', [new Button(), 'render'], 10, 2);
 
         /**
          * Register and render `radicle/modal` and `radicle/latest-seeds` blocks

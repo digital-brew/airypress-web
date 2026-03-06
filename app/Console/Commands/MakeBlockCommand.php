@@ -66,10 +66,6 @@ class {$studlyName}
 {
     public function render(string $blockContent, array $block): string
     {
-        if ($block['blockName'] !== 'radicle/{$kebabName}') {
-            return $blockContent;
-        }
-
         return view('blocks.{$kebabName}', [
             'block' => $block,
             'blockContent' => $blockContent,
@@ -210,7 +206,7 @@ EOT;
         $filterCall = "        /**\n"
             . "         * Render `radicle/{$kebabName}` block with Blade template\n"
             . "         */\n"
-            . "        add_filter('render_block', [new {$studlyName}(), 'render'], 10, 2);";
+            . "        add_filter('render_block_radicle/{$kebabName}', [new {$studlyName}(), 'render'], 10, 2);";
 
         // Skip if it's already present
         if (strpos($content, $filterCall) === false) {

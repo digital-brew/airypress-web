@@ -30,10 +30,6 @@ class Button
 
     public function render(string $blockContent, array $block): string
     {
-        if ($block['blockName'] !== 'core/button') {
-            return $blockContent;
-        }
-
         $dom = HTMLDocument::createFromString($blockContent, LIBXML_HTML_NOIMPLIED | LIBXML_NOERROR);
         $anchor = $dom->getElementsByTagName('a')->item(0);
 
