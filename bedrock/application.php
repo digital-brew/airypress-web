@@ -13,10 +13,13 @@ use Roots\WPConfig\Config;
 
 use function Env\env;
 
-// USE_ENV_ARRAY + CONVERT_* + STRIP_QUOTES
-Env\Env::$options = 31;
-
-// phpcs:disable
+// CONVERT_* + STRIP_QUOTES + LOCAL_FIRST
+Env\Env::$options
+    = Env\Env::CONVERT_BOOL
+    | Env\Env::CONVERT_NULL
+    | Env\Env::CONVERT_INT
+    | Env\Env::STRIP_QUOTES
+    | Env\Env::LOCAL_FIRST;
 
 /**
  * Directory containing all of the site's files
@@ -28,7 +31,7 @@ $root_dir = dirname(__DIR__);
 /**
  * Document Root
  *
- * @var string
+ * @var non-falsy-string
  */
 $webroot_dir = $root_dir . '/public';
 
@@ -36,13 +39,20 @@ $webroot_dir = $root_dir . '/public';
  * Use Dotenv to set required environment variables and load .env file in root
  * .env.local will override .env if it exists
  */
-$env_files = file_exists($root_dir . '/.env.local')
-    ? ['.env', '.env.local']
-    : ['.env'];
-
-$dotenv = Dotenv\Dotenv::createImmutable($root_dir, $env_files, false);
 if (file_exists($root_dir . '/.env')) {
+    $env_files = file_exists($root_dir . '/.env.local')
+        ? ['.env', '.env.local']
+        : ['.env'];
+
+    $repository = Dotenv\Repository\RepositoryBuilder::createWithNoAdapters()
+        ->addAdapter(Dotenv\Repository\Adapter\EnvConstAdapter::class)
+        ->addAdapter(Dotenv\Repository\Adapter\PutenvAdapter::class)
+        ->immutable()
+        ->make();
+
+    $dotenv = Dotenv\Dotenv::create($repository, $root_dir, $env_files, false);
     $dotenv->load();
+
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
     if (!env('DATABASE_URL')) {
         $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
@@ -61,10 +71,27 @@ define('ACORN_BASEPATH', $root_dir);
 define('WP_ENV', env('WP_ENV') ?: 'production');
 
 /**
- * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
+ * Set WP_ENVIRONMENT_TYPE if not already defined
  */
-if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['production', 'staging', 'development', 'local'])) {
-    Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+if (!defined('WP_ENVIRONMENT_TYPE')) {
+    $wp_environment_type = env('WP_ENVIRONMENT_TYPE');
+
+    if ($wp_environment_type) {
+        Config::define('WP_ENVIRONMENT_TYPE', $wp_environment_type);
+    } elseif (in_array(WP_ENV, ['production', 'staging', 'development', 'local'], true)) {
+        Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+    }
+}
+
+/**
+ * Set WP_DEVELOPMENT_MODE if explicitly configured
+ */
+if (!defined('WP_DEVELOPMENT_MODE')) {
+    $wp_development_mode = env('WP_DEVELOPMENT_MODE');
+
+    if ($wp_development_mode) {
+        Config::define('WP_DEVELOPMENT_MODE', $wp_development_mode);
+    }
 }
 
 /**
@@ -83,6 +110,10 @@ Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_D
 /**
  * DB settings
  */
+if (env('DB_SSL')) {
+    Config::define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
+}
+
 Config::define('DB_NAME', env('DB_NAME'));
 Config::define('DB_USER', env('DB_USER'));
 Config::define('DB_PASSWORD', env('DB_PASSWORD'));
@@ -125,7 +156,10 @@ Config::define('DISALLOW_FILE_EDIT', true);
 Config::define('DISALLOW_FILE_MODS', true);
 
 // Limit the number of post revisions
-Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: true);
+Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? true);
+
+// Disable script concatenation
+Config::define('CONCATENATE_SCRIPTS', false);
 
 // Set the default theme to radicle
 Config::define('WP_DEFAULT_THEME', 'radicle');
