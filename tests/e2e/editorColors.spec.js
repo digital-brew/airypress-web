@@ -6,10 +6,11 @@ test('editor color red-500 exists', async ({ page }) => {
   await page.goto("/wp/wp-admin/post-new.php");
   await dismissWelcomeModal(page);
 
+  await page.waitForSelector('iframe[name="editor-canvas"]');
   const editorFrame = page.frameLocator('iframe[name="editor-canvas"]');
 
   await editorFrame
-    .locator('p[aria-label="Add default block"]')
+    .locator('p[aria-label="Add default block"], p.wp-block-paragraph')
     .first()
     .click();
 
