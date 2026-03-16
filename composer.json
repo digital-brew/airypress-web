@@ -13,12 +13,12 @@
     ],
     "repositories": [
         {
-            "name": "wpackagist",
+            "name": "wp-composer",
             "type": "composer",
-            "url": "https://wpackagist.org",
+            "url": "https://repo.wp-composer.com",
             "only": [
-                "wpackagist-plugin/*",
-                "wpackagist-theme/*"
+                "wp-plugin/*",
+                "wp-theme/*"
             ]
         }
     ],
