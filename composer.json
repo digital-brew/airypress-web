@@ -30,7 +30,7 @@
     },
     "require": {
         "php": ">=8.4",
-        "blade-ui-kit/blade-heroicons": "^2.6",
+        "blade-ui-kit/blade-heroicons": "^2.7",
         "blade-ui-kit/blade-icons": "^1.9",
         "composer/installers": "^2.2",
         "guzzlehttp/guzzle": "^7.10",
@@ -51,7 +51,7 @@
     },
     "require-dev": {
         "johnbillion/query-monitor": "^3.20",
-        "laravel/pint": "^1.28",
+        "laravel/pint": "^1.29",
         "pestphp/pest": "^4.4",
         "phpcompatibility/php-compatibility": "^9.3"
     },
