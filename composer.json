@@ -37,7 +37,7 @@
         "log1x/acorn-disable-media-pages": "^1.0",
         "log1x/laravel-webfonts": "^2.0",
         "oscarotero/env": "^2.1",
-        "roots/acorn": "^5.1",
+        "roots/acorn": "^6.0",
         "roots/acorn-mail": "^1.0",
         "roots/acorn-post-types": "^1.0",
         "roots/acorn-prettify": "^1.0",
