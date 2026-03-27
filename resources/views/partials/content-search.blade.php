@@ -1,6 +1,6 @@
 <article @php(post_class())>
     <header>
-        <x-heading level="h2" size="2xl" class="entry-title mb-3">
+        <x-heading level="h2" size="2xl" class="mb-3 entry-title">
             <x-link href="{{ get_permalink() }}" variant="unstyled">
                 {!! $title !!}
             </x-link>

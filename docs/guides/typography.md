@@ -10,7 +10,7 @@ Instead of repeating Tailwind classes throughout templates:
 {{-- ❌ Inconsistent styling --}}
 <h1 class="text-3xl font-semibold text-gray-900">Title</h1>
 <h2 class="text-2xl font-semibold text-gray-900">Subtitle</h2>
-<a href="/page" class="text-blue-600 hover:text-blue-800 underline">Link</a>
+<a href="/page" class="text-blue-600 underline hover:text-blue-800">Link</a>
 ```
 
 Use centralized components:

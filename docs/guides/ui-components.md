@@ -40,7 +40,7 @@ The `<x-button>` component provides consistent button styling with multiple vari
 **Inverse**: White background with black text (for dark backgrounds)
 
 ```blade
-<section class="bg-black text-white">
+<section class="text-white bg-black">
     <x-button variant="inverse" href="/action">Inverse Button</x-button>
 </section>
 ```
@@ -188,16 +188,16 @@ The `<x-table>` component creates responsive tables with consistent styling.
 ### Call-to-action section
 
 ```blade
-<section class="bg-black text-white p-8 text-center">
+<section class="p-8 text-center text-white bg-black">
     <x-heading level="h2" size="2xl" color="white" class="mb-4">
         Ready to get started?
     </x-heading>
 
-    <p class="text-white text-lg mb-6">
+    <p class="mb-6 text-lg text-white">
         Join thousands of developers building with Radicle.
     </p>
 
-    <div class="flex gap-4 justify-center">
+    <div class="flex justify-center gap-4">
         <x-button variant="inverse" href="/signup">Get Started</x-button>
         <x-button variant="outline" href="/docs">Learn More</x-button>
     </div>

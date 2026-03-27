@@ -56,7 +56,7 @@ export const edit = ({ attributes, setAttributes }) => {
         />
 
         <BaseControl label={__(`Modal content`, `radicle`)} id="modal-content">
-          <div className="bg-gray-100 p-3 rounded-md">
+          <div className="p-3 bg-gray-100 rounded-md">
             <InnerBlocks
               template={[[`core/paragraph`]]}
               allowedBlocks={[`core/paragraph`, `core/heading`, `core/list`]}

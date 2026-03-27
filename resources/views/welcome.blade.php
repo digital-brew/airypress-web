@@ -17,7 +17,7 @@
         </style>
     @endpush
 
-    <x-heading level="h1" size="3xl" class="mb-6 flex gap-6 items-center">
+    <x-heading level="h1" size="3xl" class="flex items-center gap-6 mb-6">
         <x-icon-radicle class="w-24 h-24" />
         <b>Welcome to Radicle</b>
     </x-heading>
@@ -31,7 +31,7 @@
     <x-heading level="h3" size="xl" class="my-4" id="typography">Typography</x-heading>
     <p class="my-4">Typography components for consistent text styling across the site.</p>
 
-    <div class="my-6 bg-gray-100 p-6">
+    <div class="p-6 my-6 bg-gray-100">
         <x-heading level="h4" size="lg" class="mb-4">Headings</x-heading>
 
         <pre class="mb-6"><code class="language-blade">&lt;x-heading level="h1"&gt;Page Title&lt;/x-heading&gt;
@@ -47,7 +47,7 @@
             <x-heading level="h6">Heading 6 (base)</x-heading>
         </div>
 
-        <x-heading level="h4" size="lg" class="mb-4 mt-8">Links</x-heading>
+        <x-heading level="h4" size="lg" class="mt-8 mb-4">Links</x-heading>
 
         <pre class="mb-6"><code class="language-blade">&lt;x-link href="/page"&gt;Default link&lt;/x-link&gt;
 &lt;x-link href="/page" variant="unstyled"&gt;Unstyled link&lt;/x-link&gt;
@@ -59,7 +59,7 @@
             <p><x-link href="#" external>External link</x-link></p>
         </div>
 
-        <x-heading level="h4" size="lg" class="mb-4 mt-8">Lists</x-heading>
+        <x-heading level="h4" size="lg" class="mt-8 mb-4">Lists</x-heading>
 
         <pre class="mb-6"><code class="language-blade">&lt;x-list type="ul" spacing="normal"&gt;
     &lt;x-list-item&gt;First item&lt;/x-list-item&gt;
@@ -71,9 +71,9 @@
     &lt;x-list-item&gt;Step two&lt;/x-list-item&gt;
 &lt;/x-list&gt;</code></pre>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-                <p class="font-medium mb-2">Unordered List:</p>
+                <p class="mb-2 font-medium">Unordered List:</p>
                 <x-list type="ul" spacing="normal">
                     <x-list-item>First item</x-list-item>
                     <x-list-item>Second item</x-list-item>
@@ -81,7 +81,7 @@
                 </x-list>
             </div>
             <div>
-                <p class="font-medium mb-2">Ordered List:</p>
+                <p class="mb-2 font-medium">Ordered List:</p>
                 <x-list type="ol" spacing="normal">
                     <x-list-item>First item</x-list-item>
                     <x-list-item>Second item</x-list-item>
@@ -103,7 +103,7 @@
         ]"
     />
 
-    <div class="my-6 bg-gray-100 p-6">
+    <div class="p-6 my-6 bg-gray-100">
         <pre class="mb-6"><code class="language-blade">&lt;x-button href="#"&gt;Button&lt;/x-button&gt;</code></pre>
         <x-button href="#">Button</x-button>
 
@@ -111,7 +111,7 @@
         <x-button variant="outline" href="#">Outline Button</x-button>
 
         <pre class="my-6"><code class="language-blade">&lt;x-button variant="inverse" href="#"&gt;Inverse Button&lt;/x-button&gt;</code></pre>
-        <div class="bg-black p-4 inline-block">
+        <div class="inline-block p-4 bg-black">
             <x-button variant="inverse" href="#">Inverse Button</x-button>
         </div>
     </div>
@@ -119,7 +119,7 @@
     <x-heading level="h3" size="xl" class="my-6" id="modals">Modals</x-heading>
     <p class="my-4">The <code>radicle/modal</code> block is rendered with the <code>x-modal</code> Blade component.</p>
 
-    <div class="my-6 bg-gray-100 p-6 relative">
+    <div class="relative p-6 my-6 bg-gray-100">
         <pre class="mb-6"><code class="language-blade">&lt;x-modal title="Modal Title"&gt;
     &lt;x-slot name="button"&gt;Open modal&lt;/x-slot&gt;
     Example modal

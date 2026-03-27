@@ -1,6 +1,6 @@
 <header class="{{ $containerClasses }}">
     <div class="{{ $containerInnerClasses }}">
-        <a class="py-3 font-bold text-lg block" href="{{ home_url('/') }}">
+        <a class="block py-3 text-lg font-bold" href="{{ home_url('/') }}">
             {!! $siteName !!}
         </a>
 

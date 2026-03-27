@@ -1,13 +1,13 @@
 <article @php(post_class('h-entry'))>
     <header>
-        <x-heading level="h1" size="3xl" class="p-name mb-6">
+        <x-heading level="h1" size="3xl" class="mb-6 p-name">
             {!! $title !!}
         </x-heading>
 
         @include('partials.entry-meta')
     </header>
 
-    <div class="e-content space-y-4 mb-8">
+    <div class="mb-8 e-content space-y-4">
         @php(the_content())
     </div>
 
