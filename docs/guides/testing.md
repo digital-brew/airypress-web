@@ -87,43 +87,43 @@ npx playwright test --project=chromium
 Create test files in `tests/e2e/` with a `.spec.js` suffix:
 
 ```javascript
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('front page displays hero section', async ({ page }) => {
-  await page.goto('/');
+test("front page displays hero section", async ({ page }) => {
+  await page.goto("/");
 
   // Check for hero section
-  const hero = page.locator('section').first();
+  const hero = page.locator("section").first();
   await expect(hero).toBeVisible();
 
   // Check for featured post content
-  await expect(page.locator('h2')).toContainText('Sample Post');
+  await expect(page.locator("h2")).toContainText("Sample Post");
 });
 
-test('navigation works correctly', async ({ page }) => {
-  await page.goto('/');
+test("navigation works correctly", async ({ page }) => {
+  await page.goto("/");
 
   // Click on a navigation link
   await page.click('nav a[href="/about/"]');
 
   // Verify we're on the correct page
-  await expect(page).toHaveURL('/about/');
-  await expect(page.locator('h1')).toContainText('About');
+  await expect(page).toHaveURL("/about/");
+  await expect(page.locator("h1")).toContainText("About");
 });
 
-test('forms submit successfully', async ({ page }) => {
-  await page.goto('/contact/');
+test("forms submit successfully", async ({ page }) => {
+  await page.goto("/contact/");
 
   // Fill out form
-  await page.fill('input[name="name"]', 'Test User');
-  await page.fill('input[name="email"]', 'test@example.com');
-  await page.fill('textarea[name="message"]', 'This is a test message');
+  await page.fill('input[name="name"]', "Test User");
+  await page.fill('input[name="email"]', "test@example.com");
+  await page.fill('textarea[name="message"]', "This is a test message");
 
   // Submit form
   await page.click('button[type="submit"]');
 
   // Check for success message
-  await expect(page.locator('.success-message')).toBeVisible();
+  await expect(page.locator(".success-message")).toBeVisible();
 });
 ```
 

@@ -7,9 +7,9 @@ Radicle uses service providers for configuring and bootstraping various services
 
 Radicle comes with the following service providers out of the box:
 
-* `AssetsServiceProvider` — Used for WordPress assets (CSS and JS) registration
-* `BlocksServiceProvider` — Used for registering first-party block renderers from `app/Blocks/`
-* `ThemeServiceProvider` — Used for registering [theme supports](https://developer.wordpress.org/reference/functions/add_theme_support/) and sidebars from a config
+- `AssetsServiceProvider` — Used for WordPress assets (CSS and JS) registration
+- `BlocksServiceProvider` — Used for registering first-party block renderers from `app/Blocks/`
+- `ThemeServiceProvider` — Used for registering [theme supports](https://developer.wordpress.org/reference/functions/add_theme_support/) and sidebars from a config
 
 These service providers are loaded from the `composer.json` file:
 
@@ -53,6 +53,7 @@ app/Blocks/
 Block classes handle the rendering logic and are automatically registered by the `BlocksServiceProvider`. Each block class should have a `render()` method that takes the block content and block data as parameters.
 
 **Example block class:**
+
 ```php
 <?php
 

@@ -19,12 +19,14 @@ wp acorn make:block my-custom-block
 ```
 
 This command creates all necessary files:
+
 - **PHP Block Class**: `app/Blocks/MyCustomBlock.php` - Server-side rendering logic
 - **JavaScript Block**: `resources/js/editor/my-custom-block.block.jsx` - Editor component
 - **Blade Template**: `resources/views/blocks/my-custom-block.blade.php` - Frontend template
 - **Auto-registration**: Updates `BlocksServiceProvider.php` and `editor.js`
 
 The command handles name formatting automatically:
+
 - Converts input to StudlyCase for class names
 - Creates kebab-case for file names and block identifiers
 - Registers the block in both PHP and JavaScript
@@ -114,27 +116,30 @@ import { useSelect } from "@wordpress/data";
 import { store as coreStore } from "@wordpress/core-data";
 
 export const attributes = {
-  posts: { type: 'number', default: 5 },
-  displayFeaturedImage: { type: 'boolean', default: false },
-  postLayout: { type: 'string', default: 'list' },
-  displayPostContent: { type: 'string', default: 'none' },
+  posts: { type: "number", default: 5 },
+  displayFeaturedImage: { type: "boolean", default: false },
+  postLayout: { type: "string", default: "list" },
+  displayPostContent: { type: "string", default: "none" },
 };
 
 export const edit = ({ attributes, setAttributes }) => {
   const { posts, displayFeaturedImage, postLayout, displayPostContent } = attributes;
 
   // Fetch data dynamically
-  const { latestSeeds } = useSelect((select) => {
-    const { getEntityRecords } = select(coreStore);
-    return {
-      latestSeeds: getEntityRecords('postType', 'seed', {
-        per_page: posts,
-        _embed: 'wp:featuredmedia',
-        order: 'desc',
-        orderby: 'date',
-      }),
-    };
-  }, [posts]);
+  const { latestSeeds } = useSelect(
+    (select) => {
+      const { getEntityRecords } = select(coreStore);
+      return {
+        latestSeeds: getEntityRecords("postType", "seed", {
+          per_page: posts,
+          _embed: "wp:featuredmedia",
+          order: "desc",
+          orderby: "date",
+        }),
+      };
+    },
+    [posts],
+  );
 
   return (
     <>
@@ -155,16 +160,14 @@ export const edit = ({ attributes, setAttributes }) => {
           label="Layout"
           selected={postLayout}
           options={[
-            { label: 'List', value: 'list' },
-            { label: 'Grid', value: 'grid' },
+            { label: "List", value: "list" },
+            { label: "Grid", value: "grid" },
           ]}
           onChange={(value) => setAttributes({ postLayout: value })}
         />
       </InspectorControls>
 
-      <div {...useBlockProps()}>
-        {/* Render preview with fetched data */}
-      </div>
+      <div {...useBlockProps()}>{/* Render preview with fetched data */}</div>
     </>
   );
 };

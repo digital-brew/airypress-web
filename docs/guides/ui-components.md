@@ -16,26 +16,29 @@ The `<x-button>` component provides consistent button styling with multiple vari
 
 ### Props
 
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
-| `variant` | string | `primary` | `primary`, `outline`, `inverse` |
-| `size` | string | `base` | `xs`, `sm`, `base`, `lg` |
-| `element` | string | Auto-detected | `a`, `button` |
-| `href` | string | - | Required for `a` elements |
+| Prop      | Type   | Default       | Options                         |
+| --------- | ------ | ------------- | ------------------------------- |
+| `variant` | string | `primary`     | `primary`, `outline`, `inverse` |
+| `size`    | string | `base`        | `xs`, `sm`, `base`, `lg`        |
+| `element` | string | Auto-detected | `a`, `button`                   |
+| `href`    | string | -             | Required for `a` elements       |
 
 ### Variants
 
 **Primary**: Black background with white text
+
 ```blade
 <x-button href="/action">Primary Action</x-button>
 ```
 
 **Outline**: Transparent background with black border
+
 ```blade
 <x-button variant="outline" href="/action">Secondary Action</x-button>
 ```
 
 **Inverse**: White background with black text (for dark backgrounds)
+
 ```blade
 <section class="bg-black text-white">
     <x-button variant="inverse" href="/action">Inverse Button</x-button>
@@ -79,9 +82,9 @@ The `<x-modal>` component creates accessible modal dialogs with Alpine.js.
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | string | - | Modal header title |
+| Prop    | Type   | Default | Description        |
+| ------- | ------ | ------- | ------------------ |
+| `title` | string | -       | Modal header title |
 
 ### Slots
 
@@ -120,9 +123,9 @@ The `<x-alert>` component displays contextual messages with different types.
 
 ### Props
 
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
-| `type` | string | `info` | `success`, `warning`, `error`, `info` |
+| Prop   | Type   | Default | Options                               |
+| ------ | ------ | ------- | ------------------------------------- |
+| `type` | string | `info`  | `success`, `warning`, `error`, `info` |
 
 ## Table component
 
@@ -142,10 +145,10 @@ The `<x-table>` component creates responsive tables with consistent styling.
 
 ### Props
 
-| Prop | Type | Description |
-|------|------|-------------|
+| Prop      | Type  | Description          |
+| --------- | ----- | -------------------- |
 | `columns` | array | Table header columns |
-| `rows` | array | Table data rows |
+| `rows`    | array | Table data rows      |
 
 ### Dynamic content
 

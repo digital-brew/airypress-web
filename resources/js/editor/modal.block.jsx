@@ -1,8 +1,4 @@
-import {
-  InnerBlocks,
-  InspectorControls,
-  useBlockProps,
-} from "@wordpress/block-editor";
+import { InnerBlocks, InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { BaseControl, PanelBody, TextControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { customPostType } from "@wordpress/icons";
@@ -73,4 +69,4 @@ export const edit = ({ attributes, setAttributes }) => {
 };
 
 /* Block save */
-export const save = () => <InnerBlocks.Content />
+export const save = () => <InnerBlocks.Content />;

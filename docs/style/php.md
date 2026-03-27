@@ -5,7 +5,7 @@ This guide outlines PHP coding conventions for WordPress development using Acorn
 ## Core principles
 
 - **Modern PHP First**: Use PHP 8.4+ features (constructor property promotion, enums, property hooks, etc.)
-- **PSR-12/PER-CS Compliant**: Follow modern PHP standards, not traditional WordPress Coding Standards
+- **PSR-12/PER-CS Compliant**: Follow modern PHP standards, not traditional WordPress Coding Standards. Enforced by [Laravel Pint](https://laravel.com/docs/pint) — `composer lint` to check, `composer lint:fix` to auto-fix
 - **Laravel Conventions**: Leverage Laravel features for elegant solutions
 - **Prefer Laravel Helpers**: Use `collect()`, `Str::` helpers, and other Laravel utilities over native PHP equivalents
 - **Namespaces Required**: All PHP files must use proper namespaces (typically `namespace App;` or sub-namespaces)
@@ -100,11 +100,11 @@ public function getPostStatus($post): string
     if (! $post) {
         return 'not_found';
     }
-    
+
     if ($post->post_status === 'draft') {
         return 'draft';
     }
-    
+
     return 'published';
 }
 
@@ -128,7 +128,7 @@ public function getTitle($post): string
     if (! $post) {
         return 'Untitled';
     }
-    
+
     return $post->post_title;
 }
 
@@ -199,7 +199,7 @@ class ProductManager
         add_action('init', [$this, 'registerPostType']);
         add_filter('the_content', [$this, 'filterContent']);
     }
-    
+
     public function registerPostType(): void
     {
         // Complex registration logic
@@ -227,7 +227,7 @@ public function getFeaturedPosts(int $count = 5): Collection
         'meta_value' => '1',
         'post_status' => 'publish',
     ]);
-    
+
     return collect($posts)->map(function ($post) {
         return [
             'id' => $post->ID,
@@ -264,6 +264,7 @@ For detailed Acorn usage, refer to the [Acorn Documentation](https://roots.io/ac
 ### Service providers
 
 Create service providers when you need to:
+
 - Register services in the container (repositories, APIs, external services)
 - Bootstrap application-level functionality (custom post types, taxonomies)
 - Register WordPress hooks in an organized way
@@ -275,10 +276,12 @@ wp acorn make:provider CustomServiceProvider
 ```
 
 **What to put in service providers:**
+
 - **register()**: Bind classes to the container, merge config files
 - **boot()**: WordPress hooks, route registration, view composers
 
 **Don't put in service providers:**
+
 - Business logic (put in services/repositories)
 - WordPress template functions (put in helpers/functions)
 - Direct database operations (put in models/repositories)
@@ -354,35 +357,33 @@ The key to loading your custom packages correctly is proper composer configurati
 ```json
 // Main application composer.json
 {
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./packages/*"
-        }
-    ],
-    "require": {
-        "app/your-package": "*"
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./packages/*"
     }
+  ],
+  "require": {
+    "app/your-package": "*"
+  }
 }
 ```
 
 ```json
 // Package composer.json (packages/your-package/composer.json)
 {
-    "name": "app/your-package",
-    "type": "library",
-    "autoload": {
-        "psr-4": {
-            "App\\YourPackage\\": "src/"
-        }
-    },
-    "extra": {
-        "acorn": {
-            "providers": [
-                "App\\YourPackage\\Providers\\ServiceProvider"
-            ]
-        }
+  "name": "app/your-package",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "App\\YourPackage\\": "src/"
     }
+  },
+  "extra": {
+    "acorn": {
+      "providers": ["App\\YourPackage\\Providers\\ServiceProvider"]
+    }
+  }
 }
 ```
 
@@ -410,7 +411,7 @@ add_action('wp_enqueue_scripts', function () {
         '1.0.0',
         true
     );
-    
+
     // Pass data to JavaScript using inline script (modern approach)
     $appData = [
         'apiUrl' => home_url('/wp-json/app/v1'),
@@ -420,7 +421,7 @@ add_action('wp_enqueue_scripts', function () {
             'can_edit' => current_user_can('edit_posts'),
         ],
     ];
-    
+
     wp_add_inline_script(
         'app',
         'const appData = ' . wp_json_encode($appData) . ';',
@@ -467,14 +468,14 @@ add_action('wp_ajax_get_posts', function () {
     if (! wp_verify_nonce($_POST['nonce'], 'get_posts_nonce')) {
         wp_die('Invalid nonce');
     }
-    
+
     if (! current_user_can('read')) {
         wp_die('Insufficient permissions');
     }
-    
+
     // Get posts
     $posts = get_posts(['numberposts' => 10]);
-    
+
     wp_send_json_success($posts);
 });
 
@@ -495,15 +496,15 @@ add_action('rest_api_init', function () {
 ```javascript
 // ❌ Bad - Legacy JavaScript approach
 jQuery.post(ajaxurl, {
-    action: 'get_posts',
-    nonce: ajax_object.nonce
+  action: "get_posts",
+  nonce: ajax_object.nonce,
 });
 
 // ✅ Good - Modern JavaScript approach
-fetch('/wp-json/app/v1/posts', {
-    headers: {
-        'X-WP-Nonce': wpApiSettings.nonce
-    }
+fetch("/wp-json/app/v1/posts", {
+  headers: {
+    "X-WP-Nonce": wpApiSettings.nonce,
+  },
 });
 ```
 
@@ -533,11 +534,11 @@ class PostController
     public function getFeatured(\WP_REST_Request $request): \WP_REST_Response
     {
         $count = $request->get_param('count');
-        
+
         $posts = Cache::remember("featured_posts_{$count}", 600, function () use ($count) {
             return $this->postRepository->getFeatured($count);
         });
-        
+
         return rest_ensure_response([
             'posts' => $posts,
             'count' => $posts->count(),
@@ -624,7 +625,7 @@ public function updatePost(int $postId, array $data): bool
     if (! current_user_can('edit_post', $postId)) {
         throw new UnauthorizedException('Insufficient permissions');
     }
-    
+
     return $this->postRepository->update($postId, $data);
 }
 
@@ -647,7 +648,7 @@ public function savePostMeta(int $postId, array $meta): void
         'url' => esc_url_raw($meta['url'] ?? ''),
         'number' => absint($meta['number'] ?? 0),
     ];
-    
+
     foreach ($sanitized as $key => $value) {
         update_post_meta($postId, $key, $value);
     }
@@ -698,7 +699,7 @@ try {
         'error' => $e->getMessage(),
         'trace' => $e->getTraceAsString(),
     ]);
-    
+
     throw $e;
 }
 ```
@@ -739,12 +740,12 @@ class PostService
     {
         // Implementation
     }
-    
+
     public function createFromArray(array $data): Post
     {
         // Implementation
     }
-    
+
     public function getPublished(): Collection
     {
         // Implementation
@@ -760,26 +761,26 @@ class ExampleClass
     // 1. Properties
     protected string $name;
     private CacheManager $cache;
-    
+
     // 2. Constructor
     public function __construct(string $name, CacheManager $cache)
     {
         $this->name = $name;
         $this->cache = $cache;
     }
-    
+
     // 3. Public methods
     public function process(): void
     {
         // Implementation
     }
-    
+
     // 4. Protected methods
     protected function validate(): bool
     {
         // Implementation
     }
-    
+
     // 5. Private methods
     private function transform(array $data): array
     {

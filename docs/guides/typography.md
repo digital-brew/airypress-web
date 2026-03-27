@@ -36,11 +36,11 @@ The `<x-heading>` component provides consistent heading styles with flexible siz
 
 ### Props
 
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
-| `level` | string | `h2` | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` |
-| `size` | string | Auto-sized by level | `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl` |
-| `color` | string | `default` | `default`, `black`, `white`, `muted` |
+| Prop    | Type   | Default             | Options                                    |
+| ------- | ------ | ------------------- | ------------------------------------------ |
+| `level` | string | `h2`                | `h1`, `h2`, `h3`, `h4`, `h5`, `h6`         |
+| `size`  | string | Auto-sized by level | `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl` |
+| `color` | string | `default`           | `default`, `black`, `white`, `muted`       |
 
 ### Size mapping
 
@@ -81,21 +81,23 @@ The `<x-link>` component handles internal and external links with consistent sty
 
 ### Props
 
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
-| `href` | string | `#` | Any valid URL |
-| `variant` | string | `default` | `default`, `unstyled` |
-| `weight` | string | `normal` | `light`, `normal`, `medium`, `semibold`, `bold` |
-| `external` | boolean | `false` | Adds `target="_blank"` and external icon |
+| Prop       | Type    | Default   | Options                                         |
+| ---------- | ------- | --------- | ----------------------------------------------- |
+| `href`     | string  | `#`       | Any valid URL                                   |
+| `variant`  | string  | `default` | `default`, `unstyled`                           |
+| `weight`   | string  | `normal`  | `light`, `normal`, `medium`, `semibold`, `bold` |
+| `external` | boolean | `false`   | Adds `target="_blank"` and external icon        |
 
 ### Variants
 
 **Default**: Blue links with underlines
+
 ```blade
 <x-link href="/page">Default link</x-link>
 ```
 
 **Unstyled**: Inherits parent styling, useful for styled headings
+
 ```blade
 <x-heading level="h2">
     <x-link href="/post" variant="unstyled">Post Title</x-link>
@@ -128,16 +130,16 @@ The `<x-list>` and `<x-list-item>` components provide consistent list styling.
 
 ### List props
 
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
-| `type` | string | `ul` | `ul`, `ol` |
-| `spacing` | string | `normal` | `tight`, `normal`, `loose` |
-| `style` | string | `default` | `default`, `none`, `inside`, `outside` |
+| Prop      | Type   | Default   | Options                                |
+| --------- | ------ | --------- | -------------------------------------- |
+| `type`    | string | `ul`      | `ul`, `ol`                             |
+| `spacing` | string | `normal`  | `tight`, `normal`, `loose`             |
+| `style`   | string | `default` | `default`, `none`, `inside`, `outside` |
 
 ### List item props
 
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
+| Prop      | Type   | Default  | Options                    |
+| --------- | ------ | -------- | -------------------------- |
 | `spacing` | string | `normal` | `tight`, `normal`, `loose` |
 
 ### Examples

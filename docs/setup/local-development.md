@@ -2,8 +2,8 @@
 
 Radicle comes with configuration for two local development setups out of the box:
 
-* [Lando](https://lando.dev/)
-* [Trellis](https://roots.io/trellis/)
+- [Lando](https://lando.dev/)
+- [Trellis](https://roots.io/trellis/)
 
 [Laravel Valet](https://laravel.com/docs/10.x/valet) also supports Radicle sites with no config required.
 

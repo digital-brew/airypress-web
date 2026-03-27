@@ -2,10 +2,10 @@
 
 ## Server requirements
 
-* Your document root must be configurable (_most_ local development tools and webhosts should support this)
-* PHP >= 8.4 with the following extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, Tokenizer, XML
-* Composer
-* WP-CLI
+- Your document root must be configurable (_most_ local development tools and webhosts should support this)
+- PHP >= 8.4 with the following extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, Tokenizer, XML
+- Composer
+- WP-CLI
 
 ## Installing Radicle
 

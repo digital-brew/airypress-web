@@ -69,9 +69,11 @@ npm run build  # Production build
 
 Use Heroicons: `<x-heroicon-o-x-mark class="w-5 h-5" />`
 
-## Code formatting
+## Code formatting and linting
 
-The project uses EditorConfig (see [`.editorconfig`](../../.editorconfig)) for consistent formatting.
+- **[oxfmt](https://oxc.rs/docs/guide/usage/formatter.html)** for JS/CSS formatting — `npm run format`
+- **[oxlint](https://oxc.rs/docs/guide/usage/linter.html)** for JS linting — `npm run lint`
+- **[EditorConfig](../../.editorconfig)** for consistent editor settings
 
 ## Best practices
 

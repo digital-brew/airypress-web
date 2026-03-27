@@ -5,6 +5,7 @@ Welcome to the Radicle project documentation. This guide covers everything from 
 ## 📚 Documentation Structure
 
 ### 🚀 Setup & Installation
+
 Get Radicle up and running in your environment.
 
 - [Installation Guide](setup/installation.md) - Install Radicle and dependencies
@@ -13,12 +14,14 @@ Get Radicle up and running in your environment.
 - [Deployment](setup/deployment.md) - Deploy to staging and production
 
 ### 🎨 Components
+
 Reusable Blade components for consistent UI patterns.
 
 - [Typography Components](guides/typography.md) - Headings, links, and lists for consistent text styling
 - [UI Components](guides/ui-components.md) - Buttons, modals, alerts, and tables
 
 ### 📖 How-To Guides
+
 Learn how to work with Radicle's features and functionality.
 
 - [Service Providers](guides/service-providers.md) - Configure and create service providers
@@ -30,8 +33,8 @@ Learn how to work with Radicle's features and functionality.
 - [Mail Configuration](guides/mail.md) - Set up email sending with Laravel mail features
 - [Testing Guide](guides/testing.md) - Creating and running Pest and Playwright tests
 
-
 ### ✨ Code Style & Development
+
 Conventions and patterns for writing consistent, maintainable code.
 
 - [Code Style Overview](style/README.md) - Overview of all coding standards
@@ -71,7 +74,7 @@ Conventions and patterns for writing consistent, maintainable code.
 
 - PHP >= 8.4 with extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, Tokenizer, XML
 - Composer
-- WP-CLI  
+- WP-CLI
 - Node.js >= 20 for asset compilation and E2E testing
 
 ## 🎯 Quick Start

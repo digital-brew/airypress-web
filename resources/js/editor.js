@@ -1,4 +1,4 @@
-import domReady from '@wordpress/dom-ready';
+import domReady from "@wordpress/dom-ready";
 import { registerBlockType } from "@wordpress/blocks";
 import * as modalBlock from "./editor/modal.block";
 import * as latestSeedsBlock from "./editor/latest-seeds.block";
@@ -7,12 +7,9 @@ domReady(() => {
   /**
    * Register blocks with their configurations
    */
-  const blocks = [
-    modalBlock,
-    latestSeedsBlock,
-  ];
+  const blocks = [modalBlock, latestSeedsBlock];
 
-  blocks.forEach(block => {
+  blocks.forEach((block) => {
     registerBlockType(block.name, {
       apiVersion: 3,
       title: block.title,

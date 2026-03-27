@@ -17,6 +17,5 @@ jobs:
         with:
           configFile: .devcontainer/devcontainer.json
           runCmd: |
-            composer lint
             composer test
             npx playwright test

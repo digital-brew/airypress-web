@@ -17,7 +17,7 @@ export default defineConfig({
         "resources/js/editor.js",
       ],
       refresh: true,
-      assets: ['resources/images/**', 'resources/fonts/**'],
+      assets: ["resources/images/**", "resources/fonts/**"],
     }),
 
     wordpressPlugin(),
@@ -40,8 +40,8 @@ export default defineConfig({
         // Deep merge function
         function deepMerge(target, source) {
           for (const key in source) {
-            if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
-              if (!target[key] || typeof target[key] !== 'object') {
+            if (source[key] && typeof source[key] === "object" && !Array.isArray(source[key])) {
+              if (!target[key] || typeof target[key] !== "object") {
                 target[key] = {};
               }
 
@@ -53,7 +53,7 @@ export default defineConfig({
           return target;
         }
 
-        for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.theme.js'))) {
+        for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".theme.js"))) {
           try {
             const blockTheme = (await import(path.join(dir, f))).default;
 

@@ -85,12 +85,12 @@ tooling:
     service: appserver
     description: Generate administrator login URL
     cmd: >-
-        if ! command wp package path aaemnnosttv/wp-cli-login-command >/dev/null 2>&1; then
-          mkdir -p ~/.wp-cli/packages;
-          cd ~/.wp-cli/packages;
-          composer config repositories.wp-cli --unset 2>/dev/null;
-          composer require aaemnnosttv/wp-cli-login-command dev-master;
-          cd /app;
-        fi;
-        wp plugin is-active wp-cli-login-server || wp login install --activate --yes;
-        wp login as 1
+      if ! command wp package path aaemnnosttv/wp-cli-login-command >/dev/null 2>&1; then
+        mkdir -p ~/.wp-cli/packages;
+        cd ~/.wp-cli/packages;
+        composer config repositories.wp-cli --unset 2>/dev/null;
+        composer require aaemnnosttv/wp-cli-login-command dev-master;
+        cd /app;
+      fi;
+      wp plugin is-active wp-cli-login-server || wp login install --activate --yes;
+      wp login as 1

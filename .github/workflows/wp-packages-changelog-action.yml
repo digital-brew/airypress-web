@@ -3,8 +3,8 @@ name: WP Packages Changelog
 on:
   pull_request:
     paths:
-      - 'composer.lock'
-      - 'composer.json'
+      - "composer.lock"
+      - "composer.json"
 
 jobs:
   changelog:

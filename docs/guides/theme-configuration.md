@@ -2,9 +2,9 @@
 
 The `config/theme.php` file should be used to configure:
 
-* Navigation menus
-* Sidebars
-* Theme supports
+- Navigation menus
+- Sidebars
+- Theme supports
 
 > [!TIP]
 > Coming from a typical Sage setup? This file replaces `app/setup.php`
