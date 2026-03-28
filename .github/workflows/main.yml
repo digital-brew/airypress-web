@@ -65,7 +65,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-          cache: "npm"
+          # cache: "npm" # uncomment if you commit a package-lock.json
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
