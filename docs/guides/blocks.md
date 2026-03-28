@@ -80,14 +80,19 @@ export const save = () => null; // Server-side rendering
 
 ### 2. PHP Registration
 
-Add to `BlocksServiceProvider`:
+Register the block inside the `add_action('init', ...)` closure in `BlocksServiceProvider`:
 
 ```php
-add_filter('render_block_radicle/my-block', function ($blockContent, $block) {
-    return view('blocks.my-block', [
-        'title' => sanitize_text_field($block['attrs']['title'] ?? 'Block Title'),
-    ]);
-}, 10, 2);
+register_block_type('radicle/my-block', [
+    'api_version' => 3,
+    'attributes' => [
+        'title' => [
+            'type' => 'string',
+            'default' => 'Block Title',
+        ],
+    ],
+    'render_callback' => [new MyBlock(), 'render'],
+]);
 ```
 
 ### 3. Blade Template
@@ -175,30 +180,31 @@ export const edit = ({ attributes, setAttributes }) => {
 
 ### Server-side rendering with dynamic data
 
-In `BlocksServiceProvider`, query data and pass to Blade template:
+Register the block inside the `add_action('init', ...)` closure in `BlocksServiceProvider`, using a block class for the render callback:
 
 ```php
-add_filter('render_block_radicle/latest-seeds', function ($block_content, $block) {
-    $attributes = $block['attrs'] ?? [];
-    $posts = $attributes['posts'] ?? 5;
-    $displayFeaturedImage = $attributes['displayFeaturedImage'] ?? false;
-
-    $query_args = [
-        'post_type' => 'seed',
-        'numberposts' => $posts,
-        'post_status' => 'publish',
-        'order' => 'DESC',
-        'orderby' => 'date',
-    ];
-
-    $seeds = get_posts($query_args);
-
-    return view('blocks.latest-seeds', [
-        'seeds' => $seeds,
-        'displayFeaturedImage' => $displayFeaturedImage,
-        // ... other attributes
-    ]);
-}, 10, 2);
+register_block_type('radicle/latest-seeds', [
+    'api_version' => 3,
+    'attributes' => [
+        'posts' => [
+            'type' => 'number',
+            'default' => 5,
+        ],
+        'displayPostContent' => [
+            'type' => 'string',
+            'default' => 'none',
+        ],
+        'postLayout' => [
+            'type' => 'string',
+            'default' => 'list',
+        ],
+        'displayFeaturedImage' => [
+            'type' => 'boolean',
+            'default' => false,
+        ],
+    ],
+    'render_callback' => [new LatestSeeds(), 'render'],
+]);
 ```
 
 ### Conditional layouts in Blade

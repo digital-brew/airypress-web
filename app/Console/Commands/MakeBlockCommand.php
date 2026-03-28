@@ -156,27 +156,12 @@ EOT;
 
         $camelName = lcfirst($studlyName);
 
-        // Add import statement
+        // Add import statement after the last existing import
         $import = "import * as {$camelName}Block from \"./editor/{$kebabName}.block\";";
-        $content = preg_replace('/(import .* from ".*\n)/', "$1{$import}\n", $content, 1);
+        $content = preg_replace('/(import \* as \w+Block from "[^"]+";)\n/', "$1\n{$import}\n", $content, 1);
 
-        // @mago-format-ignore-next
-        $register = <<<'EOT'
-  registerBlockType({$camelName}Block.name, {
-    apiVersion: 3,
-    title: {$camelName}Block.title,
-    category: {$camelName}Block.category,
-    attributes: {$camelName}Block.attributes,
-    edit: {$camelName}Block.edit,
-    save: {$camelName}Block.save,
-  });
-EOT;
-        $register = str_replace('{$camelName}', $camelName, $register);
-        $content = str_replace(
-            "  /**\n   * Register blocks\n   */",
-            "  /**\n   * Register blocks\n   */\n  {$register}",
-            $content,
-        );
+        // Add block to the blocks array
+        $content = preg_replace('/(const blocks = \[)([^\]]*)\]/', '$1$2, ' . $camelName . 'Block]', $content, 1);
 
         file_put_contents($path, $content);
     }
@@ -203,25 +188,28 @@ EOT;
             );
         }
 
-        // 2) Prepare the filter call we want to add
-        $filterCall =
-            "        /**\n"
-            . "         * Render `radicle/{$kebabName}` block with Blade template\n"
-            . "         */\n"
-            . "        add_filter('render_block_radicle/{$kebabName}', [new {$studlyName}(), 'render'], 10, 2);";
+        // @mago-format-ignore-next
+        $registration =
+            "\n            register_block_type('radicle/{$kebabName}', [\n"
+            . "                'api_version' => 3,\n"
+            . "                'attributes' => [],\n"
+            . "                'render_callback' => [new {$studlyName}(), 'render'],\n"
+            . "            ]);";
 
         // Skip if it's already present
-        if (! str_contains($content, $filterCall)) {
-            // Insert inside boot() just before its closing brace
-            // - Match the boot() method body lazily, then insert before the final }
-            $pattern = '/(public\s+function\s+boot\s*\(\s*\)\s*\{\s*)(.*?)(\R\s*\})/s';
-            if (! preg_match($pattern, $content)) {
-                $this->error('Could not find boot() method in BlocksServiceProvider.php');
-                return;
-            }
-
-            $content = preg_replace($pattern, '$1$2' . PHP_EOL . $filterCall . '$3', $content, 1);
+        if (str_contains($content, "radicle/{$kebabName}")) {
+            $this->info('BlocksServiceProvider already contains this block.');
+            return;
         }
+
+        // Insert before the closing of the add_action('init', ...) closure
+        $pattern = '/(add_action\s*\(\s*[\'"]init[\'"]\s*,\s*function\s*\(\s*\)\s*\{)(.*?)(\n\s*\}\))/s';
+        if (! preg_match($pattern, $content)) {
+            $this->error('Could not find add_action(\'init\', ...) in BlocksServiceProvider.php');
+            return;
+        }
+
+        $content = preg_replace($pattern, '$1$2' . $registration . '$3', $content, 1);
 
         if (file_put_contents($path, $content) === false) {
             $this->error('Failed to write BlocksServiceProvider.php');
