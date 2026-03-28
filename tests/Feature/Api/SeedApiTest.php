@@ -23,9 +23,12 @@ it('can retrieve seeds via API index endpoint', function () {
     $request = new WP_REST_Request('GET', '/radicle/v1/seeds');
     $response = $this->server->dispatch($request);
 
-    expect($response->get_status())->toBe(200)
-        ->and($response->get_data())->toBeArray()
-        ->and($response->get_headers())->toHaveKey('X-WP-Total');
+    expect($response->get_status())
+        ->toBe(200)
+        ->and($response->get_data())
+        ->toBeArray()
+        ->and($response->get_headers())
+        ->toHaveKey('X-WP-Total');
 });
 
 it('can retrieve seed via API show endpoint', function () {
@@ -42,10 +45,14 @@ it('can retrieve seed via API show endpoint', function () {
     expect($response->get_status())->toBe(200);
 
     $data = $response->get_data();
-    expect($data)->toHaveKey('id')
-        ->and($data)->toHaveKey('title')
-        ->and($data)->toHaveKey('content')
-        ->and($data['id'])->toBe($seed->ID);
+    expect($data)
+        ->toHaveKey('id')
+        ->and($data)
+        ->toHaveKey('title')
+        ->and($data)
+        ->toHaveKey('content')
+        ->and($data['id'])
+        ->toBe($seed->ID);
 });
 
 it('returns 404 for non-existent seed', function () {
@@ -55,8 +62,7 @@ it('returns 404 for non-existent seed', function () {
     expect($response->get_status())->toBe(404);
 
     $data = $response->get_data();
-    expect($data)->toHaveKey('code')
-        ->and($data['code'])->toBe('seed_not_found');
+    expect($data)->toHaveKey('code')->and($data['code'])->toBe('seed_not_found');
 });
 
 it('supports pagination parameters', function () {
@@ -68,9 +74,12 @@ it('supports pagination parameters', function () {
 
     $response = $this->server->dispatch($request);
 
-    expect($response->get_status())->toBe(200)
-        ->and($response->get_data())->toBeArray()
-        ->and(count($response->get_data()))->toBeLessThanOrEqual(2);
+    expect($response->get_status())
+        ->toBe(200)
+        ->and($response->get_data())
+        ->toBeArray()
+        ->and(count($response->get_data()))
+        ->toBeLessThanOrEqual(2);
 });
 
 it('supports search parameter', function () {
@@ -81,6 +90,5 @@ it('supports search parameter', function () {
 
     $response = $this->server->dispatch($request);
 
-    expect($response->get_status())->toBe(200)
-        ->and($response->get_data())->toBeArray();
+    expect($response->get_status())->toBe(200)->and($response->get_data())->toBeArray();
 });

@@ -63,9 +63,7 @@ class Post extends Model
 
     public function scopeRecent($query, int $count = 5)
     {
-        return $query->published()
-            ->orderBy('post_date', 'desc')
-            ->limit($count);
+        return $query->published()->orderBy('post_date', 'desc')->limit($count);
     }
 
     public function meta(): HasMany

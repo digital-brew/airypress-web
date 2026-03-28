@@ -19,12 +19,11 @@ class Button
         if ($buttonBlock) {
             $buttonBlock->attributes['backgroundColor'] = array_merge(
                 $buttonBlock->attributes['backgroundColor'] ?? [],
-                ['default' => 'black']
+                ['default' => 'black'],
             );
-            $buttonBlock->attributes['textColor'] = array_merge(
-                $buttonBlock->attributes['textColor'] ?? [],
-                ['default' => 'white']
-            );
+            $buttonBlock->attributes['textColor'] = array_merge($buttonBlock->attributes['textColor'] ?? [], [
+                'default' => 'white',
+            ]);
         }
     }
 
@@ -33,7 +32,7 @@ class Button
         $dom = HTMLDocument::createFromString($blockContent, LIBXML_HTML_NOIMPLIED | LIBXML_NOERROR);
         $anchor = $dom->getElementsByTagName('a')->item(0);
 
-        if (!$anchor) {
+        if (! $anchor) {
             return $blockContent;
         }
 
@@ -47,10 +46,7 @@ class Button
         $id = $div ? $div->getAttribute('id') : null;
 
         $variant = 'primary';
-        if (
-            isset($block['attrs']['className']) &&
-            strpos($block['attrs']['className'], 'is-style-outline') !== false
-        ) {
+        if (isset($block['attrs']['className']) && str_contains($block['attrs']['className'], 'is-style-outline')) {
             $variant = 'outline';
         }
 

@@ -2,6 +2,7 @@
   "recommendations": [
     "heybourn.headwind",
     "bradlc.vscode-tailwindcss",
-    "laravel.vscode-laravel"
+    "laravel.vscode-laravel",
+    "Michael4d45.mago-vscode"
   ]
 }

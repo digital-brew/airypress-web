@@ -57,6 +57,7 @@ class MakeBlockCommand extends Command
             return;
         }
 
+        // @mago-format-ignore-next
         $content = <<<'EOT'
 <?php
 
@@ -89,6 +90,7 @@ EOT;
             return;
         }
 
+        // @mago-format-ignore-next
         $content = <<<'EOT'
 <div>
     <!-- Block: {$kebabName} -->
@@ -109,6 +111,7 @@ EOT;
             return;
         }
 
+        // @mago-format-ignore-next
         $content = <<<'EOT'
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor";
 import { __ } from "@wordpress/i18n";
@@ -157,7 +160,7 @@ EOT;
         $import = "import * as {$camelName}Block from \"./editor/{$kebabName}.block\";";
         $content = preg_replace('/(import .* from ".*\n)/', "$1{$import}\n", $content, 1);
 
-        // Add registerBlockType call
+        // @mago-format-ignore-next
         $register = <<<'EOT'
   registerBlockType({$camelName}Block.name, {
     apiVersion: 3,
@@ -172,7 +175,7 @@ EOT;
         $content = str_replace(
             "  /**\n   * Register blocks\n   */",
             "  /**\n   * Register blocks\n   */\n  {$register}",
-            $content
+            $content,
         );
 
         file_put_contents($path, $content);
@@ -184,53 +187,47 @@ EOT;
         $content = file_get_contents($path);
 
         if ($content === false) {
-            $this->error("Could not read BlocksServiceProvider.php");
+            $this->error('Could not read BlocksServiceProvider.php');
             return;
         }
 
         // 1) Ensure use statement exists
         $useStatement = "use App\\Blocks\\{$studlyName};";
-        if (strpos($content, $useStatement) === false) {
-            // Insert after the last existing "use ..." or after namespace if none
-            if (preg_match('/^(namespace\s+[^;]+;\s*(?:\Ruse\s+[^;]+;\s*)*)/m', $content, $m)) {
-                $block = $m[1];
-                $replacement = rtrim($block) . PHP_EOL . $useStatement . PHP_EOL;
-                $content = preg_replace('/^(namespace\s+[^;]+;\s*(?:\Ruse\s+[^;]+;\s*)*)/m', $replacement, $content, 1);
-            } else {
-                // Fallback: insert after namespace line
-                $content = preg_replace('/^(namespace\s+[^;]+;\s*)/m', '$0' . $useStatement . PHP_EOL, $content, 1);
-            }
+        if (! str_contains($content, $useStatement)) {
+            // Insert after the last existing "use ..." statement, or after the namespace line
+            $content = preg_replace(
+                '/^(namespace\s+[^;]+;\s*(?:\Ruse\s+[^;]+;\s*)*)/m',
+                '$0' . $useStatement . PHP_EOL,
+                $content,
+                1,
+            );
         }
 
         // 2) Prepare the filter call we want to add
-        $filterCall = "        /**\n"
+        $filterCall =
+            "        /**\n"
             . "         * Render `radicle/{$kebabName}` block with Blade template\n"
             . "         */\n"
             . "        add_filter('render_block_radicle/{$kebabName}', [new {$studlyName}(), 'render'], 10, 2);";
 
         // Skip if it's already present
-        if (strpos($content, $filterCall) === false) {
+        if (! str_contains($content, $filterCall)) {
             // Insert inside boot() just before its closing brace
             // - Match the boot() method body lazily, then insert before the final }
             $pattern = '/(public\s+function\s+boot\s*\(\s*\)\s*\{\s*)(.*?)(\R\s*\})/s';
-            if (preg_match($pattern, $content)) {
-                $content = preg_replace(
-                    $pattern,
-                    '$1$2' . PHP_EOL . $filterCall . '$3',
-                    $content,
-                    1
-                );
-            } else {
-                $this->error("Could not find boot() method in BlocksServiceProvider.php");
+            if (! preg_match($pattern, $content)) {
+                $this->error('Could not find boot() method in BlocksServiceProvider.php');
                 return;
             }
+
+            $content = preg_replace($pattern, '$1$2' . PHP_EOL . $filterCall . '$3', $content, 1);
         }
 
         if (file_put_contents($path, $content) === false) {
-            $this->error("Failed to write BlocksServiceProvider.php");
+            $this->error('Failed to write BlocksServiceProvider.php');
             return;
         }
 
-        $this->info("BlocksServiceProvider updated.");
+        $this->info('BlocksServiceProvider updated.');
     }
 }

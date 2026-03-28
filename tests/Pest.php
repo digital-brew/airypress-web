@@ -15,17 +15,17 @@ $_ENV['WP_ENV'] = 'testing';
 require_once __DIR__ . '/../public/wp-config.php';
 
 // Ensure WordPress is fully loaded
-if (!function_exists('wp_loaded')) {
+if (! function_exists('wp_loaded')) {
     require_once ABSPATH . 'wp-settings.php';
 }
 
 // Bootstrap Acorn the same way as the mu-plugin
 $app = Application::configure()
     ->withProviders()
-    ->withMiddleware(function (Middleware $middleware) {
+    ->withMiddleware(function (Middleware $middleware): void {
         //
     })
-    ->withExceptions(function (Exceptions $exceptions) {
+    ->withExceptions(function (Exceptions $exceptions): void {
         //
     })
     ->boot();

@@ -5,7 +5,7 @@ This guide outlines PHP coding conventions for WordPress development using Acorn
 ## Core principles
 
 - **Modern PHP First**: Use PHP 8.4+ features (constructor property promotion, enums, property hooks, etc.)
-- **PSR-12/PER-CS Compliant**: Follow modern PHP standards, not traditional WordPress Coding Standards. Enforced by [Laravel Pint](https://laravel.com/docs/pint) — `composer lint` to check, `composer lint:fix` to auto-fix
+- **PSR-12/PER-CS Compliant**: Follow modern PHP standards, not traditional WordPress Coding Standards. Enforced by [Mago](https://mago.carthage.software) — `composer format` to check, `composer format:fix` to auto-fix, `composer lint` to lint
 - **Laravel Conventions**: Leverage Laravel features for elegant solutions
 - **Prefer Laravel Helpers**: Use `collect()`, `Str::` helpers, and other Laravel utilities over native PHP equivalents
 - **Namespaces Required**: All PHP files must use proper namespaces (typically `namespace App;` or sub-namespaces)

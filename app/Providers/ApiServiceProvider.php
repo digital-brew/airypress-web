@@ -36,7 +36,7 @@ class ApiServiceProvider extends ServiceProvider
                     $request->get_url_params(),
                     $request->get_query_params(),
                     $request->get_json_params() ?: [],
-                    $request->get_body_params()
+                    $request->get_body_params(),
                 );
 
                 // Call controller method with parameters
@@ -59,13 +59,11 @@ class ApiServiceProvider extends ServiceProvider
                 continue;
             }
 
-            if (isset($params[$name])) {
-                $methodParams[] = $params[$name];
-            } elseif ($param->isDefaultValueAvailable()) {
-                $methodParams[] = $param->getDefaultValue();
-            } else {
-                $methodParams[] = null;
-            }
+            $methodParams[] = match (true) {
+                isset($params[$name]) => $params[$name],
+                $param->isDefaultValueAvailable() => $param->getDefaultValue(),
+                default => null,
+            };
         }
 
         return $methodParams;

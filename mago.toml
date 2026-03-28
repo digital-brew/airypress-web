@@ -1,0 +1,37 @@
+[source]
+paths = ["app/", "database/", "public/content/mu-plugins/", "routes/", "tests/"]
+excludes = [
+    "config/**", # mangles the comments formatting in Laravel config files
+    "public/content/mu-plugins/bedrock-disallow-indexing/", # composer-installed
+]
+
+[formatter]
+print-width = 120
+null-type-hint = "question"
+space-before-arrow-function-parameter-list-parenthesis = true
+space-after-logical-not-unary-prefix-operator = true
+sort-uses = true
+
+[linter]
+integrations = ["laravel"]
+
+[linter.rules]
+literal-named-argument = { enabled = false } # too noisy with WordPress i18n functions (__(), _e(), etc.)
+no-else-clause = { enabled = true }
+no-assign-in-condition = { enabled = false } # common WordPress pattern: if ($x = get_option(...))
+no-empty = { enabled = false }
+no-global = { enabled = false } # unavoidable in WordPress ($GLOBALS['wpdb'], global $wp_rest_server, etc.)
+no-literal-password = { enabled = false } # false positive on Laravel cast definitions
+no-empty-comment = { enabled = false } # we use empty comments to keep callback bodies expanded for readability
+no-eval = { enabled = true }
+no-multi-assignments = { enabled = false } # common WordPress REST API test pattern
+no-redundant-nullsafe = { enabled = false } # WordPress functions often return false instead of null
+no-redundant-parentheses = { enabled = true }
+no-redundant-use = { enabled = true }
+no-shorthand-ternary = { enabled = false }
+prefer-arrow-function = { enabled = false } # arrow functions should be a stylistic choice
+prefer-anonymous-migration = { enabled = false } # false positive — doesn't recognize `return new class extends Migration`
+prefer-first-class-callable = { enabled = false } # false positive with spread operator: fn ($params) => func(...$params)
+prefer-static-closure = { enabled = false }
+strict-types = { enabled = false }
+too-many-methods = { threshold = 20 }

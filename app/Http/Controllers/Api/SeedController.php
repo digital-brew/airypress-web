@@ -7,7 +7,7 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 
-class SeedController
+final class SeedController
 {
     public function index(WP_REST_Request $request): WP_REST_Response
     {
@@ -21,7 +21,8 @@ class SeedController
             $query->where('post_title', 'like', "%{$search}%");
         }
 
-        $seeds = $query->offset(($page - 1) * $perPage)
+        $seeds = $query
+            ->offset(($page - 1) * $perPage)
             ->limit($perPage)
             ->get();
 
@@ -52,15 +53,15 @@ class SeedController
 
     public function show(WP_REST_Request $request, ?int $id = null): WP_REST_Response|WP_Error
     {
-        $id = $id ?? (int) $request->get_param('id');
+        $id ??= (int) $request->get_param('id');
 
-        if (!$id) {
+        if (! $id) {
             return new WP_Error('missing_id', 'Seed ID is required', ['status' => 400]);
         }
 
         $seed = Seed::find($id);
 
-        if (!$seed) {
+        if (! $seed) {
             return new WP_Error('seed_not_found', 'Seed not found', ['status' => 404]);
         }
 

@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Blocks\Core\Button;
-use App\Blocks\Modal;
 use App\Blocks\LatestSeeds;
+use App\Blocks\Modal;
 use Illuminate\Support\ServiceProvider;
 
 class BlocksServiceProvider extends ServiceProvider
