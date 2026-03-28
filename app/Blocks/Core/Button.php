@@ -46,7 +46,7 @@ class Button
         $id = $div ? $div->getAttribute('id') : null;
 
         $variant = 'primary';
-        if (isset($block['attrs']['className']) && str_contains($block['attrs']['className'], 'is-style-outline')) {
+        if (str_contains($block['attrs']['className'] ?? '', 'is-style-outline')) {
             $variant = 'outline';
         }
 

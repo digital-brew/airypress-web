@@ -60,7 +60,7 @@ class ApiServiceProvider extends ServiceProvider
             }
 
             $methodParams[] = match (true) {
-                isset($params[$name]) => $params[$name],
+                array_key_exists($name, $params) => $params[$name],
                 $param->isDefaultValueAvailable() => $param->getDefaultValue(),
                 default => null,
             };
