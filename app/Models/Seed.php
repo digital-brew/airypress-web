@@ -19,17 +19,11 @@ class Seed extends Post
 
     public function nextSeed(): ?static
     {
-        return static::published()
-            ->where('post_date', '>', $this->post_date)
-            ->orderBy('post_date', 'asc')
-            ->first();
+        return static::published()->where('post_date', '>', $this->post_date)->orderBy('post_date', 'asc')->first();
     }
 
     public function previousSeed(): ?static
     {
-        return static::published()
-            ->where('post_date', '<', $this->post_date)
-            ->orderBy('post_date', 'desc')
-            ->first();
+        return static::published()->where('post_date', '<', $this->post_date)->orderBy('post_date', 'desc')->first();
     }
 }

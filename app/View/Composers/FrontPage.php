@@ -63,10 +63,7 @@ class FrontPage extends Composer
 
         // If no featured seeds, get recent ones
         if ($featured->isEmpty()) {
-            return Seed::published()
-                ->orderBy('post_date', 'desc')
-                ->limit(4)
-                ->get();
+            return Seed::published()->orderBy('post_date', 'desc')->limit(4)->get();
         }
 
         return $featured;
