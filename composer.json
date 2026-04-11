@@ -35,7 +35,7 @@
         "log1x/laravel-webfonts": "^2.0",
         "oscarotero/env": "^2.0",
         "roots/acorn": "^6.0",
-        "roots/acorn-mail": "^1.0",
+        "roots/acorn-mail": "^2.0",
         "roots/acorn-post-types": "^1.0",
         "roots/acorn-prettify": "^1.0",
         "roots/allow-svg": "^1.0",
