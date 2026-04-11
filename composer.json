@@ -48,7 +48,7 @@
     },
     "require-dev": {
         "carthage-software/mago": "^1.0",
-        "johnbillion/query-monitor": "^3.0",
+        "johnbillion/query-monitor": "^4.0",
         "pestphp/pest": "^4.0",
         "phpcompatibility/php-compatibility": "^9.0"
     },
