@@ -309,6 +309,8 @@ return [
 
 ### Caching
 
+Prefer Laravel's `Cache` facade over WordPress transients (`set_transient()` / `get_transient()`). See [Laravel Cache: Alternative to WordPress Transients](https://roots.io/acorn/docs/laravel-cache-alternative-to-wordpress-transients/).
+
 ```php
 use Illuminate\Support\Facades\Cache;
 
@@ -327,6 +329,9 @@ public function getPopularPosts(): Collection
 
 // ✅ Good - Tagged caching
 Cache::tags(['posts', 'homepage'])->remember($key, $ttl, $callback);
+
+// ❌ Avoid - WordPress transients
+set_transient('popular_posts', $posts, HOUR_IN_SECONDS);
 ```
 
 ### Collections
