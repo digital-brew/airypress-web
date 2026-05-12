@@ -336,6 +336,8 @@ set_transient('popular_posts', $posts, HOUR_IN_SECONDS);
 
 ### Collections
 
+Wrap arrays in `collect()` and chain operations instead of nesting `array_*` calls. Pipelines read top-to-bottom, are easier to extend, and avoid juggling `array_values()` to re-key after `array_filter`.
+
 ```php
 // ✅ Good - Leverage Laravel Collections
 $posts = collect(get_posts($args))
@@ -349,7 +351,79 @@ $stats = collect($users)
     ->groupBy('role')
     ->map(fn ($group) => $group->count())
     ->sortDesc();
+
+// ❌ Bad - Nested native array functions
+$posts = array_slice(
+    array_values(array_filter(
+        array_map(fn ($post) => $this->transformPost($post), get_posts($args)),
+        fn ($post) => $post['status'] === 'publish'
+    )),
+    0,
+    10
+);
 ```
+
+Common mappings:
+
+| Native PHP | Collection method |
+| --- | --- |
+| `array_map` | `->map()` |
+| `array_filter` (+ `array_values`) | `->filter()` (already re-keyable with `->values()`) |
+| `array_reduce` | `->reduce()` |
+| `array_walk` | `->each()` |
+| `array_merge` / `array_replace` | `->merge()` / `->replace()` |
+| `array_combine` | `->combine()` |
+| `array_keys` / `array_values` / `array_flip` | `->keys()` / `->values()` / `->flip()` |
+| `array_column` | `->pluck()` |
+| `array_unique` | `->unique()` |
+| `array_slice` / `array_chunk` | `->slice()` / `->take()` / `->chunk()` |
+| `in_array` | `->contains()` |
+| `array_search` | `->search()` |
+| `array_sum` / `array_product` / averages | `->sum()` / `->avg()` / `->max()` / `->min()` |
+| `array_diff` / `array_intersect` | `->diff()` / `->intersect()` |
+| `usort` / `uasort` / `array_multisort` | `->sortBy()` / `->sortByDesc()` / `->sort()` |
+| `array_count_values` | `->countBy()` |
+| Grouping by a key | `->groupBy()` |
+| `range()` | `Collection::times()` / `collect(range(...))` |
+
+Reach for native `array_*` only when there's a concrete reason (hot loop benchmarked to matter, working with a fixed associative shape where collection overhead isn't worth it) — and note why in a comment.
+
+### Strings
+
+Prefer `Str::` helpers and the `Str::of()` fluent builder over native `mb_*`, `preg_*`, and `str_*` functions. They are multibyte-safe by default, compose cleanly, and read better.
+
+```php
+use Illuminate\Support\Str;
+
+// ✅ Good - Fluent string pipelines
+$slug = Str::of($title)->trim()->lower()->slug();
+
+$initial = Str::upper(Str::substr($lastName, 0, 1));
+
+$parts = Str::of($author)->squish()->explode(' ');
+
+// ❌ Bad - Native equivalents
+$slug = sanitize_title(trim(strtolower($title)));
+
+$initial = mb_strtoupper(mb_substr($lastName, 0, 1));
+
+$parts = preg_split('/\s+/', trim($author));
+```
+
+Common mappings:
+
+| Native PHP | Laravel helper |
+| --- | --- |
+| `mb_substr($s, 0, 1)` | `Str::substr($s, 0, 1)` |
+| `mb_strtoupper($s)` / `mb_strtolower($s)` | `Str::upper($s)` / `Str::lower($s)` |
+| `str_contains`, `str_starts_with`, `str_ends_with` | `Str::contains`, `Str::startsWith`, `Str::endsWith` |
+| `trim` + `preg_replace('/\s+/', ' ', …)` | `Str::of($s)->squish()` |
+| `preg_split('/\s+/', $s)` | `Str::of($s)->explode(' ')` (returns a Collection) |
+| `ucfirst` / `ucwords` | `Str::ucfirst` / `Str::title` |
+| `str_replace` | `Str::replace` / `Str::of($s)->replace(...)` |
+| Generating IDs / hashes | `Str::uuid()`, `Str::ulid()`, `Str::random()` |
+
+Reach for native functions only when there's a concrete reason (hot loop benchmarked to matter, a regex feature `Str` doesn't expose, etc.) — and note why in a comment.
 
 ## 1st Party Package Development
 
