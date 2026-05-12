@@ -43,3 +43,13 @@ While we strive to help our customers in any way we can, a Radicle license doesn
 If you discover a bug in Radicle, please make a topic on [Roots Discourse](https://discourse.roots.io/c/radicle) with minimal reproduction instructions.
 
 If you have feature requests, questions, or feedback, please make a topic on [Roots Discourse](https://discourse.roots.io/c/radicle) or use the #radicle channel on our Discord server.
+
+## Customers only
+
+Radicle is a paid product. Access to this repository is provided through your Radicle purchase.
+
+- **Source code**: MIT-licensed. See [`LICENSE.md`](LICENSE.md).
+- **`docs/` directory**: proprietary, not MIT-licensed. See [`docs/LICENSE.md`](docs/LICENSE.md).
+- **Repository access**: governed by the [Terms of Service](TERMS.md).
+
+Public redistribution of repository contents — in original, modified, paraphrased, or excerpted form — violates the Terms of Service and results in immediate termination of access with no refund.
