@@ -19,11 +19,17 @@
 
             @include('sections.header')
 
-            <main id="main" class="max-w-5xl mx-auto">
-                <div class="{{ $containerInnerClasses }}">
+            @hasSection('full-width')
+                <main id="main">
                     @yield('content')
-                </div>
-            </main>
+                </main>
+            @else
+                <main id="main" class="max-w-5xl mx-auto">
+                    <div class="{{ $containerInnerClasses }}">
+                        @yield('content')
+                    </div>
+                </main>
+            @endif
 
             @include('sections.footer')
         </div>

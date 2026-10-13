@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "airypress/reviews",
+  "title": "Reviews",
+  "category": "airypress",
+  "icon": "testimonial",
+  "description": "Grid of review cards.",
+  "textdomain": "radicle",
+  "supports": {
+    "html": false,
+    "align": ["full"]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "colors": {
+      "type": "object",
+      "default": {}
+    }
+  }
+}

@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 @foreach ($columns as $column)
-                    <th scope="col" class="p-3 bg-gray-100 border-b border-b-gray-300">{{ $column }}</th>
+                    <th scope="col" class="p-3 bg-sky border-b border-b-gray-300">{{ $column }}</th>
                 @endforeach
             </tr>
         </thead>

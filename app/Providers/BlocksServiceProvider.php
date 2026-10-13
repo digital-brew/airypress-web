@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Blocks\Core\Button;
-use App\Blocks\LatestSeeds;
 use App\Blocks\Modal;
+use App\Blocks\Section;
 use Illuminate\Support\ServiceProvider;
 
 class BlocksServiceProvider extends ServiceProvider
@@ -22,7 +22,15 @@ class BlocksServiceProvider extends ServiceProvider
         add_filter('render_block_core/button', [new Button(), 'render'], 10, 2);
 
         /**
-         * Register and render `radicle/modal` and `radicle/latest-seeds` blocks
+         * Group the landing page section blocks under their own inserter category
+         */
+        add_filter('block_categories_all', fn (array $categories): array => [
+            ['slug' => 'airypress', 'title' => __('AiryPress', 'radicle')],
+            ...$categories,
+        ]);
+
+        /**
+         * Register and render the `radicle/modal` block
          */
         add_action('init', function () {
             register_block_type('radicle/modal', [
@@ -40,27 +48,36 @@ class BlocksServiceProvider extends ServiceProvider
                 'render_callback' => [new Modal(), 'render'],
             ]);
 
-            register_block_type('radicle/latest-seeds', [
-                'api_version' => 3,
-                'attributes' => [
-                    'posts' => [
-                        'type' => 'number',
-                        'default' => 5,
-                    ],
-                    'displayPostContent' => [
-                        'type' => 'string',
-                        'default' => 'none',
-                    ],
-                    'postLayout' => [
-                        'type' => 'string',
-                        'default' => 'list',
-                    ],
-                    'displayFeaturedImage' => [
-                        'type' => 'boolean',
-                        'default' => false,
-                    ],
-                ],
-                'render_callback' => [new LatestSeeds(), 'render'],
+            /**
+             * Register the `airypress/*` landing page sections from their block.json files
+             */
+            foreach (glob(resource_path('js/editor/blocks/*/block.json')) as $metadata) {
+                register_block_type(dirname($metadata), [
+                    'render_callback' => [new Section(), 'render'],
+                ]);
+            }
+
+            /**
+             * One-click pattern with every section and the launch copy
+             */
+            register_block_pattern_category('airypress', ['label' => __('AiryPress', 'radicle')]);
+
+            register_block_pattern('airypress/landing', [
+                'title' => __('AiryPress landing page', 'radicle'),
+                'categories' => ['airypress'],
+                'blockTypes' => ['core/post-content'],
+                'content' => serialize_blocks(
+                    collect(require resource_path('patterns/landing.php'))
+                        ->map(fn (array $attributes, string $slug): array => [
+                            'blockName' => "airypress/{$slug}",
+                            'attrs' => $attributes,
+                            'innerBlocks' => [],
+                            'innerHTML' => '',
+                            'innerContent' => [],
+                        ])
+                        ->values()
+                        ->all(),
+                ),
             ]);
         });
     }

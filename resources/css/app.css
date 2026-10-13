@@ -2,9 +2,259 @@
 @source "../views/";
 @source "../../app/";
 @import "./common/theme.css";
+@import "./common/base.css";
+@import "./common/utilities.css";
 
 @layer base {
+  :root {
+    /*
+     * Where the sticky header sits: below the WordPress admin bar for logged-in users,
+     * except at 600px and below, where the admin bar scrolls away with the page.
+     */
+    --sticky-offset: var(--wp-admin--admin-bar--height, 0px);
+
+    @media screen and (max-width: 600px) {
+      --sticky-offset: 0px;
+    }
+
+    /* Fallbacks until sticky-header.js measures the real heights */
+    --nav-height: 76px;
+    --header-height: calc(var(--nav-height) + 60px);
+
+    @media (width >= 48rem) {
+      --nav-height: 80px;
+      --header-height: calc(var(--nav-height) + 40px);
+    }
+  }
+
+  /* The floating header takes no space: content starts below it, a leading hero slides under it */
+  #main {
+    padding-top: var(--nav-height);
+  }
+
+  html {
+    scroll-padding-top: calc(var(--header-height, 0px) + var(--sticky-offset) + 16px);
+
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-[17px] leading-[1.55] text-ink;
+  }
+
+  a {
+    @apply text-brand hover:text-brand-dark;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Lets `height: auto` be transitioned (used by .accordion) */
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  [x-cloak] {
+    display: none !important;
+  }
+
   .e-content a {
-    @apply text-blue-600 hover:underline;
+    @apply underline;
+  }
+}
+
+/* Animated <details>: the content slides open/closed where ::details-content is supported */
+@layer components {
+  .accordion::details-content {
+    block-size: 0;
+    overflow-y: clip;
+  }
+
+  .accordion[open]::details-content {
+    block-size: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .accordion::details-content {
+      transition:
+        block-size 300ms ease,
+        content-visibility 300ms allow-discrete;
+    }
+  }
+}
+
+/* Endless horizontal ticker: `.marquee` > `.marquee-track` > two identical lists */
+@layer components {
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 48px, black calc(100% - 48px), transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+    }
+
+    .marquee-track {
+      animation: none;
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Long-form docs content (Markdown synced by `wp acorn docs:sync`) */
+@layer components {
+  .docs-prose {
+    @apply text-[17px] leading-[1.7] text-ink;
+
+    & > * + * {
+      @apply mt-5;
+    }
+
+    & :is(h2, h3, h4) {
+      @apply mb-0 scroll-mt-[calc(var(--header-height)+16px)] font-display font-extrabold tracking-[-0.02em] text-ink;
+    }
+
+    & h2 {
+      @apply mt-14 text-[32px] leading-tight;
+    }
+
+    & h3 {
+      @apply mt-10 text-[23px] leading-snug;
+    }
+
+    & h4 {
+      @apply mt-8 text-lg;
+    }
+
+    & p,
+    & ul,
+    & ol {
+      @apply mb-0;
+    }
+
+    & ul {
+      @apply list-disc pl-6;
+    }
+
+    & ol {
+      @apply list-decimal pl-6;
+    }
+
+    & li + li,
+    & li > ul,
+    & li > ol {
+      @apply mt-2;
+    }
+
+    & li::marker {
+      @apply text-brand;
+    }
+
+    & a {
+      @apply font-medium text-brand underline decoration-brand/30 underline-offset-3 hover:decoration-brand;
+    }
+
+    & strong {
+      @apply font-bold;
+    }
+
+    & :not(pre) > code {
+      @apply rounded-md bg-sky px-1.5 py-0.5 text-[0.88em] text-ink;
+    }
+
+    & pre {
+      @apply overflow-x-auto rounded-2xl bg-ink p-5 text-[14px] leading-relaxed text-ice;
+    }
+
+    & .wp-block-table {
+      @apply overflow-x-auto rounded-2xl border border-line;
+    }
+
+    & table {
+      @apply w-full border-collapse text-[15px];
+    }
+
+    & th {
+      @apply bg-sky px-4 py-3 text-left font-bold;
+    }
+
+    & td {
+      @apply border-t border-line px-4 py-3 align-top;
+    }
+
+    & blockquote {
+      @apply rounded-2xl border-l-4 border-brand bg-sky px-5 py-4;
+    }
+
+    & hr {
+      @apply my-10 border-line;
+    }
+  }
+}
+
+/*
+ * Mobile menu: the panel fades in, then items slide in one by one (`--i` = position);
+ * on close they leave in reverse order and the panel fades out last. `--n` = item count.
+ * Unlayered on purpose: it must override the `pill` utility's transition on the menu button.
+ */
+.menu-stagger {
+  opacity: 0;
+  transition: opacity 200ms ease calc(var(--n) * 40ms);
+
+  & > * {
+    opacity: 0;
+    translate: 0 -10px;
+    transition:
+      opacity 200ms ease,
+      translate 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 150ms,
+      transform 200ms,
+      box-shadow 200ms;
+    transition-delay:
+      calc((var(--n) - 1 - var(--i)) * 40ms),
+      calc((var(--n) - 1 - var(--i)) * 40ms),
+      0ms,
+      0ms,
+      0ms;
+  }
+
+  &[data-open] {
+    opacity: 1;
+    transition-delay: 0ms;
+
+    & > * {
+      opacity: 1;
+      translate: 0 0;
+      transition-delay: calc(60ms + var(--i) * 45ms), calc(60ms + var(--i) * 45ms), 0ms, 0ms, 0ms;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    & > * {
+      transition: none;
+    }
   }
 }

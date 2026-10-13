@@ -1,8 +1,18 @@
-@import "tailwindcss" theme(static);
+/*
+ * `important`: when a plugin registers a pre-v3 block (AIOSEO, Advanced Forms) WordPress drops the
+ * editor iframe, so unlayered wp-admin CSS (h1 colors/sizes, serif editor font) would beat utilities.
+ */
+@import "tailwindcss" theme(static) important;
 @import "./common/theme.css";
+@import "./common/base.css";
+@import "./common/utilities.css";
+
+body {
+  @apply font-sans text-[17px] leading-[1.55] text-ink;
+}
 
 a:not(button) {
-  @apply text-blue-600 hover:underline;
+  @apply text-brand hover:underline;
 }
 
 ol {
@@ -12,4 +22,24 @@ ol {
 .wp-block-button.is-style-outline .wp-block-button__link {
   background-color: transparent !important;
   color: var(--wp--preset--color--black) !important;
+}
+
+/* Landing blocks are full-bleed sections; drop the editor's default block margins */
+.editor-styles-wrapper [data-type^="airypress/"] {
+  margin-block: 0;
+  max-width: none;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+
+/* Undo wp-admin heading/paragraph styles inside the sections (non-iframed editor) */
+.editor-styles-wrapper [data-type^="airypress/"] :is(h1, h2, h3, p, blockquote, figure) {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
 }

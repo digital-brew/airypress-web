@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "airypress/comparison",
+  "title": "Comparison",
+  "category": "airypress",
+  "icon": "editor-table",
+  "description": "Comparison table with highlighted first column, chips and a tested-with list.",
+  "textdomain": "radicle",
+  "supports": {
+    "html": false,
+    "align": ["full"]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "anchor": {
+      "type": "string",
+      "default": "compare"
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "testedLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "columns": {
+      "type": "array",
+      "default": []
+    },
+    "rows": {
+      "type": "array",
+      "default": []
+    },
+    "chips": {
+      "type": "array",
+      "default": []
+    },
+    "tested": {
+      "type": "array",
+      "default": []
+    },
+    "colors": {
+      "type": "object",
+      "default": {}
+    }
+  }
+}

@@ -16,6 +16,14 @@
             "name": "wp-packages",
             "type": "composer",
             "url": "https://repo.wp-packages.org"
+        },
+        {
+            "name": "satispress",
+            "type": "composer",
+            "url": "https://satispress.digitalbrew.io/satispress/",
+            "only": [
+                "digital-brew/*"
+            ]
         }
     ],
     "autoload": {
@@ -30,9 +38,16 @@
         "blade-ui-kit/blade-heroicons": "^2.0",
         "blade-ui-kit/blade-icons": "^1.0",
         "composer/installers": "^2.0",
+        "digital-brew/advanced-custom-fields-pro": "^6.2",
+        "digital-brew/runcloud-hub": "^1.4",
+        "digital-brew/wp-super-cache": "^3.1",
         "guzzlehttp/guzzle": "^7.0",
+        "league/commonmark": "^2.7",
+        "log1x/acf-composer": "^3.2",
         "log1x/acorn-disable-media-pages": "^1.0",
         "log1x/laravel-webfonts": "^2.0",
+        "log1x/navi": "^3.1",
+        "log1x/sage-directives": "^2.0",
         "oscarotero/env": "^2.0",
         "roots/acorn": "^6.0",
         "roots/acorn-mail": "^2.0",
@@ -44,7 +59,11 @@
         "roots/wordpress": "6.9.4",
         "roots/wp-config": "^1.0",
         "roots/wp-stage-switcher": "^2.0",
-        "vlucas/phpdotenv": "^5.0"
+        "vlucas/phpdotenv": "^5.0",
+        "wp-plugin/acf-extended": "^0.9.0",
+        "wp-plugin/advanced-forms": "^1.9",
+        "wp-plugin/klaviyo": "^3.4",
+        "wp-plugin/seo-by-rank-math": "^1.0"
     },
     "require-dev": {
         "carthage-software/mago": "^1.0",
@@ -67,9 +86,10 @@
     "extra": {
         "acorn": {
             "providers": [
-                "App\\Providers\\ApiServiceProvider",
                 "App\\Providers\\AssetsServiceProvider",
+                "App\\Providers\\AuthorsServiceProvider",
                 "App\\Providers\\BlocksServiceProvider",
+                "App\\Providers\\DocsServiceProvider",
                 "App\\Providers\\ThemeServiceProvider"
             ]
         },

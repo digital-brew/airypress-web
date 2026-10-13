@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "airypress/features",
+  "title": "Features",
+  "category": "airypress",
+  "icon": "grid-view",
+  "description": "Two preview cards beside a heading and a grid of features.",
+  "textdomain": "radicle",
+  "supports": {
+    "html": false,
+    "align": ["full"]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "anchor": {
+      "type": "string",
+      "default": "features"
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "cardOneTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "cardOneLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "cardTwoTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "cardTwoLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "colors": {
+      "type": "object",
+      "default": {}
+    },
+    "cardOneMediaId": {
+      "type": "number",
+      "default": 0
+    },
+    "cardTwoMediaId": {
+      "type": "number",
+      "default": 0
+    }
+  }
+}

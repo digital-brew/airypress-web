@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "airypress/video",
+  "title": "Video",
+  "category": "airypress",
+  "icon": "video-alt3",
+  "description": "Full-width dark panel with a demo video, embed or placeholder.",
+  "textdomain": "radicle",
+  "supports": {
+    "html": false,
+    "align": ["full"]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "posterUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "embedUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "caption": {
+      "type": "string",
+      "default": ""
+    },
+    "videoId": {
+      "type": "number",
+      "default": 0
+    },
+    "posterId": {
+      "type": "number",
+      "default": 0
+    },
+    "colors": {
+      "type": "object",
+      "default": {}
+    }
+  }
+}

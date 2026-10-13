@@ -29,9 +29,7 @@ return [
         /**
          * Sidebar instances
          */
-        'register' => [
-            ['name' => __('Footer', 'radicle'), 'id' => 'sidebar-footer']
-        ],
+        'register' => [],
 
         /**
          * Global configuration

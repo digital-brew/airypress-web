@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "airypress/pricing",
+  "title": "Pricing",
+  "category": "airypress",
+  "icon": "money-alt",
+  "description": "Pricing plans with a yearly / lifetime toggle.",
+  "textdomain": "radicle",
+  "supports": {
+    "html": false,
+    "align": ["full"]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "anchor": {
+      "type": "string",
+      "default": "pricing"
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "text": {
+      "type": "string",
+      "default": ""
+    },
+    "yearlyLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "lifetimeLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "lifetimeBadge": {
+      "type": "string",
+      "default": ""
+    },
+    "featuredBadge": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaPrefix": {
+      "type": "string",
+      "default": ""
+    },
+    "footnote": {
+      "type": "string",
+      "default": ""
+    },
+    "plans": {
+      "type": "array",
+      "default": []
+    },
+    "colors": {
+      "type": "object",
+      "default": {}
+    },
+    "yearlyPeriod": {
+      "type": "string",
+      "default": ""
+    },
+    "lifetimePeriod": {
+      "type": "string",
+      "default": ""
+    },
+    "yearlyNote": {
+      "type": "string",
+      "default": ""
+    },
+    "lifetimeNote": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

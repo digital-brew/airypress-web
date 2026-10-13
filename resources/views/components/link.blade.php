@@ -7,9 +7,9 @@
 
 @php
     $variantClasses = match ($variant) {
-        'default' => $external ? 'text-blue-600 hover:text-blue-800' : 'text-blue-600 hover:text-blue-800 underline decoration-1 underline-offset-2 hover:decoration-2',
+        'default' => $external ? 'text-brand hover:text-brand-dark' : 'text-brand hover:text-brand-dark underline decoration-1 underline-offset-2 hover:decoration-2',
         'unstyled' => $external ? 'text-inherit' : 'text-inherit no-underline hover:underline',
-        default => $external ? 'text-blue-600 hover:text-blue-800' : 'text-blue-600 hover:text-blue-800 underline decoration-1 underline-offset-2 hover:decoration-2'
+        default => $external ? 'text-brand hover:text-brand-dark' : 'text-brand hover:text-brand-dark underline decoration-1 underline-offset-2 hover:decoration-2'
     };
 
     $textClasses = $external ? match ($variant) {

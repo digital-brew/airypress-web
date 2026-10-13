@@ -1,5 +1,24 @@
 @import "./fonts.css";
 
 @theme {
-  --font-sans: "Public Sans", system-ui, -apple-system, sans-serif;
+  /* Brand colors only: they become the editor palette and the theme.json CSS variables */
+  --color-*: initial;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "DM Sans Variable", ui-sans-serif, sans-serif;
+
+  --color-brand: #0a7aa2;
+  --color-brand-dark: #065a78;
+  --color-ink: #062f3f;
+  --color-ink-soft: #2c4a57;
+  --color-sun: #ffd45c;
+  --color-sky: #e8f5f9;
+  --color-mist: #eef6f9;
+  --color-ice: #e3f3f9;
+  --color-frost: #bfe2ee;
+  --color-line: #dceaf0;
+
+  --container-page: 1240px;
 }

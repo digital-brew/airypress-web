@@ -1,0 +1,72 @@
+/* Centered page column used by every section */
+@utility shell {
+  max-width: var(--container-page);
+  margin-inline: auto;
+}
+
+/* Fluid horizontal padding for full-bleed panels */
+@utility gutter {
+  padding-inline: clamp(20px, 4vw, 56px);
+}
+
+/* Bricolage display type; pair with a font-size utility */
+@utility headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Standard section title */
+@utility section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Rounded pill button; pair with color + size utilities. Lifts on hover, presses on click. */
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 9999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 200ms ease-out,
+    color 200ms ease-out,
+    box-shadow 200ms ease-out,
+    filter 200ms ease-out,
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -12px rgb(6 47 63 / 0.55);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 10px -6px rgb(6 47 63 / 0.5);
+    transition-duration: 80ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+/* Rounded square holding an icon */
+@utility icon-tile {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
