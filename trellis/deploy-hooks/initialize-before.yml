@@ -14,10 +14,10 @@
 # Trellis installs its WP-CLI packages (wp_cli_packages) when it provisions a server; on Vito the
 # deploy does it, for the `wp login install` step in build-after.yml.
 - name: List installed WP-CLI packages
-  command: wp package list --field=name
+  command: wp package list --fields=name --format=json
   register: wp_cli_installed_packages
   changed_when: false
 
 - name: Install WP-CLI packages
   command: wp package install {{ item }}
-  loop: "{{ wp_cli_packages | difference(wp_cli_installed_packages.stdout_lines) }}"
+  loop: "{{ wp_cli_packages | difference(wp_cli_installed_packages.stdout | from_json | map(attribute='name')) }}"
