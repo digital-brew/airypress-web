@@ -69,7 +69,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
               return (
                 <div
                   key={index}
-                  className={`relative flex flex-wrap items-center justify-between gap-x-8 gap-y-3 rounded-[32px] bg-(--row-bg) px-8 py-6 md:rounded-full`}
+                  className={`relative flex flex-wrap items-center justify-between gap-x-8 gap-y-3 rounded-[1.25rem] bg-(--row-bg) px-8 py-6 md:rounded-full`}
                   style={tone}
                 >
                   <ItemControls

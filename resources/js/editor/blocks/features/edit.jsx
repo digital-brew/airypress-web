@@ -1,64 +1,70 @@
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
-import { PanelBody } from "@wordpress/components";
+import { PanelBody, SelectControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { Anchor } from "../../components/Anchor";
 import { ColorPanels, colorVariables } from "../../components/Colors";
-import { IconUpload } from "../../components/IconUpload";
 import { AddItem, ItemControls, useItems } from "../../components/Items";
 import { MediaField, useMediaUrl } from "../../components/MediaField";
 import { Text } from "../../components/Text";
 import colorGroups from "./colors";
+import { Visual } from "./visuals";
 
-/* Mirrors the per-card CSS variables in resources/views/blocks/features.blade.php */
-const cards = [
-  {
-    prefix: "cardOne",
-    className: "",
-    style: {
-      "--card-bg": "var(--c-card-one-bg, var(--color-brand))",
-      "--card-title": "var(--c-card-one-title, var(--color-white))",
-      "--card-label": "var(--c-card-one-label, var(--color-ice))",
-    },
+/* Each card's look follows its illustration; mirrors `$looks` in resources/views/blocks/features.blade.php */
+const looks = {
+  menu: {
+    "--card-bg": "var(--c-menu-bg, var(--color-sky))",
+    "--card-title": "var(--c-menu-title, var(--color-ink))",
+    "--card-text": "var(--c-menu-text, var(--color-ink-soft))",
+    "--panel-bg": "var(--color-white)",
   },
-  {
-    prefix: "cardTwo",
-    className: "mt-12",
-    style: {
-      "--card-bg": "var(--c-card-two-bg, var(--color-sky))",
-      "--card-title": "var(--c-card-two-title, var(--color-ink))",
-      "--card-label": "var(--c-card-two-label, var(--color-ink-soft))",
-    },
+  toolbar: {
+    "--card-bg": "var(--c-toolbar-bg, var(--color-ink))",
+    "--card-title": "var(--c-toolbar-title, var(--color-white))",
+    "--card-text": "var(--c-toolbar-text, var(--color-ice))",
+    "--panel-bg": "rgb(255 255 255 / 0.05)",
   },
+  columns: {
+    "--card-bg": "var(--c-columns-bg, var(--color-sun))",
+    "--card-title": "var(--c-columns-title, var(--color-ink))",
+    "--card-text": "var(--c-columns-text, var(--color-ink-soft))",
+    "--panel-bg": "var(--color-white)",
+  },
+  handover: {
+    "--card-bg": "var(--c-handover-bg, var(--color-brand))",
+    "--card-title": "var(--c-handover-title, var(--color-white))",
+    "--card-text": "var(--c-handover-text, var(--color-ice))",
+    "--panel-bg": "rgb(255 255 255 / 0.15)",
+  },
+};
+const visuals = Object.keys(looks);
+const visualOptions = [
+  { value: "menu", label: __("Menu builder", "radicle") },
+  { value: "toolbar", label: __("Toolbar toggles", "radicle") },
+  { value: "columns", label: __("List columns", "radicle") },
+  { value: "handover", label: __("Login and handover", "radicle") },
 ];
 
-const PreviewCard = ({ card, attributes, field }) => {
-  const image = useMediaUrl(attributes[`${card.prefix}MediaId`]);
+/* Same fallback as the Blade template: cards without a stored visual cycle through them */
+const visualFor = (item, index) =>
+  visuals.includes(item.visual) ? item.visual : visuals[index % visuals.length];
+
+const Card = ({ item, index, children }) => {
+  const image = useMediaUrl(item.mediaId);
+  const visual = visualFor(item, index);
 
   return (
     <div
-      className={`relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-[32px] bg-(--card-bg) p-5 ${card.className}`}
-      style={card.style}
+      className="relative flex flex-col rounded-[1.25rem] bg-(--card-bg) p-4"
+      style={looks[visual]}
     >
-      {image && (
-        <>
-          <img src={image} alt="" className="absolute inset-0 size-full object-cover" />
-          <span className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-ink/70 to-transparent" />
-        </>
-      )}
-      <Text
-        plain
-        tagName="span"
-        className="relative font-display text-[26px] leading-none font-extrabold text-(--card-title)"
-        placeholder={__("Card title", "radicle")}
-        {...field(`${card.prefix}Title`)}
-      />
-      <Text
-        plain
-        tagName="span"
-        className="relative text-sm text-(--card-label)"
-        placeholder={__("Label", "radicle")}
-        {...field(`${card.prefix}Label`)}
-      />
+      <div className="flex min-h-[clamp(240px,24vw,320px)] items-center rounded-[1.25rem] bg-(--panel-bg) p-[clamp(16px,2vw,28px)]">
+        {image ? (
+          <img src={image} alt="" className="block h-auto w-full rounded-2xl" />
+        ) : (
+          <Visual visual={visual} />
+        )}
+      </div>
+      {children}
     </div>
   );
 };
@@ -85,66 +91,86 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
         />
       </InspectorControls>
       <InspectorControls>
-        <PanelBody title={__("Preview card images", "radicle")}>
-          <MediaField label={__("First card", "radicle")} {...field("cardOneMediaId")} />
-          <MediaField label={__("Second card", "radicle")} {...field("cardTwoMediaId")} />
-        </PanelBody>
+        {items.map((item, index) => (
+          <PanelBody
+            key={index}
+            title={item.title?.replace(/<[^>]+>/g, "") || __("Card", "radicle")}
+            initialOpen={false}
+          >
+            <SelectControl
+              label={__("Illustration and colors", "radicle")}
+              value={visualFor(item, index)}
+              options={visualOptions}
+              onChange={(visual) => actions.update(index, { visual })}
+              __nextHasNoMarginBottom
+            />
+            <MediaField
+              label={__("Image instead of the illustration", "radicle")}
+              value={item.mediaId}
+              onChange={(mediaId) => actions.update(index, { mediaId })}
+            />
+          </PanelBody>
+        ))}
       </InspectorControls>
       <Anchor {...field("anchor")} />
 
       <section {...props}>
-        <div className="shell flex flex-wrap items-center gap-14">
-          <div className="grid min-w-0 flex-[1_1_440px] grid-cols-2 gap-4">
-            {cards.map((card) => (
-              <PreviewCard key={card.prefix} card={card} attributes={attributes} field={field} />
-            ))}
-          </div>
-
-          <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-8">
+        <div className="shell flex flex-col gap-12">
+          <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-4">
             <Text
               tagName="h2"
-              className="section-title text-[var(--c-heading,var(--color-ink))]"
+              className="headline min-w-0 flex-[1_1_560px] text-[clamp(44px,6vw,80px)] leading-[0.95] tracking-[-0.04em] text-[var(--c-heading,var(--color-ink))]"
               placeholder={__("Heading", "radicle")}
               {...field("heading")}
             />
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-7">
-              {items.map((item, index) => (
-                <div key={index} className="relative flex flex-col gap-2.5">
-                  <ItemControls
-                    index={index}
-                    count={items.length}
-                    actions={actions}
-                    show={isSelected}
-                  />
-                  <IconUpload
-                    value={item.iconId}
-                    onChange={(iconId) => actions.update(index, { iconId })}
-                    fallback={item.icon}
-                    className="icon-tile size-[76px] rounded-3xl bg-[var(--c-tile-bg,var(--color-sun))]"
-                    size={48}
-                  />
+            <Text
+              tagName="p"
+              className="m-0 max-w-[400px] flex-[0_1_400px] text-lg text-[var(--c-text,var(--color-ink-soft))]"
+              placeholder={__("Intro text", "radicle")}
+              {...field("text")}
+            />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {items.map((item, index) => (
+              <Card key={index} item={item} index={index}>
+                <ItemControls
+                  index={index}
+                  count={items.length}
+                  actions={actions}
+                  show={isSelected}
+                />
+                <div className="flex flex-col gap-3 px-4 pt-7 pb-6">
                   <Text
                     tagName="h3"
-                    className="m-0 text-[19px] font-bold text-[var(--c-title,var(--color-ink))]"
+                    className="m-0 font-display text-[clamp(24px,2.4vw,30px)] leading-tight font-extrabold tracking-[-0.02em] text-(--card-title)"
                     placeholder={__("Feature", "radicle")}
                     value={item.title}
                     onChange={(title) => actions.update(index, { title })}
                   />
                   <Text
                     tagName="p"
-                    className="m-0 text-base text-[var(--c-text,var(--color-ink-soft))]"
+                    className="m-0 text-[17px] text-(--card-text)"
                     placeholder={__("Description", "radicle")}
                     value={item.text}
                     onChange={(text) => actions.update(index, { text })}
                   />
                 </div>
-              ))}
-              <AddItem
-                show={isSelected || !items.length}
-                onClick={() => actions.add({ iconId: 0, title: "", text: "" })}
-                label={__("Add feature", "radicle")}
-              />
-            </div>
+              </Card>
+            ))}
+            <AddItem
+              show={isSelected || !items.length}
+              onClick={() =>
+                actions.add({
+                  visual: visuals[items.length % visuals.length],
+                  mediaId: 0,
+                  title: "",
+                  text: "",
+                })
+              }
+              label={__("Add card", "radicle")}
+              className="text-ink"
+            />
           </div>
         </div>
       </section>

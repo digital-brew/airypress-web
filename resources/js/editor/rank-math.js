@@ -28,17 +28,20 @@ const sections = {
     `<p>${link(a.primaryUrl, a.primaryText)} ${link(a.secondaryUrl, a.secondaryText)}</p>` +
     image(a.mediaId) +
     tag("p", a.stickerOne) +
-    tag("p", a.stickerTwo),
+    tag("p", a.stickerTwo) +
+    tag("p", a.stickerThree),
   intro: (a) => tag("p", a.eyebrow) + tag("h2", a.heading) + tag("p", a.text),
   highlights: (a) => list(a.items, (item) => tag("h3", item.title) + tag("p", item.text)),
-  video: (a) => tag("p", a.caption),
-  features: (a) =>
-    image(a.cardOneMediaId) +
-    tag("p", [a.cardOneTitle, a.cardOneLabel].filter(Boolean).join(" ")) +
-    image(a.cardTwoMediaId) +
-    tag("p", [a.cardTwoTitle, a.cardTwoLabel].filter(Boolean).join(" ")) +
+  video: (a) =>
+    tag("p", a.eyebrow) +
     tag("h2", a.heading) +
-    list(a.items, (item) => tag("h3", item.title) + tag("p", item.text)),
+    tag("p", a.text) +
+    tag("p", a.caption) +
+    list(a.chapters, (chapter) => tag("li", chapter.title)),
+  features: (a) =>
+    tag("h2", a.heading) +
+    tag("p", a.text) +
+    list(a.items, (item) => image(item.mediaId) + tag("h3", item.title) + tag("p", item.text)),
   comparison: (a) =>
     tag("h2", a.heading) +
     `<table><tr><th></th>${list(a.columns, (column) => `<th>${column}</th>`)}</tr>${list(

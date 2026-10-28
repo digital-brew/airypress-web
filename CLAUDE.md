@@ -11,7 +11,7 @@ Always read and follow the guidelines in `.ai/guidelines/` before working:
 ## Project Overview
 
 Marketing site for **AiryPress** (a WordPress admin theme plugin by DigitalBrew), built on **Radicle** (Roots' WordPress stack):
-- **Backend**: Acorn 6 (Laravel) inside WordPress 6.9, Bedrock layout
+- **Backend**: Acorn 6 (Laravel) inside WordPress 7.1, Bedrock layout
 - **Frontend build**: Vite 8 + `@roots/vite-plugin` + `laravel-vite-plugin`
 - **Styling**: Tailwind CSS 4 (design tokens in `resources/css/common/theme.css`, exported to `theme.json` at build)
 - **Blocks**: Native Gutenberg blocks — React edit component + server-side Blade render (no ACF blocks)
@@ -88,7 +88,7 @@ Each section lives in `resources/js/editor/blocks/<slug>/`:
 Rendering: `BlocksServiceProvider` registers every `block.json` with `App\Blocks\Section`, which renders `resources/views/blocks/<slug>.blade.php`. Attributes arrive as variables, already passed through `wp_kses_post` (so `{!! $heading !!}` is safe; still use `esc_url()` on URLs). `$wrapper('classes')` outputs the block wrapper attributes plus the `anchor` id.
 
 - Colors: every section has a `colors` object attribute. `App\Blocks\Section` turns it into CSS variables on the wrapper (`bg` → `--c-bg`), and templates read them with the design token as fallback: `bg-[var(--c-card-bg,var(--color-sky))]`. Unset colors store nothing, so blocks follow the design. Repeated items with different looks (feature cards, featured plans, story rows) set per-item variables (`--card-bg`, `--row-bg`…) inline and share one set of classes. Keep JSX and Blade class strings identical.
-- Images: anywhere a visual lives (hero visual, feature preview cards, video poster, card icons) there is an upload; when empty the built-in mockup/illustration shows. Card icons store `iconId`; `<x-card-icon :item>` falls back to the bundled SVG named in `icon` (`resources/images/icons/airy/`, two-tone 48px illustrations), rendered in the editor by `IconUpload`.
+- Images: anywhere a visual lives (hero visual, feature card illustrations, video poster, card icons) there is an upload; when empty the built-in mockup/illustration shows. Card icons store `iconId`; `<x-card-icon :item>` falls back to the bundled SVG named in `icon` (`resources/images/icons/airy/`, two-tone 48px illustrations), rendered in the editor by `IconUpload`.
 - Pattern: `resources/patterns/landing.php` holds the full landing page copy, registered as the `airypress/landing` block pattern
 - Landing pages use `front-page.blade.php` or the "Landing Page" template (`template-landing.blade.php`), which render full-width without the default container
 
@@ -142,9 +142,64 @@ wp acorn docs:sync --source=/path/to/docs --changelog=/path/to/CHANGELOG.md
 - **No `theme.json` element styles or root padding.** WordPress prints them as unlayered CSS, which beats Tailwind's layered utilities. Element defaults (headings, p, lists) live in `resources/css/common/base.css`; `resources/views/blocks/_global.theme.js` holds only block styles.
 - **The editor may not be iframed.** Plugins registering pre-v3 blocks (AIOSEO, Advanced Forms) make WordPress render the canvas inline, so wp-admin CSS leaks in. That's why `editor.css` imports Tailwind with `important` and resets typography inside `[data-type^="airypress/"]`.
 - **Composer autoload order.** Some plugins bundle unprefixed copies of shared libraries (AIOSEO Pro shipped Monolog 1 / PSR Log 1 and crashed Acorn on its first log write). `public/content/mu-plugins/composer-autoload-priority.php` re-prepends the project autoloader after each plugin loads so our versions always win. The free AIOSEO now in use doesn't bundle them, but keep the mu-plugin as a guard.
-- The AiryPress plugin is symlinked into `public/content/plugins/airypress` from `~/Projects/Code/wp-plugins/airypress` (local only, gitignored).
+- The AiryPress plugin is required as `digital-brew/airypress:dev-main` from its private GitHub repo (`vcs` repository, authenticated by the `github-oauth` token in `auth.json`). Locally, `public/content/plugins/airypress` is swapped for a symlink to `~/Projects/Code/wp-plugins/airypress`; `composer install`/`update` replaces the symlink, so re-create it afterwards. Run `composer update digital-brew/airypress` to deploy new plugin commits.
 
 - `vendor/`, `public/wp/`, `public/content/plugins/*`, `public/build/` are build artifacts — never edit them.
 - Composer network access may need to run outside Claude's sandbox (sandbox DNS blocks `codeload.github.com`).
 - Editor styles are injected via `block_editor_settings_all`; editor scripts via `admin_head` reading `editor.deps.json`.
 - Theme supports must be registered in `config/theme.php`, not only in `theme.json`.
+
+## Tailwind CSS classes
+
+These rules apply whenever you write or edit Tailwind classes (Blade, JSX/JS, CSS). When asked to audit or refactor the classes, follow the process at the end.
+
+1. **Tailwind's default scale is used whenever a value matches it.**
+2. **Values that repeat but aren't in the defaults become theme tokens** in the `@theme` block.
+3. **Arbitrary values (`[...]`) are kept only for true one-offs.**
+4. **Lengths are written in rem, not px.**
+
+A refactor must not change the rendered output: same computed values, same breakpoints, same states.
+
+### This project
+
+- Tailwind **4.3**.
+- Theme tokens (`@theme`): `resources/css/common/theme.css`.
+- `@utility` definitions: `resources/css/common/utilities.css`.
+- Verify with `npm run build`; lint/format with `npm run lint` and `npm run format`.
+
+### Rules
+
+**Use the defaults (Tailwind 4):**
+- Spacing, sizing and inset (`p`, `m`, `gap`, `w`, `h`, `size`, `top`…) are calculated from `--spacing` (0.25rem), so any multiple of 4px has a utility: `p-[18px]` stays arbitrary (written `p-[1.125rem]`), but `gap-[28px]` → `gap-7`, `w-[220px]` → `w-55`, `size-[84px]` → `size-21`, `min-h-[56px]` → `min-h-14`. Half steps also exist (`p-2.5` = 10px).
+- Font size: `text-xs/sm/base/lg/xl/2xl…` (12/14/16/18/20/24px…). Don't use them when the value only roughly matches.
+- Radius: `rounded-sm/md/lg/xl/2xl/3xl/4xl` (4/6/8/12/16/24/32px), `rounded-full`.
+- Line height, letter spacing, font weight, opacity, z-index, shadows, max-widths (`max-w-md`, `max-w-3xl`…): use the named utility when it matches exactly.
+- Colours: only theme tokens (`bg-brand`, `text-ink/60`). A raw hex value in a class is a bug unless it's a true one-off.
+- CSS variables: use the shorthand `bg-(--card-bg)`, not `bg-[var(--card-bg)]`. Keep a fallback (`bg-[var(--x,var(--color-brand))]`) only when one is needed.
+
+**Add theme tokens:**
+- A non-default value used **2 or more times** for the same purpose becomes a token in `@theme`, named by its role, not its value. For example `--radius-card: 1.25rem` gives `rounded-card`, `--text-hero: clamp(3.75rem, 11vw, 9.375rem)` gives `text-hero`, and `--color-ink-soft` gives `text-ink-soft`.
+- Use the correct namespace so a utility is generated: `--color-*`, `--font-*`, `--text-*` (with optional `--text-*--line-height`), `--radius-*`, `--shadow-*`, `--spacing-*`, `--container-*`, `--breakpoint-*`, `--ease-*`, `--animate-*`, `--tracking-*`, `--leading-*`.
+- Don't add a token for a value that already matches a default; use the default.
+- Repeated *combinations* (the same 4+ utilities appearing together in several places) become an `@utility`, but only when they represent one concept (`pill`, `section-title`). Don't merge unrelated classes.
+
+**Units: rem, not px:**
+- Write every length in rem (1rem = 16px): arbitrary values (`p-[1.125rem]`, not `p-[18px]`), theme tokens (`1.25rem`, not `20px`), `clamp()`/`calc()` bounds (`clamp(3.75rem, 11vw, 9.375rem)`) and lengths in custom CSS.
+- Converting an existing px value to rem is a refactor, not a design change: it keeps the computed value. Use the exact quotient (15px → `0.9375rem`), never a rounded one. This relies on a 16px root; this project doesn't set `html { font-size }` today, so if that changes, stop and ask the user.
+- Keep px for border, outline, ring and divider widths (`border-[3px]`, `outline-[1px]`), where the line shouldn't grow with text size.
+- Breakpoints: `--breakpoint-*` tokens in rem, like the defaults (`md` = 48rem).
+
+**Keep arbitrary values only when:**
+- the value is used once and isn't in the scale,
+- it's an inherently arbitrary value (`clamp()`, `calc()`, a grid template, an aspect ratio, a one-off transform or shadow),
+- it's a selector variant (`[&_iframe]:size-full`).
+
+Don't change values to make them fit the scale. Ask the user if a change would alter the design (for example 18px → 16px).
+
+### Audit process
+
+1. **Inventory.** List every arbitrary class across templates, components, JS/JSX and CSS (`grep -rhoE '\b[a-z-]+-\[[^]]+\]'`), grouped by property and value, with counts and file locations. Flag every px length (other than border/outline/ring widths) for conversion to rem.
+2. **Classify** each one as: replace with a default, promote to a token, or keep as a one-off. Show this as a table and **wait for the user's approval** before editing.
+3. **Apply** the changes. Where markup is duplicated (for example a server template and its editor/JSX copy), change both identically.
+4. **Verify:** run the production build and the linter or formatter (see *This project*). Diff the compiled CSS before and after, or compare computed styles on key pages with screenshots at desktop and mobile widths. Report any visual difference.
+5. **Summarise:** the tokens added, the number of classes replaced, the px values converted to rem, the arbitrary values kept with a one-line reason each, and any value that was *close to* a default but left unchanged because it didn't match exactly.

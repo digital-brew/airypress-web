@@ -5,7 +5,7 @@
   "title": "Hero",
   "category": "airypress",
   "icon": "star-filled",
-  "description": "Brand-colored opening panel with headline, buttons and product visual.",
+  "description": "Brand-colored opening panel with a centred headline, buttons and a product visual.",
   "textdomain": "radicle",
   "supports": {
     "html": false,
@@ -53,6 +53,10 @@
       "default": ""
     },
     "stickerTwo": {
+      "type": "string",
+      "default": ""
+    },
+    "stickerThree": {
       "type": "string",
       "default": ""
     },

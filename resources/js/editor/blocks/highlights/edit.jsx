@@ -30,7 +30,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
           {items.map((item, index) => (
             <div
               key={index}
-              className="relative flex flex-col gap-3.5 rounded-[28px] bg-[var(--c-card-bg,var(--color-sky))] p-7"
+              className="relative flex flex-col gap-3.5 rounded-[1.25rem] bg-[var(--c-card-bg,var(--color-sky))] p-7"
             >
               <ItemControls
                 index={index}

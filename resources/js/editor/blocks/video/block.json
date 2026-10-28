@@ -5,7 +5,7 @@
   "title": "Video",
   "category": "airypress",
   "icon": "video-alt3",
-  "description": "Full-width dark panel with a demo video, embed or placeholder.",
+  "description": "Dark section: eyebrow, heading and intro, a framed muted loop with a play button that opens the demo in a modal (1080p, with an optional 4K switch), and chapter pills that jump to a moment.",
   "textdomain": "radicle",
   "supports": {
     "html": false,
@@ -17,6 +17,26 @@
       "default": "full"
     },
     "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "text": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundVideoId": {
+      "type": "number",
+      "default": 0
+    },
+    "backgroundVideoUrl": {
       "type": "string",
       "default": ""
     },
@@ -40,9 +60,25 @@
       "type": "number",
       "default": 0
     },
+    "video4kId": {
+      "type": "number",
+      "default": 0
+    },
+    "video4kUrl": {
+      "type": "string",
+      "default": ""
+    },
     "posterId": {
       "type": "number",
       "default": 0
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 45
+    },
+    "chapters": {
+      "type": "array",
+      "default": []
     },
     "colors": {
       "type": "object",

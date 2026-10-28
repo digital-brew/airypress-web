@@ -41,6 +41,13 @@ export default [
         token: "ink",
       },
       { key: "stickerTwoText", label: __("Second sticker text", "radicle"), token: "white" },
+      {
+        key: "stickerThreeBg",
+        label: __("Third sticker background", "radicle"),
+        token: "white",
+      },
+      { key: "stickerThreeText", label: __("Third sticker text", "radicle"), token: "ink" },
+      { key: "stickerThreeDot", label: __("Third sticker dot", "radicle"), token: "brand" },
     ],
   },
 ];

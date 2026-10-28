@@ -15,12 +15,9 @@ import { Text } from "../../components/Text";
 import { UrlField } from "../../components/UrlField";
 import { Mockup } from "./mockup";
 
-const frame = "rounded-[32px] bg-white p-3 shadow-[0_40px_80px_-30px_rgba(6,47,63,0.55)]";
-
 export default function Edit({ attributes, setAttributes }) {
   const props = useBlockProps({
-    className:
-      "gutter overflow-hidden bg-[var(--c-bg,var(--color-brand))] pb-[clamp(40px,6vw,80px)] text-white",
+    className: "gutter relative isolate overflow-x-clip pb-[clamp(24px,3vw,40px)] text-white",
     style: colorVariables(attributes.colors),
   });
   const media = useSelect(
@@ -75,95 +72,102 @@ export default function Edit({ attributes, setAttributes }) {
       <Anchor {...field("anchor")} />
 
       <section {...props}>
-        <div className="shell flex flex-wrap items-center gap-14 pt-[clamp(32px,6vw,72px)]">
-          <div className="flex min-w-0 flex-[1_1_460px] flex-col gap-[26px]">
-            <Text
-              plain
-              tagName="span"
-              className="self-start rounded-full bg-[var(--c-badge-bg,var(--color-sun))] px-4 py-2 text-sm font-bold text-[var(--c-badge-text,var(--color-ink))]"
-              placeholder={__("Badge", "radicle")}
-              {...field("badge")}
-            />
-            <Text
-              tagName="h1"
-              className="headline text-[clamp(56px,8vw,112px)] leading-[0.92] tracking-[-0.04em] text-[var(--c-heading,var(--color-white))]"
-              placeholder={__("Headline", "radicle")}
-              {...field("heading")}
-            />
-            <Text
-              tagName="p"
-              className="m-0 max-w-[520px] text-xl text-[var(--c-text,var(--color-ice))]"
-              placeholder={__("Supporting text", "radicle")}
-              {...field("text")}
-            />
-            <div className="flex flex-wrap gap-3">
-              <span className="pill min-h-14 bg-[var(--c-primary-bg,var(--color-ink))] px-[30px] text-[17px] text-[var(--c-primary-text,var(--color-white))]">
-                <Text
-                  plain
-                  tagName="span"
-                  placeholder={__("Primary button", "radicle")}
-                  {...field("primaryText")}
-                />
-                <svg
-                  className="size-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
+        <span
+          className="absolute inset-x-0 top-0 bottom-[clamp(140px,24vw,340px)] -z-10 bg-[var(--c-bg,var(--color-brand))]"
+          aria-hidden="true"
+        />
+
+        <div className="shell flex flex-col items-center gap-7 pt-[clamp(48px,7vw,100px)] text-center">
+          <Text
+            plain
+            tagName="span"
+            className="rounded-full bg-[var(--c-badge-bg,var(--color-sun))] px-4 py-2 text-sm font-bold text-[var(--c-badge-text,var(--color-ink))]"
+            placeholder={__("Badge", "radicle")}
+            {...field("badge")}
+          />
+          <Text
+            tagName="h1"
+            className="headline max-w-[1000px] text-[clamp(60px,11vw,150px)] leading-[0.88] tracking-[-0.05em] text-[var(--c-heading,var(--color-white))]"
+            placeholder={__("Headline", "radicle")}
+            {...field("heading")}
+          />
+          <Text
+            tagName="p"
+            className="m-0 max-w-[640px] text-[clamp(18px,1.6vw,21px)] text-[var(--c-text,var(--color-ice))]"
+            placeholder={__("Supporting text", "radicle")}
+            {...field("text")}
+          />
+          <div className="flex flex-wrap justify-center gap-3">
+            <span className="pill min-h-14 bg-[var(--c-primary-bg,var(--color-ink))] px-[30px] text-[17px] text-[var(--c-primary-text,var(--color-white))]">
+              <Text
+                plain
+                tagName="span"
+                placeholder={__("Primary button", "radicle")}
+                {...field("primaryText")}
+              />
+            </span>
+            <span className="pill min-h-14 bg-[var(--c-secondary-bg,var(--color-white))] px-[30px] text-[17px] text-[var(--c-secondary-text,var(--color-ink))]">
+              <svg className="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M7 4.8v14.4a1 1 0 0 0 1.5.86l11.7-7.2a1 1 0 0 0 0-1.72L8.5 3.94A1 1 0 0 0 7 4.8z" />
+              </svg>
+              <Text
+                plain
+                tagName="span"
+                placeholder={__("Secondary button", "radicle")}
+                {...field("secondaryText")}
+              />
+            </span>
+          </div>
+        </div>
+
+        <div className="relative mx-auto mt-[clamp(48px,6vw,80px)] max-w-[1200px]">
+          <div className="rounded-[1.25rem] bg-white p-[clamp(8px,1.1vw,16px)] pt-0 shadow-[0_40px_80px_-30px_rgba(6,47,63,0.45)]">
+            <div
+              className="relative flex min-h-[clamp(44px,4.5vw,64px)] items-center justify-center"
+              aria-hidden="true"
+            >
+              <span className="absolute left-[clamp(8px,1.5vw,20px)] flex gap-2">
+                <span className="size-3 rounded-full bg-line" />
+                <span className="size-3 rounded-full bg-line" />
+                <span className="size-3 rounded-full bg-line" />
               </span>
-              <span className="pill min-h-14 bg-[var(--c-secondary-bg,var(--color-white))] px-[30px] text-[17px] text-[var(--c-secondary-text,var(--color-ink))]">
-                <svg
-                  className="size-[22px]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M10 8.6v6.8a.6.6 0 0 0 .9.5l5.2-3.4a.6.6 0 0 0 0-1l-5.2-3.4a.6.6 0 0 0-.9.5z" />
-                </svg>
-                <Text
-                  plain
-                  tagName="span"
-                  placeholder={__("Secondary button", "radicle")}
-                  {...field("secondaryText")}
-                />
+              <span className="rounded-full bg-mist px-4 py-1.5 text-sm text-ink-soft max-sm:hidden">
+                clientco.com/wp-admin
               </span>
             </div>
-          </div>
-
-          <div className="relative min-w-0 flex-[1_1_520px] py-6">
             {media?.source_url ? (
-              <div className={frame}>
-                <img src={media.source_url} alt="" className="block h-auto w-full rounded-3xl" />
-              </div>
+              <img
+                src={media.source_url}
+                alt=""
+                className="block h-auto w-full rounded-[1.25rem]"
+              />
             ) : (
-              <Mockup frame={frame} />
+              <Mockup />
             )}
-            <Text
-              plain
-              tagName="span"
-              className="absolute top-0 -left-3 -rotate-4 rounded-full bg-[var(--c-sticker-one-bg,var(--color-sun))] px-[18px] py-3 text-[15px] font-bold text-[var(--c-sticker-one-text,var(--color-ink))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
-              placeholder={__("Sticker", "radicle")}
-              {...field("stickerOne")}
-            />
-            <Text
-              plain
-              tagName="span"
-              className="absolute right-3 bottom-0 rotate-3 rounded-full bg-[var(--c-sticker-two-bg,var(--color-ink))] px-[18px] py-3 text-[15px] font-bold text-[var(--c-sticker-two-text,var(--color-white))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
-              placeholder={__("Sticker", "radicle")}
-              {...field("stickerTwo")}
-            />
           </div>
+          <Text
+            plain
+            tagName="span"
+            className="absolute -top-7 -left-2 -rotate-4 rounded-full bg-[var(--c-sticker-one-bg,var(--color-sun))] px-5 py-3.5 font-display text-[clamp(15px,1.4vw,19px)] font-bold text-[var(--c-sticker-one-text,var(--color-ink))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
+            placeholder={__("Sticker", "radicle")}
+            {...field("stickerOne")}
+          />
+          <Text
+            plain
+            tagName="span"
+            className="absolute top-[28%] -right-2 rotate-3 rounded-full bg-[var(--c-sticker-two-bg,var(--color-ink))] px-5 py-3.5 font-display text-[clamp(15px,1.4vw,19px)] font-bold text-[var(--c-sticker-two-text,var(--color-white))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
+            placeholder={__("Sticker", "radicle")}
+            {...field("stickerTwo")}
+          />
+          <span className="absolute -bottom-6 left-[12%] flex -rotate-2 items-center gap-3 rounded-full bg-[var(--c-sticker-three-bg,var(--color-white))] px-5 py-3.5 font-display text-[clamp(15px,1.4vw,19px)] font-bold text-[var(--c-sticker-three-text,var(--color-ink))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]">
+            <span className="size-4 flex-none rounded-full bg-[var(--c-sticker-three-dot,var(--color-brand))]" />
+            <Text
+              plain
+              tagName="span"
+              placeholder={__("Sticker", "radicle")}
+              {...field("stickerThree")}
+            />
+          </span>
         </div>
       </section>
     </>

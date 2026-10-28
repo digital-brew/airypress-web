@@ -1,5 +1,5 @@
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
-import { PanelBody, TextControl, ToggleControl } from "@wordpress/components";
+import { PanelBody, SelectControl, TextControl, ToggleControl } from "@wordpress/components";
 import { __, sprintf } from "@wordpress/i18n";
 import { Anchor } from "../../components/Anchor";
 import { ColorPanels, colorVariables } from "../../components/Colors";
@@ -33,6 +33,14 @@ const featuredStyle = {
   "--btn-bg": "var(--c-featured-button-bg, var(--color-white))",
   "--btn-text": "var(--c-featured-button-text, var(--color-ink))",
 };
+
+/* Licence options of the Freemius Pro plan; "" keeps the Button URL */
+const licenseOptions = [
+  { label: __("None (use the Button URL)", "radicle"), value: "" },
+  { label: __("1 site", "radicle"), value: "1" },
+  { label: __("5 sites", "radicle"), value: "5" },
+  { label: __("Unlimited sites", "radicle"), value: "unlimited" },
+];
 
 const fillNote = (template, plan) =>
   template.replaceAll("{yearly}", plan.yearly || "").replaceAll("{lifetime}", plan.lifetime || "");
@@ -82,17 +90,37 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
             />
           ))}
         </PanelBody>
+        <PanelBody title={__("Freemius checkout", "radicle")} initialOpen={false}>
+          <TextControl
+            __next40pxDefaultSize
+            __nextHasNoMarginBottom
+            label={__("Plan ID", "radicle")}
+            help={__("Freemius → Plans → Pro. Buttons with licences open the checkout for this plan.", "radicle")}
+            {...field("checkoutPlanId")}
+          />
+        </PanelBody>
         {plans.map((plan, index) => (
           <PanelBody
             key={index}
             title={plan.name || sprintf(__("Plan %d", "radicle"), index + 1)}
             initialOpen={false}
           >
-            <UrlField
-              label={__("Button URL", "radicle")}
-              value={plan.url || ""}
-              onChange={(url) => actions.update(index, { url })}
+            <SelectControl
+              __next40pxDefaultSize
+              __nextHasNoMarginBottom
+              label={__("Licences", "radicle")}
+              help={__("The button opens the Freemius checkout with this many sites.", "radicle")}
+              value={plan.licenses || ""}
+              options={licenseOptions}
+              onChange={(licenses) => actions.update(index, { licenses })}
             />
+            {!plan.licenses && (
+              <UrlField
+                label={__("Button URL", "radicle")}
+                value={plan.url || ""}
+                onChange={(url) => actions.update(index, { url })}
+              />
+            )}
             <ToggleControl
               __nextHasNoMarginBottom
               label={__("Featured", "radicle")}
@@ -153,7 +181,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
               return (
                 <div
                   key={index}
-                  className="relative flex flex-col gap-3.5 rounded-[32px] bg-(--card-bg) p-9 text-(--card-text)"
+                  className="relative flex flex-col gap-3.5 rounded-[1.25rem] bg-(--card-bg) p-9 text-(--card-text)"
                   style={featured ? featuredStyle : planStyle}
                 >
                   <ItemControls
@@ -235,6 +263,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
                   yearly: "",
                   lifetime: "",
                   featured: false,
+                  licenses: "",
                   url: "",
                 })
               }

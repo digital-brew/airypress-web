@@ -11,4 +11,6 @@ use Illuminate\Support\Facades\Route;
  |
  */
 
-// Route::get('/example/', fn () => view('example'));
+// The plugin's upgrade links (Licensing::PRO_URL) point at /pro/. Until there's a Pro page, they
+// land on the pricing section; temporary, so it can become a page later.
+Route::redirect('/pro', '/#pricing', 302);

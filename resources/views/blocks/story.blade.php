@@ -11,7 +11,7 @@
     <div class="shell flex flex-col gap-12">
         <div class="flex flex-wrap items-end justify-between gap-6">
             @if ($heading)
-                <h2 class="headline flex-[1_1_560px] text-[clamp(48px,7vw,96px)] leading-[0.95] tracking-[-0.04em] text-[var(--c-heading,var(--color-ink))]">{!! $heading !!}</h2>
+                <h2 class="headline -mt-[0.085em] flex-[1_1_560px] text-[clamp(48px,7vw,96px)] leading-[0.95] tracking-[-0.04em] text-[var(--c-heading,var(--color-ink))]">{!! $heading !!}</h2>
             @endif
 
             @if ($text)
@@ -22,7 +22,7 @@
         @if ($rows)
             <div class="flex flex-col gap-3">
                 @foreach ($rows as $row)
-                    <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 rounded-[32px] bg-(--row-bg) px-8 py-6 md:rounded-full" style="{{ $tones[$loop->index % count($tones)] }}">
+                    <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 rounded-[1.25rem] bg-(--row-bg) px-8 py-6 md:rounded-full" style="{{ $tones[$loop->index % count($tones)] }}">
                         <h3 class="headline text-[clamp(32px,4vw,52px)] text-(--row-title)">{!! $row['title'] ?? '' !!}</h3>
                         <p class="m-0 flex-[0_1_420px] text-[17px] text-(--row-text)">{!! $row['text'] ?? '' !!}</p>
                     </div>

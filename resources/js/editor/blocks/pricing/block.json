@@ -52,6 +52,10 @@
       "type": "string",
       "default": ""
     },
+    "checkoutPlanId": {
+      "type": "string",
+      "default": "73345"
+    },
     "plans": {
       "type": "array",
       "default": []

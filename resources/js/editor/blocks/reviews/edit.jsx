@@ -40,7 +40,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
               return (
                 <figure
                   key={index}
-                  className="relative m-0 flex flex-col gap-4 rounded-[32px] bg-[var(--c-card-bg,var(--color-sky))] p-8"
+                  className="relative m-0 flex flex-col gap-4 rounded-[1.25rem] bg-[var(--c-card-bg,var(--color-sky))] p-8"
                 >
                   <ItemControls
                     index={index}

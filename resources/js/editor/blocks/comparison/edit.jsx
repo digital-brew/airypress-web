@@ -59,7 +59,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
               onChange={(heading) => setAttributes({ heading })}
             />
 
-            <div className="overflow-x-auto rounded-[32px] bg-[var(--c-table-bg,var(--color-white))] p-3">
+            <div className="overflow-x-auto rounded-[1.25rem] bg-[var(--c-table-bg,var(--color-white))] p-3">
               <table className="w-full min-w-[640px] border-separate border-spacing-0 text-base">
                 <thead>
                   <tr>

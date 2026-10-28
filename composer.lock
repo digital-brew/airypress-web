@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cc8c92a9efe7edebd80f645e2f74edd",
+    "content-hash": "342a0c4e95a3c588aea161e919f24956",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -531,6 +531,51 @@
             ],
             "description": "Customize WordPress with powerful, professional and intuitive fields.",
             "homepage": "https://www.advancedcustomfields.com"
+        },
+        {
+            "name": "digital-brew/airypress",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:digital-brew/airypress.git",
+                "reference": "b5d69945b98a0e15ca047abeafc7b94dce5eeedf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/digital-brew/airypress/zipball/b5d69945b98a0e15ca047abeafc7b94dce5eeedf",
+                "reference": "b5d69945b98a0e15ca047abeafc7b94dce5eeedf",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^2.2",
+                "php": ">=8.2"
+            },
+            "default-branch": true,
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "DigitalBrew\\AiryPress\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Rafal Pajak",
+                    "email": "rafal@digitalbrew.io",
+                    "homepage": "https://digitalbrew.io"
+                }
+            ],
+            "description": "Admin theme and clean-up toggles for WordPress.",
+            "keywords": [
+                "admin",
+                "plugin",
+                "theme",
+                "wordpress"
+            ],
+            "support": {
+                "source": "https://github.com/digital-brew/airypress/tree/main",
+                "issues": "https://github.com/digital-brew/airypress/issues"
+            },
+            "time": "2026-10-12T07:05:12+00:00"
         },
         {
             "name": "digital-brew/runcloud-hub",
@@ -5834,16 +5879,16 @@
         },
         {
             "name": "roots/allow-svg",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/allow-svg.git",
-                "reference": "036f724c7dd5493f9a63a71d87d90757b5cbb55b"
+                "reference": "c84e3d1fffe416ffe8cb1f8496db9723e1742d32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/allow-svg/zipball/036f724c7dd5493f9a63a71d87d90757b5cbb55b",
-                "reference": "036f724c7dd5493f9a63a71d87d90757b5cbb55b",
+                "url": "https://api.github.com/repos/roots/allow-svg/zipball/c84e3d1fffe416ffe8cb1f8496db9723e1742d32",
+                "reference": "c84e3d1fffe416ffe8cb1f8496db9723e1742d32",
                 "shasum": ""
             },
             "require": {
@@ -5862,7 +5907,7 @@
             "description": "WordPress plugin to enable SVG uploads",
             "support": {
                 "issues": "https://github.com/roots/allow-svg/issues",
-                "source": "https://github.com/roots/allow-svg/tree/v1.0.1"
+                "source": "https://github.com/roots/allow-svg/tree/v1.0.2"
             },
             "funding": [
                 {
@@ -5870,7 +5915,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-12T23:22:00+00:00"
+            "time": "2026-10-14T01:07:57+00:00"
         },
         {
             "name": "roots/bedrock-autoloader",
@@ -6059,20 +6104,20 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "6.9.4",
+            "version": "7.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress.git",
-                "reference": "2fa44383ade9e8ccbb986e95ca70a365c8221eb1"
+                "reference": "eb3d108f216618a858dcaed691e00e68f0ccff9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress/zipball/2fa44383ade9e8ccbb986e95ca70a365c8221eb1",
-                "reference": "2fa44383ade9e8ccbb986e95ca70a365c8221eb1",
+                "url": "https://api.github.com/repos/roots/wordpress/zipball/eb3d108f216618a858dcaed691e00e68f0ccff9f",
+                "reference": "eb3d108f216618a858dcaed691e00e68f0ccff9f",
                 "shasum": ""
             },
             "require": {
-                "roots/wordpress-core-installer": "^3.0",
+                "roots/wordpress-core-installer": "^4.0",
                 "roots/wordpress-no-content": "self.version"
             },
             "type": "metapackage",
@@ -6090,7 +6135,7 @@
             ],
             "support": {
                 "issues": "https://github.com/roots/wordpress/issues",
-                "source": "https://github.com/roots/wordpress/tree/6.9.4"
+                "source": "https://github.com/roots/wordpress/tree/7.1.3"
             },
             "funding": [
                 {
@@ -6098,24 +6143,24 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-09T19:47:29+00:00"
+            "time": "2026-03-22T13:26:54+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
-            "version": "3.0.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress-core-installer.git",
-                "reference": "714d2e2a9e523f6e7bde4810d5a04aedf0ec217f"
+                "reference": "85d3589252eb93eee836facf33b54ce30c565bea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress-core-installer/zipball/714d2e2a9e523f6e7bde4810d5a04aedf0ec217f",
-                "reference": "714d2e2a9e523f6e7bde4810d5a04aedf0ec217f",
+                "url": "https://api.github.com/repos/roots/wordpress-core-installer/zipball/85d3589252eb93eee836facf33b54ce30c565bea",
+                "reference": "85d3589252eb93eee836facf33b54ce30c565bea",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0 || ^2.0",
+                "composer-plugin-api": "^2.0",
                 "php": ">=7.2.24"
             },
             "conflict": {
@@ -6125,7 +6170,7 @@
                 "johnpbloch/wordpress-core-installer": "*"
             },
             "require-dev": {
-                "composer/composer": "^1.0 || ^2.0",
+                "composer/composer": "^2.0",
                 "phpunit/phpunit": "^8.5"
             },
             "type": "composer-plugin",
@@ -6157,7 +6202,7 @@
             ],
             "support": {
                 "issues": "https://github.com/roots/wordpress-core-installer/issues",
-                "source": "https://github.com/roots/wordpress-core-installer/tree/3.0.0"
+                "source": "https://github.com/roots/wordpress-core-installer/tree/v4.0.0"
             },
             "funding": [
                 {
@@ -6165,27 +6210,27 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-23T18:47:25+00:00"
+            "time": "2026-03-22T03:17:23+00:00"
         },
         {
             "name": "roots/wordpress-no-content",
-            "version": "6.9.4",
+            "version": "7.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "6.9.4"
+                "reference": "7.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.w.org/release/wordpress-6.9.4-no-content.zip",
-                "reference": "6.9.4",
-                "shasum": "8ae812bb54223ef859cd3de37f1c6b1db20e0e6f"
+                "url": "https://downloads.wordpress.org/release/wordpress-7.1.3-no-content.zip",
+                "reference": "7.1.3",
+                "shasum": "6c6f1135c8fd1e6f63c4d511e8be9e952d0b3433"
             },
             "require": {
-                "php": ">= 7.2.24"
+                "php": ">= 7.4"
             },
             "provide": {
-                "wordpress/core-implementation": "6.9.4"
+                "wordpress/core-implementation": "7.1.3"
             },
             "suggest": {
                 "ext-curl": "Performs remote request operations.",
@@ -6236,7 +6281,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-03-11T15:49:55+00:00"
+            "time": "2026-10-06T16:28:51+00:00"
         },
         {
             "name": "roots/wp-config",
@@ -8717,15 +8762,15 @@
         },
         {
             "name": "wp-plugin/acf-extended",
-            "version": "0.9.2.7",
+            "version": "0.9.2.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/acf-extended/",
-                "reference": "tags/0.9.2.7"
+                "reference": "tags/0.9.2.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/acf-extended.0.9.2.7.zip"
+                "url": "https://downloads.wordpress.org/plugin/acf-extended.0.9.2.8.zip"
             },
             "require": {
                 "composer/installers": "~1.0|~2.0"
@@ -8744,7 +8789,7 @@
                 "issues": "https://wordpress.org/support/plugin/acf-extended",
                 "source": "https://plugins.svn.wordpress.org/acf-extended"
             },
-            "time": "2026-08-27T02:31:21+00:00"
+            "time": "2026-10-19T13:26:02+00:00"
         },
         {
             "name": "wp-plugin/advanced-forms",
@@ -9382,16 +9427,16 @@
         },
         {
             "name": "johnbillion/query-monitor",
-            "version": "4.0.7",
+            "version": "4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "50c3cad9f710b3edcb00f266687d351d9f2c3ac6"
+                "reference": "e53a8172c8e24da8c44ebe0fde864b71ea3bb90a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/50c3cad9f710b3edcb00f266687d351d9f2c3ac6",
-                "reference": "50c3cad9f710b3edcb00f266687d351d9f2c3ac6",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/e53a8172c8e24da8c44ebe0fde864b71ea3bb90a",
+                "reference": "e53a8172c8e24da8c44ebe0fde864b71ea3bb90a",
                 "shasum": ""
             },
             "require": {
@@ -9401,17 +9446,16 @@
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
                 "guzzlehttp/guzzle": "^7.0",
-                "johnbillion/plugin-infrastructure": "2.9.4",
-                "johnbillion/wp-compat": "1.5.0",
-                "php-stubs/wordpress-stubs": "7.0.0 as 6.9.4",
-                "php-stubs/wp-cli-stubs": "2.12.0",
-                "phpcompatibility/phpcompatibility-wp": "2.1.5",
+                "johnbillion/plugin-infrastructure": "2.9.9",
+                "johnbillion/wp-compat": "3.0.1",
+                "php-stubs/wordpress-stubs": "7.1.0",
+                "phpcompatibility/phpcompatibility-wp": "2.1.8",
                 "phpstan/phpstan": "2.1.46",
                 "phpstan/phpstan-deprecation-rules": "2.0.4",
                 "phpstan/phpstan-phpunit": "2.0.16",
-                "squizlabs/php_codesniffer": "3.11.1",
-                "szepeviktor/phpstan-wordpress": "2.0.3",
-                "wp-coding-standards/wpcs": "2.3.0"
+                "squizlabs/php_codesniffer": "3.13.6",
+                "szepeviktor/phpstan-wordpress": "2.0.4",
+                "wp-coding-standards/wpcs": "3.4.1"
             },
             "type": "wordpress-plugin",
             "extra": {
@@ -9448,7 +9492,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-20T20:10:50+00:00"
+            "time": "2026-10-27T01:18:32+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -12222,7 +12266,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "digital-brew/airypress": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

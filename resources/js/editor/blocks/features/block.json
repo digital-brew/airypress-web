@@ -5,7 +5,7 @@
   "title": "Features",
   "category": "airypress",
   "icon": "grid-view",
-  "description": "Two preview cards beside a heading and a grid of features.",
+  "description": "Heading with intro text above a grid of colored feature cards, each with an illustration or image.",
   "textdomain": "radicle",
   "supports": {
     "html": false,
@@ -24,19 +24,7 @@
       "type": "string",
       "default": ""
     },
-    "cardOneTitle": {
-      "type": "string",
-      "default": ""
-    },
-    "cardOneLabel": {
-      "type": "string",
-      "default": ""
-    },
-    "cardTwoTitle": {
-      "type": "string",
-      "default": ""
-    },
-    "cardTwoLabel": {
+    "text": {
       "type": "string",
       "default": ""
     },
@@ -47,14 +35,6 @@
     "colors": {
       "type": "object",
       "default": {}
-    },
-    "cardOneMediaId": {
-      "type": "number",
-      "default": 0
-    },
-    "cardTwoMediaId": {
-      "type": "number",
-      "default": 0
     }
   }
 }
