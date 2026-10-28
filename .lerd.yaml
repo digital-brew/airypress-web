@@ -1,2 +1,5 @@
 name: airypress.com
+domains:
+  - local.airypress.com
+  - airypress.com
 secured: true

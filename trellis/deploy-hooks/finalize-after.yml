@@ -1,0 +1,7 @@
+# Refresh the docs from the AiryPress plugin's Markdown (installed by Composer). Only changed files
+# are rewritten, and docs whose file was removed are unpublished.
+- name: Sync docs
+  command: wp acorn docs:sync --prune
+  args:
+    chdir: "{{ deploy_helper.current_path }}"
+  when: wp_installed.rc == 0

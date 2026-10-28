@@ -1,0 +1,11 @@
+# Add each host to the [production] group and to a "type" group such as [web] or [db].
+# List each machine only once per [group], even if it will host multiple sites.
+
+vito_production ansible_host=91.98.12.243 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+
+[production]
+vito_production
+
+[web]
+vito_production
+

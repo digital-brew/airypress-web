@@ -1,0 +1,23 @@
+# The site user has no sudo, so WP-CLI and Composer are installed once on the server
+# (see group_vars/production/main.yml); stop early with a clear message when they're missing.
+- name: Check for WP-CLI and Composer
+  command: /bin/sh -c 'command -v wp && command -v composer'
+  register: deploy_tools
+  changed_when: false
+  failed_when: false
+
+- name: WP-CLI or Composer missing
+  fail:
+    msg: "Install WP-CLI and Composer in /usr/local/bin on the server (as the vito user) before deploying."
+  when: deploy_tools.rc != 0
+
+# Trellis installs its WP-CLI packages (wp_cli_packages) when it provisions a server; on Vito the
+# deploy does it, for the `wp login install` step in build-after.yml.
+- name: List installed WP-CLI packages
+  command: wp package list --field=name
+  register: wp_cli_installed_packages
+  changed_when: false
+
+- name: Install WP-CLI packages
+  command: wp package install {{ item }}
+  loop: "{{ wp_cli_packages | difference(wp_cli_installed_packages.stdout_lines) }}"

@@ -1,0 +1,21 @@
+# Created by trellis-cli v1.19.0
+# Documentation: https://roots.io/trellis/docs/wordpress-sites/
+
+wordpress_sites:
+  airypress.com:
+    site_hosts:
+    - canonical: airypress.com
+      redirects:
+      - www.airypress.com
+    local_path: ..
+    public_path: public
+    upload_path: content/uploads
+    branch: main
+    repo: git@github.com:digital-brew/airypress-web.git
+    multisite:
+      enabled: false
+    ssl:
+      enabled: false
+      provider: letsencrypt
+    cache:
+      enabled: false
