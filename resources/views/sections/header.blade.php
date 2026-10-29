@@ -46,7 +46,7 @@
                 @if ($headerCta)
                     <a
                         href="{{ $headerCta['url'] }}"
-                        @if ($headerCta['target']) target="{{ $headerCta['target'] }}" @endif
+                        @if ($headerCta['target']) target="{{ $headerCta['target'] }}" rel="noopener" @endif
                         class="pill group min-h-12 bg-frost px-6 text-[17px] font-medium text-ink hover:bg-ice hover:text-ink max-sm:hidden"
                     >
                         {{ $headerCta['title'] }}
@@ -98,7 +98,7 @@
                     <a
                         href="{{ $headerCta['url'] }}"
                         style="--i: {{ $menuCount - 1 }}"
-                        @if ($headerCta['target']) target="{{ $headerCta['target'] }}" @endif
+                        @if ($headerCta['target']) target="{{ $headerCta['target'] }}" rel="noopener" @endif
                         class="pill group mt-1 min-h-12 bg-frost px-6 text-[17px] font-medium text-ink hover:bg-ice hover:text-ink sm:hidden"
                     >
                         {{ $headerCta['title'] }}

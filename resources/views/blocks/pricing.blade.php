@@ -98,7 +98,7 @@
         </div>
 
         @if ($footnote)
-            <p class="m-0 text-center text-[15px] text-[var(--c-text,var(--color-ink-soft))]">{!! $footnote !!}</p>
+            <p class="m-0 text-center text-[15px] text-[var(--c-text,var(--color-ink-soft))] [&_strong]:font-semibold">{!! $footnote !!}</p>
         @endif
     </div>
 </section>

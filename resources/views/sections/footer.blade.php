@@ -17,7 +17,7 @@
                         <nav aria-label="{{ wp_strip_all_tags($group->label) }}" class="flex flex-col gap-3 text-[15px]">
                             <span class="font-bold text-sun">{!! $group->label !!}</span>
                             @foreach ($group->children ?: [] as $item)
-                                <a href="{{ $item->url }}" @if ($item->target) target="{{ $item->target }}" @endif class="text-white no-underline hover:text-sun">{!! $item->label !!}</a>
+                                <a href="{{ $item->url }}" @if ($item->target) target="{{ $item->target }}" rel="noopener" @endif class="text-white no-underline hover:text-sun">{!! $item->label !!}</a>
                             @endforeach
                         </nav>
                     @endforeach
@@ -27,7 +27,8 @@
 
         @if ($copyright || $legalNote)
             <div class="flex flex-wrap justify-between gap-3 border-t border-white/15 pt-6 text-sm text-frost">
-                <span>{{ $copyright }}</span>
+                {{-- The studio credit in the copyright line links to its site. --}}
+                <span>{!! str_replace('DigitalBrew', '<a href="https://digitalbrew.io" target="_blank" rel="noopener" class="text-inherit no-underline hover:text-sun">DigitalBrew</a>', e($copyright)) !!}</span>
                 <span>{{ $legalNote }}</span>
             </div>
         @endif

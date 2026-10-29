@@ -10,11 +10,11 @@ $row = fn (string $label, string ...$values): array => compact('label', 'values'
 
 return [
     'hero' => [
-        'badge' => 'Free on WordPress.org',
+        'badge' => 'Free and open source',
         'heading' => 'wp-admin, but calm.',
         'text' => 'AiryPress turns wp-admin into a clean, modern, branded workspace — a calm sidebar, only the menus that matter, no plugin clutter. Set it up once, reuse it on every site.',
         'primaryText' => 'Download free',
-        'primaryUrl' => '#',
+        'primaryUrl' => '/download/airypress.zip',
         'secondaryText' => 'Try the live demo',
         'secondaryUrl' => 'https://trydemowp.com/try/airypress',
         'stickerOne' => '5 menus, not 50',
@@ -68,7 +68,7 @@ return [
             $row('Admin columns with ACF', 'Yes', 'Yes', 'Yes'),
             $row('Pro from', '$59 / year', '$39 / year', '$79 / year'),
         ],
-        'chips' => ['Free on WordPress.org', 'No upsell nags', 'Block editor untouched', 'Export / import JSON', 'Bedrock friendly'],
+        'chips' => ['Free and open source', 'No upsell nags', 'Block editor untouched', 'Export / import JSON', 'Bedrock friendly'],
         'testedLabel' => 'Tested with',
         'tested' => [
             'WooCommerce',
@@ -124,7 +124,7 @@ return [
             ['name' => 'Business', 'sites' => '5 sites', 'yearly' => '$129', 'lifetime' => '$389', 'featured' => true, 'licenses' => '5', 'url' => '#'],
             ['name' => 'Agency', 'sites' => 'Unlimited sites', 'yearly' => '$249', 'lifetime' => '$749', 'featured' => false, 'licenses' => 'unlimited', 'url' => '#'],
         ],
-        'footnote' => '14-day money-back guarantee · Launch offer: 35% off your first year with code EARLYBIRD · Yearly plans keep working after expiry — you just stop getting updates',
+        'footnote' => '14-day money-back guarantee · Launch offer: 35% off your first year with code <strong>EARLYBIRD</strong> · Yearly plans keep working after expiry — you just stop getting updates',
     ],
     'story' => [
         'heading' => 'Hand over the site. Not the clutter.',

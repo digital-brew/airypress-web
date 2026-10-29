@@ -28,7 +28,7 @@
         @if ($primaryText || $secondaryText)
             <div class="flex flex-wrap justify-center gap-3">
                 @if ($primaryText)
-                    <a href="{{ esc_url($primaryUrl ?: '#') }}" class="pill min-h-14 bg-[var(--c-primary-bg,var(--color-ink))] px-[30px] text-[17px] text-[var(--c-primary-text,var(--color-white))] hover:brightness-110">{!! $primaryText !!}</a>
+                    <a href="{{ esc_url($primaryUrl ?: '#') }}" @if (str_starts_with($primaryUrl, 'http')) target="_blank" rel="noopener" @endif class="pill min-h-14 bg-[var(--c-primary-bg,var(--color-ink))] px-[30px] text-[17px] text-[var(--c-primary-text,var(--color-white))] hover:brightness-110">{!! $primaryText !!}</a>
                 @endif
 
                 @if ($secondaryText)

@@ -274,7 +274,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
 
           <Text
             tagName="p"
-            className="m-0 text-center text-[15px] text-[var(--c-text,var(--color-ink-soft))]"
+            className="m-0 text-center text-[15px] text-[var(--c-text,var(--color-ink-soft))] [&_strong]:font-semibold"
             placeholder={__("Footnote", "radicle")}
             {...field("footnote")}
           />
