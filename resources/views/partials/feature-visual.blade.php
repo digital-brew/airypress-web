@@ -48,7 +48,7 @@
                     <span class="rounded-full bg-ink py-2.5 text-center text-sm font-bold text-white">Log in</span>
                     <span class="text-center text-xs text-ink-soft">Need an account? Email us</span>
                 </div>
-                <div class="flex flex-col items-start gap-2.5 text-sm font-bold">
+                <div class="flex flex-col items-center gap-2.5 text-sm font-bold md:items-start">
                     <span class="rounded-full bg-white px-4 py-2.5">Maintenance page</span>
                     <span class="rounded-full bg-white px-4 py-2.5">Open Graph cards</span>
                     <span class="rounded-full bg-sun px-4 py-2.5">GA4 dashboard</span>

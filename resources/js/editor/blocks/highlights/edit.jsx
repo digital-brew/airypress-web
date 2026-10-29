@@ -26,11 +26,11 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
       </InspectorControls>
       <Anchor value={attributes.anchor} onChange={(anchor) => setAttributes({ anchor })} />
       <section {...props}>
-        <div className="shell grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-4">
+        <div className="shell grid grid-cols-2 gap-3 md:grid-cols-[repeat(auto-fit,minmax(min(16.25rem,100%),1fr))] md:gap-4">
           {items.map((item, index) => (
             <div
               key={index}
-              className="relative flex flex-col gap-3.5 rounded-[1.25rem] bg-[var(--c-card-bg,var(--color-sky))] p-7"
+              className="relative flex flex-col gap-2.5 rounded-2xl bg-[var(--c-card-bg,var(--color-sky))] p-4 md:gap-3.5 md:rounded-[1.25rem] md:p-7 max-md:items-center max-md:text-center"
             >
               <ItemControls
                 index={index}
@@ -42,19 +42,19 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
                 value={item.iconId}
                 onChange={(iconId) => actions.update(index, { iconId })}
                 fallback={item.icon}
-                className="icon-tile size-[84px] rounded-[26px] bg-[var(--c-tile-bg,var(--color-white))]"
+                className="icon-tile size-14 rounded-2xl bg-[var(--c-tile-bg,var(--color-white))] md:size-21 md:rounded-[1.625rem]"
                 size={56}
               />
               <Text
                 tagName="h3"
-                className="m-0 text-lg font-bold text-[var(--c-title,var(--color-ink))]"
+                className="m-0 text-base font-bold text-[var(--c-title,var(--color-ink))] md:text-lg"
                 placeholder={__("Title", "radicle")}
                 value={item.title}
                 onChange={(title) => actions.update(index, { title })}
               />
               <Text
                 tagName="p"
-                className="m-0 text-[15px] text-[var(--c-text,var(--color-ink-soft))]"
+                className="m-0 text-[0.9375rem] text-[var(--c-text,var(--color-ink-soft))] max-md:text-sm"
                 placeholder={__("Short description", "radicle")}
                 value={item.text}
                 onChange={(text) => actions.update(index, { text })}

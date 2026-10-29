@@ -41,9 +41,9 @@
             @endif
 
             @if ($chips)
-                <ul class="m-0 flex list-none flex-wrap justify-center gap-2.5 p-0">
+                <ul class="m-0 flex list-none flex-wrap justify-center gap-2 p-0 md:gap-2.5">
                     @foreach ($chips as $chip)
-                        <li class="rounded-full bg-[var(--c-chip-bg,var(--color-white))] px-[18px] py-2.5 text-[15px] font-medium text-[var(--c-chip-text,var(--color-ink))]">{!! $chip !!}</li>
+                        <li class="rounded-full bg-[var(--c-chip-bg,var(--color-white))] px-3 py-1.5 text-[0.8125rem] font-medium text-[var(--c-chip-text,var(--color-ink))] md:px-[1.125rem] md:py-2.5 md:text-[0.9375rem]">{!! $chip !!}</li>
                     @endforeach
                 </ul>
             @endif

@@ -53,10 +53,10 @@ const videoField = (attributes, setAttributes, prefix, label, help) => (
 /* Mirrors resources/views/partials/play-button.blade.php */
 const PlayButton = () => (
   <span
-    className="icon-tile size-20 rounded-full bg-[var(--c-button-bg,var(--color-sun))] md:size-28 text-[var(--c-button-icon,var(--color-ink))] shadow-[0_0_3rem_rgb(255_212_92/0.35)] ring-10 ring-[var(--c-button-bg,var(--color-sun))]/25 md:ring-16 transition-transform duration-200 group-hover:scale-105 motion-reduce:transition-none"
+    className="icon-tile size-14 rounded-full bg-[var(--c-button-bg,var(--color-sun))] md:size-28 text-[var(--c-button-icon,var(--color-ink))] shadow-[0_0_3rem_rgb(255_212_92/0.35)] ring-6 ring-[var(--c-button-bg,var(--color-sun))]/25 md:ring-16 transition-transform duration-200 group-hover:scale-105 motion-reduce:transition-none"
     aria-hidden="true"
   >
-    <svg className="ml-1 size-8 md:size-11" viewBox="0 0 24 24" fill="currentColor">
+    <svg className="ml-0.5 size-6 md:ml-1 md:size-11" viewBox="0 0 24 24" fill="currentColor">
       <path d="M8 5v14l11-7z" />
     </svg>
   </span>
@@ -218,7 +218,7 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
               />
               <div className="group flex flex-col items-center">
                 <PlayButton />
-                <span className="mt-5 md:mt-8 rounded-full bg-[var(--c-label-bg,var(--color-ink))] px-4 py-2 text-base md:px-5 md:py-2.5 md:text-lg font-bold text-[var(--c-label,var(--color-white))]">
+                <span className="mt-3 md:mt-8 rounded-full bg-[var(--c-label-bg,var(--color-ink))] px-3 py-1.5 text-sm md:px-5 md:py-2.5 md:text-lg font-bold text-[var(--c-label,var(--color-white))]">
                   <Text
                     tagName="span"
                     placeholder={__("Watch the demo", "radicle")}
@@ -244,8 +244,8 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
                   actions={actions}
                   show={isSelected}
                 />
-                <span className="pill min-h-13 gap-3 bg-[var(--c-chapter-bg,rgb(255_255_255/0.08))] py-2 pr-5 pl-2.5 text-lg font-medium text-[var(--c-chapter,var(--color-white))] hover:shadow-none">
-                  <span className="icon-tile size-7 rounded-full bg-[var(--c-number-bg,var(--color-brand))] text-sm font-bold text-[var(--c-number,var(--color-white))]">
+                <span className="pill min-h-10 gap-2 bg-[var(--c-chapter-bg,rgb(255_255_255/0.08))] py-1.5 pr-4 pl-2 text-base font-medium text-[var(--c-chapter,var(--color-white))] hover:shadow-none md:min-h-13 md:gap-3 md:py-2 md:pr-5 md:pl-2.5 md:text-lg">
+                  <span className="icon-tile size-6 rounded-full bg-[var(--c-number-bg,var(--color-brand))] text-xs font-bold text-[var(--c-number,var(--color-white))] md:size-7 md:text-sm">
                     {index + 1}
                   </span>
                   <Text

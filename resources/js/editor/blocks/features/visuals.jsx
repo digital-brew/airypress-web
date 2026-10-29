@@ -89,7 +89,7 @@ const Handover = () => (
       </span>
       <span className="text-center text-xs text-ink-soft">Need an account? Email us</span>
     </div>
-    <div className="flex flex-col items-start gap-2.5 text-sm font-bold">
+    <div className="flex flex-col items-center gap-2.5 text-sm font-bold md:items-start">
       <span className="rounded-full bg-white px-4 py-2.5">Maintenance page</span>
       <span className="rounded-full bg-white px-4 py-2.5">Open Graph cards</span>
       <span className="rounded-full bg-sun px-4 py-2.5">GA4 dashboard</span>

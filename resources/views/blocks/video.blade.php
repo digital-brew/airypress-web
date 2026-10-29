@@ -64,7 +64,7 @@
 
                     <button type="button" @click="open()" class="group flex cursor-pointer flex-col items-center">
                         @include('partials.play-button')
-                        <span class="mt-5 md:mt-8 rounded-full bg-[var(--c-label-bg,var(--color-ink))] px-4 py-2 text-base md:px-5 md:py-2.5 md:text-lg font-bold text-[var(--c-label,var(--color-white))]">
+                        <span class="mt-3 md:mt-8 rounded-full bg-[var(--c-label-bg,var(--color-ink))] px-3 py-1.5 text-sm md:px-5 md:py-2.5 md:text-lg font-bold text-[var(--c-label,var(--color-white))]">
                             {!! $label !!}@if ($length) <span aria-hidden="true">·</span> {{ $length }}@endif
                         </span>
                     </button>
@@ -83,9 +83,9 @@
                         <button
                             type="button"
                             @if ($modal) @click="open({{ $seconds($chapter['time'] ?? 0) }})" @endif
-                            class="pill min-h-13 cursor-pointer gap-3 bg-[var(--c-chapter-bg,rgb(255_255_255/0.08))] py-2 pr-5 pl-2.5 text-lg font-medium text-[var(--c-chapter,var(--color-white))] hover:shadow-none"
+                            class="pill min-h-10 cursor-pointer gap-2 bg-[var(--c-chapter-bg,rgb(255_255_255/0.08))] py-1.5 pr-4 pl-2 text-base font-medium text-[var(--c-chapter,var(--color-white))] hover:shadow-none md:min-h-13 md:gap-3 md:py-2 md:pr-5 md:pl-2.5 md:text-lg"
                         >
-                            <span class="icon-tile size-7 rounded-full bg-[var(--c-number-bg,var(--color-brand))] text-sm font-bold text-[var(--c-number,var(--color-white))]">{{ $index + 1 }}</span>
+                            <span class="icon-tile size-6 rounded-full bg-[var(--c-number-bg,var(--color-brand))] text-xs font-bold text-[var(--c-number,var(--color-white))] md:size-7 md:text-sm">{{ $index + 1 }}</span>
                             {!! $chapter['title'] ?? '' !!}
                         </button>
                     </li>

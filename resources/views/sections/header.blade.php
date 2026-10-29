@@ -16,16 +16,16 @@
     <header x-ref="nav" class="gutter pointer-events-none absolute inset-x-0 top-full pt-3 md:pt-4">
         <div
             :class="scrolled ? 'shadow-[0_16px_40px_-16px_rgba(6,47,63,0.45)]' : 'shadow-[0_8px_24px_-16px_rgba(6,47,63,0.3)]'"
-            class="shell pointer-events-auto flex items-center justify-between gap-4 rounded-full bg-white/60 py-2 pr-2 pl-3 text-ink ring-1 ring-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-shadow md:pl-4"
+            class="shell pointer-events-auto flex items-center justify-between gap-4 rounded-full bg-white/60 py-1.5 pr-1.5 pl-3 text-ink ring-1 ring-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-shadow md:py-2 md:pr-2 md:pl-4"
         >
             <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 text-ink no-underline hover:text-ink">
                 @if ($logo)
-                    <img src="{{ esc_url($logo) }}" alt="{{ wp_strip_all_tags($siteName) }}" class="block h-9 w-auto max-w-[220px]">
+                    <img src="{{ esc_url($logo) }}" alt="{{ wp_strip_all_tags($siteName) }}" class="block h-8 w-auto max-w-[220px] md:h-9">
                 @else
-                    <span class="icon-tile size-9 rounded-xl bg-brand text-white">
-                        <x-icon-airypress class="size-[22px]" aria-hidden="true" />
+                    <span class="icon-tile size-8 rounded-[0.625rem] bg-brand text-white md:size-9 md:rounded-xl">
+                        <x-icon-airypress class="size-5 md:size-[1.375rem]" aria-hidden="true" />
                     </span>
-                    <span class="font-display text-2xl font-extrabold tracking-[-0.02em]">{!! $siteName !!}</span>
+                    <span class="font-display text-xl font-extrabold tracking-[-0.02em] md:text-2xl">{!! $siteName !!}</span>
                 @endif
             </a>
 
@@ -59,11 +59,11 @@
                     @click="toggleMenu()"
                     :aria-expanded="open.toString()"
                     aria-controls="site-menu"
-                    class="icon-tile size-12 cursor-pointer rounded-full border-0 bg-ink/5 text-ink md:hidden"
+                    class="icon-tile size-10 cursor-pointer rounded-full border-0 bg-ink/5 text-ink md:hidden"
                 >
                     <span class="sr-only">{{ __('Menu', 'radicle') }}</span>
-                    <svg x-show="! open" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
-                    <svg x-show="open" x-cloak class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                    <svg x-show="! open" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+                    <svg x-show="open" x-cloak class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 </button>
             </div>
         </div>

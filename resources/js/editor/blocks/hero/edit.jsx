@@ -148,19 +148,19 @@ export default function Edit({ attributes, setAttributes }) {
           <Text
             plain
             tagName="span"
-            className="absolute -top-7 -left-2 -rotate-4 rounded-full bg-[var(--c-sticker-one-bg,var(--color-sun))] px-5 py-3.5 font-display text-[clamp(15px,1.4vw,19px)] font-bold text-[var(--c-sticker-one-text,var(--color-ink))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
+            className="absolute -top-5 -left-2 md:-top-7 -rotate-4 rounded-full bg-[var(--c-sticker-one-bg,var(--color-sun))] px-3.5 py-2 font-display text-[0.8125rem] font-bold md:px-5 md:py-3.5 md:text-[clamp(0.9375rem,1.4vw,1.1875rem)] text-[var(--c-sticker-one-text,var(--color-ink))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
             placeholder={__("Sticker", "radicle")}
             {...field("stickerOne")}
           />
           <Text
             plain
             tagName="span"
-            className="absolute top-[28%] -right-2 rotate-3 rounded-full bg-[var(--c-sticker-two-bg,var(--color-ink))] px-5 py-3.5 font-display text-[clamp(15px,1.4vw,19px)] font-bold text-[var(--c-sticker-two-text,var(--color-white))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
+            className="absolute top-[28%] -right-2 rotate-3 rounded-full bg-[var(--c-sticker-two-bg,var(--color-ink))] px-3.5 py-2 font-display text-[0.8125rem] font-bold md:px-5 md:py-3.5 md:text-[clamp(0.9375rem,1.4vw,1.1875rem)] text-[var(--c-sticker-two-text,var(--color-white))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]"
             placeholder={__("Sticker", "radicle")}
             {...field("stickerTwo")}
           />
-          <span className="absolute -bottom-6 left-[12%] flex -rotate-2 items-center gap-3 rounded-full bg-[var(--c-sticker-three-bg,var(--color-white))] px-5 py-3.5 font-display text-[clamp(15px,1.4vw,19px)] font-bold text-[var(--c-sticker-three-text,var(--color-ink))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]">
-            <span className="size-4 flex-none rounded-full bg-[var(--c-sticker-three-dot,var(--color-brand))]" />
+          <span className="absolute -bottom-5 left-[12%] flex -rotate-2 items-center gap-2 md:-bottom-6 md:gap-3 rounded-full bg-[var(--c-sticker-three-bg,var(--color-white))] px-3.5 py-2 font-display text-[0.8125rem] font-bold md:px-5 md:py-3.5 md:text-[clamp(0.9375rem,1.4vw,1.1875rem)] text-[var(--c-sticker-three-text,var(--color-ink))] shadow-[0_12px_24px_-12px_rgba(6,47,63,0.5)]">
+            <span className="size-3 flex-none rounded-full md:size-4 bg-[var(--c-sticker-three-dot,var(--color-brand))]" />
             <Text
               plain
               tagName="span"

@@ -138,9 +138,9 @@ return [
     'reviews' => [
         'heading' => 'Handed over &amp; happy',
         'items' => [
-            ['title' => 'No more "where is it?"', 'quote' => '“Our clients stopped asking where things are.”', 'name' => '[Name]', 'role' => 'Agency owner'],
-            ['title' => 'Shopify vibes', 'quote' => '“It made our WooCommerce admin feel like Shopify.”', 'name' => '[Name]', 'role' => 'Store manager'],
-            ['title' => '[Review title]', 'quote' => '[Third review from a real user]', 'name' => '[Name]', 'role' => '[Role]'],
+            ['title' => 'No more "where is it?"', 'quote' => '“Before, our admin was a wall of plugin menus, upgrade banners and notices nobody read. My team kept asking where to find orders, coupons or the shipping settings, and I spent more time pointing at the screen than running the store.<br><br>Now they log in and see what they actually use, in the order we use it. New staff learn it in an afternoon, and nobody has asked me ‘where is it?’ for weeks.”', 'name' => 'Barbara P.', 'role' => 'Store manager'],
+            ['title' => 'Shopify vibes', 'quote' => '“We moved from Shopify to WooCommerce for the flexibility, but the admin felt like a step back: cluttered menus, plugin ads and a toolbar full of badges.<br><br>AiryPress gave us that clean, focused feel again. Orders, products and customers come first and everything else stays out of the way. It’s the first time WooCommerce has felt like Shopify to us.”', 'name' => 'Simon B.', 'role' => 'WooCommerce store owner'],
+            ['title' => 'Handover in an afternoon', 'quote' => '“I build WooCommerce and brochure sites for small businesses, and handover used to be the messy part. Every site had a different mix of plugins, and every client got lost in a different way.<br><br>Now I set AiryPress up once, export the settings and import them on the next site. Every client gets the same calm, branded admin with my logo on the login screen, and the follow-up support emails have mostly stopped.”', 'name' => 'Greg H.', 'role' => 'Freelance WordPress developer'],
         ],
     ],
     'faq' => [
